@@ -1,0 +1,46 @@
+body.cover {
+  background: url('../img/t.webp') center/cover no-repeat;
+  height: 100vh;
+  font-family: 'Georgia', serif;
+  color: white;
+  margin: 0;
+}
+
+.overlay {
+  background: rgba(0,0,0,0.45);
+  position: absolute;
+  inset: 0;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.subtitle {
+  letter-spacing: 2px;
+}
+
+h1 {
+  font-size: 2.4rem;
+  margin: 10px 0;
+}
+
+.date {
+  margin-bottom: 30px;
+}
+
+.btn {
+  background: white;
+  color: black;
+  padding: 14px 30px;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: bold;
+}
