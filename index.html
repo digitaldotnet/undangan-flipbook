@@ -11,316 +11,7 @@
     <!-- AOS CSS -->
     <link href="assets/css/aos.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #fefefe;
-            color: #333;
-        }
-        .hero {
-            background-color: #BBE0EF;
-            color: #333;
-            padding: 100px 0;
-        }
-        .hero h1 {
-            font-family: 'Dancing Script', cursive;
-            font-size: 3rem;
-            margin-bottom: 20px;
-            color: #161E54; /* Soft brown for elegance */
-        }
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            color: #161E54;
-        }
-        .hero .btn {
-            margin-top: 20px;
-            border: 2px solid #161E54;
-            background-color: transparent;
-            color: #161E54;
-            border-radius: 50px;
-            padding: 12px 30px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-        .hero .btn:hover {
-            background-color: #161E54;
-            color: white;
-            box-shadow: 0 4px 8px rgba(255, 192, 203, 0.3);
-        }
-        .carousel-item img {
-            height: 400px;
-            object-fit: cover;
-            border-radius: 15px;
-        }
-        .section {
-            padding: 80px 0;
-        }
-        .card {
-            border: none;
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
-        .card:hover {
-            transform: translateY(-10px);
-        }
-        .card-img-top {
-            border-radius: 15px 15px 0 0;
-            height: 200px;
-            object-fit: cover;
-            background-color: #BBE0EF;
-        }
-        .btn-demo {
-            background-color: transparent;
-            color: #161E54;
-            border: 2px solid #161E54;
-            border-radius: 50px;
-            padding: 8px 20px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-        .btn-demo:hover {
-            background-color: #BBE0EF;
-            color: #161E54;
-            box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
-        }
-        .btn-whatsapp {
-            background-color: transparent;
-            color: #25d366;
-            border: 2px solid #25d366;
-            border-radius: 50px;
-            padding: 8px 20px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-        .btn-whatsapp:hover {
-            background-color: #25d366;
-            color: white;
-            box-shadow: 0 4px 8px rgba(37, 211, 102, 0.3);
-        }
-        .filter-tabs .nav-link {
-            border: none;
-            color: #6c757d;
-            border-radius: 50px;
-            padding: 10px 20px;
-            margin: 0 5px;
-            transition: all 0.3s ease;
-        }
-        .filter-tabs .nav-link.active {
-            background-color: #161E54;
-            color: white;
-            box-shadow: 0 4px 8px rgba(255, 192, 203, 0.3);
-        }
-        .filter-tabs .nav-link:hover {
-            background-color: #BBE0EF;
-            color: white;
-        }
-        footer {
-            background-color: #FFFACD;
-            color: #333;
-            padding: 40px 0;
-        }
-        .btn-primary {
-            background-color: transparent;
-            color: #FFC0CB;
-            border: 2px solid #FFC0CB;
-            border-radius: 50px;
-            padding: 12px 30px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-        .btn-primary:hover {
-            background-color: #FFC0CB;
-            color: white;
-            box-shadow: 0 4px 8px rgba(255, 192, 203, 0.3);
-        }
-        .guide-step {
-  background: #BBE0EF;
-  border-radius: 20px;
-  padding: 28px 22px;
-  text-align: center;
-  height: 100%;
-
-  box-shadow: 
-    0 10px 25px rgba(0, 0, 0, 0.08);
-
-  transition: all 0.3s ease;
-}
-
-.guide-step:hover {
-  transform: translateY(-6px);
-  box-shadow: 
-    0 18px 40px rgba(0, 0, 0, 0.12);
-}
-
-/* angka step */
-.step-number {
-  width: 42px;
-  height: 42px;
-  background: white;
-  color: #1a1a1a;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  font-weight: 600;
-  margin: 0 auto 14px;
-}
-
-/* title */
-.guide-step h5 {
-  margin-bottom: 10px;
-  font-weight: 600;
-}
-
-/* desc */
-.guide-step p {
-  font-size: 0.95rem;
-  color: #333;
-  margin-bottom: 0;
-  line-height: 1.5;
-}
-
-/* Mobile tuning */
-@media (max-width: 576px) {
-  .guide-step {
-    padding: 24px 18px;
-  }
-
-  .guide-step p {
-    font-size: 0.9rem;
-  }
-}
-
-.testimonial-card {
-  background: #BBE0EF;
-  border-radius: 20px;
-  padding: 32px 26px;
-  text-align: center;
-  height: 100%;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
-}
-
-.testimonial-card img {
-  width: 80px;
-  height: 80px;
-  object-fit: cover;
-  border-radius: 50%;
-  margin: 0 auto 16px;
-}
-
-.testimonial-card .quote {
-  font-style: italic;
-  font-size: 0.95rem;
-  line-height: 1.6;
-  color: #333;
-  margin-bottom: 20px;
-  flex-grow: 1;
-}
-
-.testimonial-card h5 {
-  margin-bottom: 2px;
-  font-weight: 600;
-}
-
-.testimonial-card span {
-  font-size: 0.85rem;
-  color: #777;
-}
-
-/* Mobile: 1 card per slide */
-@media (max-width: 768px) {
-  .carousel-item .col-md-4:not(:first-child) {
-    display: none;
-  }
-}
-
-.footer-section {
-  background: #0f172a; /* navy gelap */
-  color: #cbd5e1;
-  padding: 60px 0 30px;
-}
-
-.footer-title {
-  color: #ffffff;
-  font-weight: 600;
-  margin-bottom: 14px;
-}
-
-.footer-desc {
-  font-size: 0.9rem;
-  line-height: 1.6;
-  margin-bottom: 0;
-}
-
-.footer-contact {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.footer-contact li {
-  margin-bottom: 8px;
-  font-size: 0.9rem;
-}
-
-.footer-contact a {
-  color: #cbd5e1;
-  text-decoration: none;
-}
-
-.footer-contact a:hover {
-  color: #ffffff;
-}
-
-.footer-btn {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 12px 26px;
-  border-radius: 30px;
-  background: #ffffff;
-  color: #0f172a;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-
-.footer-btn:hover {
-  background: #e2e8f0;
-  transform: translateY(-2px);
-}
-
-.footer-divider {
-  border-color: rgba(255,255,255,0.1);
-  margin: 40px 0 20px;
-}
-
-.footer-bottom p {
-  font-size: 0.85rem;
-  margin: 0;
-  color: #94a3b8;
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-  .footer-section {
-    text-align: center;
-  }
-
-  .footer-btn {
-    margin-top: 14px;
-  }
-}
-
-
-    </style>
+    <link href="assets/css/main.css" rel="stylesheet">
 </head>
 <body>
     <!-- Navbar -->
@@ -332,11 +23,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto" style="color:#161E54">
-                    <li class="nav-item"><a style="color:#161E54" class="nav-link" href="#hero">Home</a></li>
-                    <!-- <li class="nav-item"><a style="color:#161E54" class="nav-link" href="#about">Tentang</a></li> -->
+                    <li class="nav-item"><a style="color:#161E54" class="nav-link" href="#hero">Home</a></li>                    
                     <li class="nav-item"><a style="color:#161E54" class="nav-link" href="#products">Produk</a></li>
                     <li class="nav-item"><a style="color:#161E54" class="nav-link" href="#testimonials">Testimoni</a></li>
-                    <!-- <li class="nav-item"><a style="color:#161E54" class="nav-link" href="#contact">Kontak</a></li> -->
                 </ul>
             </div>
         </div>
@@ -383,74 +72,58 @@
         </div>
     </section>
 
-    <!-- About Section
-    <section id="about" class="section bg-white">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6" data-aos="fade-right">
-                    <h2>Tentang Kami</h2>
-                    <p>Kami menyediakan undangan pernikahan digital yang dapat disesuaikan dengan tema dan gaya Anda. Dari flipbook interaktif hingga website responsif, semua dirancang untuk memberikan pengalaman yang luar biasa.</p>
-                </div>
-                <div class="col-md-6" data-aos="fade-left">
-                    <img src="https://via.placeholder.com/500x300" alt="About Image" class="img-fluid rounded">
-                </div>
-            </div>
-        </div>
-    </section> -->
-
     <!-- Guide Section -->
     <section id="guide" class="section bg-white py-5">
-  <div class="container">
-    <h2 class="text-center mb-5" data-aos="fade-up">
-      Panduan Menggunakan Undangan Digital
-    </h2>
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="fade-up">
+            Panduan Menggunakan Undangan Digital
+            </h2>
 
-    <div class="row g-4 justify-content-center">
+            <div class="row g-4 justify-content-center">
 
-      <div class="col-12 col-sm-6 col-lg-3"
-           data-aos="fade-up" data-aos-delay="100">
-        <div class="guide-step">
-          <div class="step-number">1</div>
-          <h5>Kirim Undangan</h5>
-          <p>Kirim link undangan ke teman melalui WhatsApp.</p>
+            <div class="col-12 col-sm-6 col-lg-3"
+                data-aos="fade-up" data-aos-delay="100">
+                <div class="guide-step">
+                <div class="step-number">1</div>
+                <h5>Kirim Undangan</h5>
+                <p>Kirim link undangan ke teman melalui WhatsApp.</p>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-3"
+                data-aos="fade-up" data-aos-delay="200">
+                <div class="guide-step">
+                <div class="step-number">2</div>
+                <h5>Buka Link</h5>
+                <p>Teman klik link dan masuk ke halaman home.</p>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-3"
+                data-aos="fade-up" data-aos-delay="300">
+                <div class="guide-step">
+                <div class="step-number">3</div>
+                <h5>Open Invitation</h5>
+                <p>Klik tombol <strong>Open Invitation</strong> di home.</p>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-3"
+                data-aos="fade-up" data-aos-delay="400">
+                <div class="guide-step">
+                <div class="step-number">4</div>
+                <h5>Nikmati Undangan</h5>
+                <p>
+                    Website: scroll<br>
+                    Flipbook: geser halaman<br>
+                    Video: tonton sampai selesai
+                </p>
+                </div>
+            </div>
+
+            </div>
         </div>
-      </div>
-
-      <div class="col-12 col-sm-6 col-lg-3"
-           data-aos="fade-up" data-aos-delay="200">
-        <div class="guide-step">
-          <div class="step-number">2</div>
-          <h5>Buka Link</h5>
-          <p>Teman klik link dan masuk ke halaman home.</p>
-        </div>
-      </div>
-
-      <div class="col-12 col-sm-6 col-lg-3"
-           data-aos="fade-up" data-aos-delay="300">
-        <div class="guide-step">
-          <div class="step-number">3</div>
-          <h5>Open Invitation</h5>
-          <p>Klik tombol <strong>Open Invitation</strong> di home.</p>
-        </div>
-      </div>
-
-      <div class="col-12 col-sm-6 col-lg-3"
-           data-aos="fade-up" data-aos-delay="400">
-        <div class="guide-step">
-          <div class="step-number">4</div>
-          <h5>Nikmati Undangan</h5>
-          <p>
-            Website: scroll<br>
-            Flipbook: geser halaman<br>
-            Video: tonton sampai selesai
-          </p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
+    </section>
 
     <!-- Products Section -->
     <section id="products" class="section bg-light">
@@ -706,7 +379,7 @@
                                 <h5 class="card-title">${product.title}</h5>
                                 <p class="card-text">${product.price}</p>
                                 <a href="${product.demo}" class="btn btn-demo me-2" target="_blank">Demo</a>
-                                <a href="https://wa.me/6281288027657?text=${encodeURIComponent(`saya ingin pesan undangan digital type: ${product.type} tema: ${product.theme}`)}" class="btn btn-whatsapp" target="_blank">WhatsApp</a>
+                                <a href="https://wa.me/6281288027657?text=${encodeURIComponent(`saya ingin pesan undangan digital type: ${product.type} tema: ${product.theme}`)}" class="btn btn-whatsapp" target="_blank">Order</a>
                             </div>
                         </div>
                     </div>
