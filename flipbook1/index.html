@@ -5,18 +5,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Jane & Shane Wedding Invitation</title>
   <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/aos.css">
 </head>
-<body class="cover">
+<body class="cover bg-flip1">
 
   <div class="overlay"></div>
 
-  <div class="content">
-    <p class="subtitle">The Wedding Of</p>
-    <h1>Jane & Shane</h1>
-    <p class="date">17 • 07 • 2026</p>
+  <div class="content"
+       data-aos="zoom-in"
+       data-aos-duration="1200"
+       data-aos-easing="ease-out-cubic">
+    <p class="subtitle" data-aos="fade-down" data-aos-delay="200">
+      The Wedding Of
+    </p>
 
-    <a href="flipbook.html" class="btn">📖 Buka Undangan</a>
+    <h1 class="couple-name" data-aos="fade-up" data-aos-delay="400">
+      <span class="name" data-aos="fade-right">Jane</span>
+      <span class="amp" data-aos="zoom-in">&amp;</span>
+      <span class="name" data-aos="fade-left">Shane</span>
+    </h1>
+
+    <p class="date" data-aos="fade-up" data-aos-delay="600">
+      17 • 07 • 2026
+    </p>
+
+    <a href="flipbook.html"
+       class="btn"
+       data-aos="fade-up"
+       data-aos-delay="800">
+      Buka Undangan
+    </a>
   </div>
+
+  <!-- JS -->
+  <script src="../assets/js/aos.js"></script>
+  <script>
+    AOS.init({
+      once: true,      // animasi cuma sekali
+      offset: 0        // langsung aktif
+    });
+  </script>
 
 </body>
 </html>

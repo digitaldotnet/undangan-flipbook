@@ -13,6 +13,10 @@ body.cover {
   overflow: hidden;
 }
 
+body.bg-flip1 {
+  background-image: url('../img/bg-flip1.png');
+}
+
 body.bg-flip2 {
   background-image: url('../img/bg-flip2.png');
 }
