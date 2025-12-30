@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Undangan Pernikahan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- <link rel="stylesheet" href="style.css"> -->
+   <style>
+    /* RESET */
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #000;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* NOTE OVERLAY */
+#introOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.85);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  padding: 20px;
+}
+
+.overlay-content {
+  animation: fadeIn .8s ease;
+}
+
+.overlay-content h5 {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.overlay-content p {
+  font-size: .95rem;
+  opacity: .9;
+}
+
+/* VIDEO SIZE (MOBILE PORTRAIT) */
+.video-container {
+  position: relative;
+  max-width: 390px;      /* iPhone width */
+  height: 600px;         /* Portrait ratio */
+  margin: 0 auto;
+  background: #000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none; /* 🔒 no interaction */
+}
+
+#startBtn {
+  margin-top: 18px;
+  padding: 10px 26px;
+  border-radius: 30px;
+  font-weight: 600;
+}
+/* RESPONSIVE */
+@media (max-width: 576px) {
+  .video-container {
+    width: 100vw;
+    height: 100vh;
+  }
+}
+
+/* ANIMATION */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+   </style>
+</head>
+<body>
+
+<!-- NOTE OVERLAY -->
+<div id="introOverlay">
+  <div class="overlay-content">
+    <p id="noteText">
+      Mohon tunggu sebentar ..
+    </p>
+
+    <!-- BUTTON MUNCUL SETELAH 5 DETIK -->
+    <button id="startBtn" class="btn btn-light d-none">
+      ▶ Tonton Video
+    </button>
+  </div>
+</div>
+
+<!-- VIDEO CONTAINER -->
+<div class="video-container">
+  <video
+    id="weddingVideo"
+    autoplay
+    muted
+    playsinline
+    preload="auto"
+  >
+    <source src="../assets/video/video1.mp4" type="video/mp4">
+  </video>
+</div>
+
+<!-- BACKSOUND -->
+<audio id="bgMusic" loop preload="auto">
+  <source src="../assets/music/song.mp3" type="audio/mp3">
+</audio>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+  const video = document.getElementById('weddingVideo');
+  const music = document.getElementById('bgMusic');
+
+  // Pastikan tidak autoplay di awal
+  video.pause();
+  music.pause();
+
+  /* ===============================
+     INTRO FLOW
+  ================================ */
+
+  // Setelah 5 detik → tampilkan tombol
+  setTimeout(() => {
+    $('#noteText').html(
+      'Silakan tekan tombol di bawah<br>untuk mulai menonton'
+    );
+    $('#startBtn').removeClass('d-none');
+  }, 5000);
+
+  // USER INTERACTION (WAJIB)
+  $('#startBtn').on('click', function () {
+    $('#introOverlay').fadeOut(600);
+
+    video.currentTime = 0;
+    video.play();
+    music.play();
+  });
+
+  /* ===============================
+     VIDEO FINISHED
+  ================================ */
+
+  video.addEventListener('ended', function () {
+    // Stop music
+    music.pause();
+    music.currentTime = 0;
+
+    // Ubah overlay jadi thank you
+    $('#noteText').html(
+      '🙏 Terima kasih<br>ditunggu kehadirannya'
+    );
+    $('#startBtn').addClass('d-none');
+
+    // Tampilkan overlay kembali
+    $('#introOverlay').fadeIn(600);
+
+    // Redirect ke home setelah 3 detik
+    setTimeout(() => {
+      window.location.href = 'index.html'; // ganti sesuai home kamu
+    }, 3000);
+  });
+
+  /* ===============================
+     SAFETY LOCK
+  ================================ */
+
+  // Paksa play jika pause
+  video.addEventListener('pause', () => {
+    if (!video.ended) video.play();
+  });
+
+  // Disable interaction
+  $(document).on('contextmenu keydown', e => e.preventDefault());
+});
+
+
+
+</script>
+</body>
+</html>
