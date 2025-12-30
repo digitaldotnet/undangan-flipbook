@@ -1,6 +1,11 @@
+html, body {
+  height: 100%;
+}
+
 body.cover {
   background: url('../img/d.jpg') center/cover no-repeat;
   min-height: 100vh;
+  min-height: 100dvh;
   font-family: 'Georgia', serif;
   color: white;
   margin: 0;
@@ -8,9 +13,6 @@ body.cover {
   display: flex;
   align-items: center;
   justify-content: center;
-
-  position: relative;
-  overflow: hidden;
 }
 
 body.bg-flip1 {
