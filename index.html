@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pernikahan Digital - Landing Page</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <!-- AOS CSS -->
+    <link href="assets/css/aos.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #fefefe;
+            color: #333;
+        }
+        .hero {
+            background-color: #BBE0EF;
+            color: #333;
+            padding: 100px 0;
+        }
+        .hero h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #161E54; /* Soft brown for elegance */
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #161E54;
+        }
+        .hero .btn {
+            margin-top: 20px;
+            border: 2px solid #161E54;
+            background-color: transparent;
+            color: #161E54;
+            border-radius: 50px;
+            padding: 12px 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .hero .btn:hover {
+            background-color: #161E54;
+            color: white;
+            box-shadow: 0 4px 8px rgba(255, 192, 203, 0.3);
+        }
+        .carousel-item img {
+            height: 400px;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+        .section {
+            padding: 80px 0;
+        }
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+        }
+        .card-img-top {
+            border-radius: 15px 15px 0 0;
+            height: 200px;
+            object-fit: cover;
+        }
+        .btn-demo {
+            background-color: transparent;
+            color: #28a745;
+            border: 2px solid #28a745;
+            border-radius: 50px;
+            padding: 8px 20px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .btn-demo:hover {
+            background-color: #28a745;
+            color: white;
+            box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+        }
+        .btn-whatsapp {
+            background-color: transparent;
+            color: #25d366;
+            border: 2px solid #25d366;
+            border-radius: 50px;
+            padding: 8px 20px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .btn-whatsapp:hover {
+            background-color: #25d366;
+            color: white;
+            box-shadow: 0 4px 8px rgba(37, 211, 102, 0.3);
+        }
+        .filter-tabs .nav-link {
+            border: none;
+            color: #6c757d;
+            border-radius: 50px;
+            padding: 10px 20px;
+            margin: 0 5px;
+            transition: all 0.3s ease;
+        }
+        .filter-tabs .nav-link.active {
+            background-color: #FFC0CB;
+            color: white;
+            box-shadow: 0 4px 8px rgba(255, 192, 203, 0.3);
+        }
+        .filter-tabs .nav-link:hover {
+            background-color: #FFFACD;
+            color: #333;
+        }
+        footer {
+            background-color: #FFFACD;
+            color: #333;
+            padding: 40px 0;
+        }
+        .btn-primary {
+            background-color: transparent;
+            color: #FFC0CB;
+            border: 2px solid #FFC0CB;
+            border-radius: 50px;
+            padding: 12px 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #FFC0CB;
+            color: white;
+            box-shadow: 0 4px 8px rgba(255, 192, 203, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="#" style="font-family: 'Dancing Script', cursive; color: #161E54;">SatuTuju</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto" style="color:#161E54">
+                    <li class="nav-item"><a style="color:#161E54" class="nav-link" href="#hero">Home</a></li>
+                    <li class="nav-item"><a style="color:#161E54" class="nav-link" href="#about">Tentang</a></li>
+                    <li class="nav-item"><a style="color:#161E54" class="nav-link" href="#products">Produk</a></li>
+                    <li class="nav-item"><a style="color:#161E54" class="nav-link" href="#testimonials">Testimoni</a></li>
+                    <li class="nav-item"><a style="color:#161E54" class="nav-link" href="#contact">Kontak</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6" data-aos="fade-right">
+                    <h1>Undangan Pernikahan Digital</h1>
+                    <p>Buat hari spesial Anda tak terlupakan dengan undangan digital yang elegan, interaktif, dan mudah dibagikan. Dari flipbook romantis hingga video cinematic, kami hadirkan solusi modern untuk pernikahan impian Anda. Hemat waktu, hemat biaya, dan maksimalkan kesan!</p>
+                    <a href="#products" class="btn">Lihat Produk Sekarang</a>
+                </div>
+                <div class="col-md-6" data-aos="fade-left">
+                    <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="assets/img/flip1.png" class="d-block w-100" alt="Flipbook Vintage">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="assets/img/flip2.png" class="d-block w-100" alt="Website Elegan">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="assets/img/video1.png" class="d-block w-100" alt="Video Romantic">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section bg-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6" data-aos="fade-right">
+                    <h2>Tentang Kami</h2>
+                    <p>Kami menyediakan undangan pernikahan digital yang dapat disesuaikan dengan tema dan gaya Anda. Dari flipbook interaktif hingga website responsif, semua dirancang untuk memberikan pengalaman yang luar biasa.</p>
+                </div>
+                <div class="col-md-6" data-aos="fade-left">
+                    <img src="https://via.placeholder.com/500x300" alt="About Image" class="img-fluid rounded">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="section bg-light">
+        <div class="container">
+            <h2 class="text-center mb-4" data-aos="fade-up">Produk Kami</h2>
+            <!-- Filter Tabs -->
+            <ul class="nav nav-tabs filter-tabs justify-content-center mb-4" id="productTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="all-tab" data-bs-toggle="tab" data-bs-target="#all" type="button" role="tab">All</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="flipbook-tab" data-bs-toggle="tab" data-bs-target="#flipbook" type="button" role="tab">Flipbook</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="website-tab" data-bs-toggle="tab" data-bs-target="#website" type="button" role="tab">Website</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="video-tab" data-bs-toggle="tab" data-bs-target="#video" type="button" role="tab">Video</button>
+                </li>
+            </ul>
+            <!-- Tab Content -->
+            <div class="tab-content" id="productTabContent">
+                <div class="tab-pane fade show active" id="all" role="tabpanel">
+                    <div class="row" id="all-products">
+                        <!-- Cards will be populated here -->
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="flipbook" role="tabpanel">
+                    <div class="row" id="flipbook-products">
+                        <!-- Cards will be populated here -->
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="website" role="tabpanel">
+                    <div class="row" id="website-products">
+                        <!-- Cards will be populated here -->
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="video" role="tabpanel">
+                    <div class="row" id="video-products">
+                        <!-- Cards will be populated here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="section bg-white">
+        <div class="container">
+            <h2 class="text-center mb-4" data-aos="fade-up">Testimoni</h2>
+            <div class="row">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <p>"Undangan digitalnya sangat cantik dan mudah dibagikan!"</p>
+                            <h5>- Sari, Pengantin</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <p>"Prosesnya cepat dan hasilnya memuaskan."</p>
+                            <h5>- Budi, Pengantin</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <p>"Tema vintage flipbook sangat romantis."</p>
+                            <h5>- Lina, Pengantin</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section bg-light">
+        <div class="container">
+            <h2 class="text-center mb-4" data-aos="fade-up">Hubungi Kami</h2>
+            <div class="row">
+                <div class="col-md-6" data-aos="fade-right">
+                    <form>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Nama</label>
+                            <input type="text" class="form-control" id="name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Pesan</label>
+                            <textarea class="form-control" id="message" rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Kirim</button>
+                    </form>
+                </div>
+                <div class="col-md-6" data-aos="fade-left">
+                    <p>Alamat: Jl. Contoh No. 123, Kota</p>
+                    <p>Email: info@undangandigital.com</p>
+                    <p>Telepon: +62 123 456 789</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <p>&copy; 2023 Undangan Digital. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
+    <!-- AOS JS -->
+    <script src="assets/js/aos.js"></script>
+    <script>
+        AOS.init();
+
+        // Sample products data
+        const products = [
+            { id: 1, type: 'flipbook', title: 'Flipbook Vintage', image: 'https://via.placeholder.com/300x200', price: 'Rp 150.000', demo: 'demo-flipbook.html', theme: 'vintage' },
+            { id: 2, type: 'flipbook', title: 'Flipbook Modern', image: 'https://via.placeholder.com/300x200', price: 'Rp 150.000', demo: 'demo-flipbook.html', theme: 'modern' },
+            { id: 3, type: 'website', title: 'Website Elegan', image: 'https://via.placeholder.com/300x200', price: 'Rp 200.000', demo: 'demo-website.html', theme: 'elegan' },
+            { id: 4, type: 'website', title: 'Website Minimalis', image: 'https://via.placeholder.com/300x200', price: 'Rp 200.000', demo: 'demo-website.html', theme: 'minimalis' },
+            { id: 5, type: 'video', title: 'Video Invitation', image: 'https://via.placeholder.com/300x200', price: 'Rp 250.000', demo: 'demo-video.html', theme: 'romantic' },
+            { id: 6, type: 'video', title: 'Video Cinematic', image: 'https://via.placeholder.com/300x200', price: 'Rp 250.000', demo: 'demo-video.html', theme: 'cinematic' }
+        ];
+
+        // Function to render cards
+        function renderCards(container, filterType) {
+            container.empty();
+            const filteredProducts = filterType === 'all' ? products : products.filter(p => p.type === filterType);
+            filteredProducts.forEach(product => {
+                const card = `
+                    <div class="col-md-4 mb-4" data-aos="fade-up">
+                        <div class="card">
+                            <img src="${product.image}" class="card-img-top" alt="${product.title}">
+                            <div class="card-body">
+                                <h5 class="card-title">${product.title}</h5>
+                                <p class="card-text">${product.price}</p>
+                                <a href="${product.demo}" class="btn btn-demo me-2">Demo</a>
+                                <a href="https://wa.me/628123456789?text=${encodeURIComponent(`saya ingin pesan undangan digital type: ${product.type} tema: ${product.theme}`)}" class="btn btn-whatsapp" target="_blank">WhatsApp</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.append(card);
+            });
+        }
+
+        // Initial render for all
+        renderCards($('#all-products'), 'all');
+
+        // Tab change event
+        $('#productTabs .nav-link').on('shown.bs.tab', function (e) {
+            const target = $(e.target).attr('data-bs-target').substring(1);
+            const container = $(`#${target}-products`);
+            renderCards(container, target);
+        });
+    </script>
+</body>
+</html>
