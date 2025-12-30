@@ -69,19 +69,20 @@
             border-radius: 15px 15px 0 0;
             height: 200px;
             object-fit: cover;
+            background-color: #BBE0EF;
         }
         .btn-demo {
             background-color: transparent;
-            color: #28a745;
-            border: 2px solid #28a745;
+            color: #161E54;
+            border: 2px solid #161E54;
             border-radius: 50px;
             padding: 8px 20px;
             font-weight: 500;
             transition: all 0.3s ease;
         }
         .btn-demo:hover {
-            background-color: #28a745;
-            color: white;
+            background-color: #BBE0EF;
+            color: #161E54;
             box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
         }
         .btn-whatsapp {
@@ -107,13 +108,13 @@
             transition: all 0.3s ease;
         }
         .filter-tabs .nav-link.active {
-            background-color: #FFC0CB;
+            background-color: #161E54;
             color: white;
             box-shadow: 0 4px 8px rgba(255, 192, 203, 0.3);
         }
         .filter-tabs .nav-link:hover {
-            background-color: #FFFACD;
-            color: #333;
+            background-color: #BBE0EF;
+            color: white;
         }
         footer {
             background-color: #FFFACD;
@@ -134,6 +135,191 @@
             color: white;
             box-shadow: 0 4px 8px rgba(255, 192, 203, 0.3);
         }
+        .guide-step {
+  background: #BBE0EF;
+  border-radius: 20px;
+  padding: 28px 22px;
+  text-align: center;
+  height: 100%;
+
+  box-shadow: 
+    0 10px 25px rgba(0, 0, 0, 0.08);
+
+  transition: all 0.3s ease;
+}
+
+.guide-step:hover {
+  transform: translateY(-6px);
+  box-shadow: 
+    0 18px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* angka step */
+.step-number {
+  width: 42px;
+  height: 42px;
+  background: white;
+  color: #1a1a1a;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 600;
+  margin: 0 auto 14px;
+}
+
+/* title */
+.guide-step h5 {
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+/* desc */
+.guide-step p {
+  font-size: 0.95rem;
+  color: #333;
+  margin-bottom: 0;
+  line-height: 1.5;
+}
+
+/* Mobile tuning */
+@media (max-width: 576px) {
+  .guide-step {
+    padding: 24px 18px;
+  }
+
+  .guide-step p {
+    font-size: 0.9rem;
+  }
+}
+
+.testimonial-card {
+  background: #BBE0EF;
+  border-radius: 20px;
+  padding: 32px 26px;
+  text-align: center;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+}
+
+.testimonial-card img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin: 0 auto 16px;
+}
+
+.testimonial-card .quote {
+  font-style: italic;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.testimonial-card h5 {
+  margin-bottom: 2px;
+  font-weight: 600;
+}
+
+.testimonial-card span {
+  font-size: 0.85rem;
+  color: #777;
+}
+
+/* Mobile: 1 card per slide */
+@media (max-width: 768px) {
+  .carousel-item .col-md-4:not(:first-child) {
+    display: none;
+  }
+}
+
+.footer-section {
+  background: #0f172a; /* navy gelap */
+  color: #cbd5e1;
+  padding: 60px 0 30px;
+}
+
+.footer-title {
+  color: #ffffff;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.footer-desc {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+.footer-contact {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-contact li {
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.footer-contact a {
+  color: #cbd5e1;
+  text-decoration: none;
+}
+
+.footer-contact a:hover {
+  color: #ffffff;
+}
+
+.footer-btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 12px 26px;
+  border-radius: 30px;
+  background: #ffffff;
+  color: #0f172a;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.footer-btn:hover {
+  background: #e2e8f0;
+  transform: translateY(-2px);
+}
+
+.footer-divider {
+  border-color: rgba(255,255,255,0.1);
+  margin: 40px 0 20px;
+}
+
+.footer-bottom p {
+  font-size: 0.85rem;
+  margin: 0;
+  color: #94a3b8;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .footer-section {
+    text-align: center;
+  }
+
+  .footer-btn {
+    margin-top: 14px;
+  }
+}
+
+
     </style>
 </head>
 <body>
@@ -147,10 +333,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto" style="color:#161E54">
                     <li class="nav-item"><a style="color:#161E54" class="nav-link" href="#hero">Home</a></li>
-                    <li class="nav-item"><a style="color:#161E54" class="nav-link" href="#about">Tentang</a></li>
+                    <!-- <li class="nav-item"><a style="color:#161E54" class="nav-link" href="#about">Tentang</a></li> -->
                     <li class="nav-item"><a style="color:#161E54" class="nav-link" href="#products">Produk</a></li>
                     <li class="nav-item"><a style="color:#161E54" class="nav-link" href="#testimonials">Testimoni</a></li>
-                    <li class="nav-item"><a style="color:#161E54" class="nav-link" href="#contact">Kontak</a></li>
+                    <!-- <li class="nav-item"><a style="color:#161E54" class="nav-link" href="#contact">Kontak</a></li> -->
                 </ul>
             </div>
         </div>
@@ -197,7 +383,7 @@
         </div>
     </section>
 
-    <!-- About Section -->
+    <!-- About Section
     <section id="about" class="section bg-white">
         <div class="container">
             <div class="row">
@@ -210,7 +396,61 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
+
+    <!-- Guide Section -->
+    <section id="guide" class="section bg-white py-5">
+  <div class="container">
+    <h2 class="text-center mb-5" data-aos="fade-up">
+      Panduan Menggunakan Undangan Digital
+    </h2>
+
+    <div class="row g-4 justify-content-center">
+
+      <div class="col-12 col-sm-6 col-lg-3"
+           data-aos="fade-up" data-aos-delay="100">
+        <div class="guide-step">
+          <div class="step-number">1</div>
+          <h5>Kirim Undangan</h5>
+          <p>Kirim link undangan ke teman melalui WhatsApp.</p>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-lg-3"
+           data-aos="fade-up" data-aos-delay="200">
+        <div class="guide-step">
+          <div class="step-number">2</div>
+          <h5>Buka Link</h5>
+          <p>Teman klik link dan masuk ke halaman home.</p>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-lg-3"
+           data-aos="fade-up" data-aos-delay="300">
+        <div class="guide-step">
+          <div class="step-number">3</div>
+          <h5>Open Invitation</h5>
+          <p>Klik tombol <strong>Open Invitation</strong> di home.</p>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-lg-3"
+           data-aos="fade-up" data-aos-delay="400">
+        <div class="guide-step">
+          <div class="step-number">4</div>
+          <h5>Nikmati Undangan</h5>
+          <p>
+            Website: scroll<br>
+            Flipbook: geser halaman<br>
+            Video: tonton sampai selesai
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 
     <!-- Products Section -->
     <section id="products" class="section bg-light">
@@ -258,75 +498,181 @@
     </section>
 
     <!-- Testimonials Section -->
-    <section id="testimonials" class="section bg-white">
+    <section id="testimonials" class="section bg-white py-5">
         <div class="container">
-            <h2 class="text-center mb-4" data-aos="fade-up">Testimoni</h2>
-            <div class="row">
-                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="card text-center">
-                        <div class="card-body">
-                            <p>"Undangan digitalnya sangat cantik dan mudah dibagikan!"</p>
-                            <h5>- Sari, Pengantin</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="card text-center">
-                        <div class="card-body">
-                            <p>"Prosesnya cepat dan hasilnya memuaskan."</p>
-                            <h5>- Budi, Pengantin</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
-                    <div class="card text-center">
-                        <div class="card-body">
-                            <p>"Tema vintage flipbook sangat romantis."</p>
-                            <h5>- Lina, Pengantin</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="section bg-light">
-        <div class="container">
-            <h2 class="text-center mb-4" data-aos="fade-up">Hubungi Kami</h2>
-            <div class="row">
-                <div class="col-md-6" data-aos="fade-right">
-                    <form>
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Nama</label>
-                            <input type="text" class="form-control" id="name">
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email">
-                        </div>
-                        <div class="mb-3">
-                            <label for="message" class="form-label">Pesan</label>
-                            <textarea class="form-control" id="message" rows="3"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Kirim</button>
-                    </form>
+            <h2 class="text-center mb-5" data-aos="fade-up">
+            Apa Kata Mereka
+            </h2>
+
+            <div id="testimonialCarousel"
+                class="carousel slide"
+                data-bs-ride="carousel"
+                data-aos="fade-up"
+                data-aos-delay="100">
+
+            <div class="carousel-inner">
+
+                <!-- SLIDE 1 -->
+                <div class="carousel-item active">
+                <div class="row justify-content-center g-4">
+
+                    <div class="col-12 col-md-4">
+                    <div class="testimonial-card">
+                        <img src="assets/img/no-picture.jpg" alt="Sari">
+                        <p class="quote">
+                        “Undangan digitalnya sangat cantik, elegan, dan mudah dibagikan ke keluarga serta teman.”
+                        </p>
+                        <h5>Sari</h5>
+                        <span>Pengantin</span>
+                    </div>
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                    <div class="testimonial-card">
+                        <img src="assets/img/no-picture.jpg" alt="Budi">
+                        <p class="quote">
+                        “Proses pemesanan cepat, admin responsif, dan hasil undangannya sesuai ekspektasi.”
+                        </p>
+                        <h5>Budi</h5>
+                        <span>Pengantin</span>
+                    </div>
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                    <div class="testimonial-card">
+                        <img src="assets/img/no-picture.jpg" alt="Lina">
+                        <p class="quote">
+                        “Tema flipbook vintage-nya romantis banget, tamu undangan banyak yang memuji.”
+                        </p>
+                        <h5>Lina</h5>
+                        <span>Pengantin</span>
+                    </div>
+                    </div>
+
                 </div>
-                <div class="col-md-6" data-aos="fade-left">
-                    <p>Alamat: Jl. Contoh No. 123, Kota</p>
-                    <p>Email: info@undangandigital.com</p>
-                    <p>Telepon: +62 123 456 789</p>
                 </div>
+
+                <!-- SLIDE 2 -->
+                <div class="carousel-item">
+                <div class="row justify-content-center g-4">
+
+                    <div class="col-12 col-md-4">
+                    <div class="testimonial-card">
+                        <img src="assets/img/no-picture.jpg" alt="Rina">
+                        <p class="quote">
+                        “Website undangannya smooth di HP, tampilannya eksklusif seperti undangan mahal.”
+                        </p>
+                        <h5>Rina</h5>
+                        <span>Pengantin</span>
+                    </div>
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                    <div class="testimonial-card">
+                        <img src="assets/img/no-picture.jpg" alt="Doni">
+                        <p class="quote">
+                        “Sangat membantu di masa sekarang, praktis tanpa cetak undangan fisik.”
+                        </p>
+                        <h5>Doni</h5>
+                        <span>Pengantin</span>
+                    </div>
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                    <div class="testimonial-card">
+                        <img src="assets/img/no-picture.jpg" alt="Maya">
+                        <p class="quote">
+                        “Videonya keren dan emosional, keluarga kami sangat suka.”
+                        </p>
+                        <h5>Maya</h5>
+                        <span>Pengantin</span>
+                    </div>
+                    </div>
+
+                </div>
+                </div>
+
+            </div>
+
+            <!-- Controls -->
+            <button class="carousel-control-prev" type="button"
+                    data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+
+            <button class="carousel-control-next" type="button"
+                    data-bs-target="#testimonialCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
-        <div class="container text-center">
-            <p>&copy; 2023 Undangan Digital. All rights reserved.</p>
+    <footer class="footer-section">
+        <div class="container">
+
+            <div class="row gy-4">
+
+            <!-- BRAND -->
+            <div class="col-md-4 text-center text-md-start">
+                <h5 class="footer-title">Undangan Digital</h5>
+                <p class="footer-desc">
+                Solusi undangan pernikahan modern dalam bentuk website, flipbook, dan video.
+                Praktis, elegan, dan mudah dibagikan.
+                </p>
+            </div>
+
+            <!-- CONTACT -->
+            <div class="col-md-4 text-center">
+                <h5 class="footer-title">Kontak</h5>
+                <ul class="footer-contact">
+                <li>
+                    <a href="https://wa.me/6281288027657" target="_blank">
+                    WhatsApp: 0812-8802-7657
+                    </a>
+                </li>
+                <li>
+                    <a href="mailto:digital.dotnet95@gmail.com">
+                    Email: digital.dotnet95@gmail.com
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.tiktok.com/@digitaldotnet" target="_blank">
+                        tiktok: @digitaldotnet
+                    </a>                    
+                </li>
+                </ul>
+            </div>
+
+            <!-- CTA -->
+            <div class="col-md-4 text-center text-md-end">
+                <h5 class="footer-title">Pesan Sekarang</h5>
+                <p class="footer-desc">
+                Konsultasi gratis & respon cepat via WhatsApp.
+                </p>
+                <a href="https://wa.me/6281288027657"
+                class="footer-btn"
+                target="_blank">
+                Chat WhatsApp
+                </a>
+            </div>
+
+            </div>
+
+            <hr class="footer-divider">
+
+            <div class="text-center footer-bottom">
+            <p>
+                &copy; <span id="year"></span> Undangan Digital. All rights reserved.
+            </p>
+            </div>
+
         </div>
     </footer>
+
 
     <!-- Bootstrap JS -->
     <script src="assets/js/bootstrap.bundle.min.js"></script>
@@ -336,15 +682,15 @@
     <script src="assets/js/aos.js"></script>
     <script>
         AOS.init();
+        document.getElementById("year").textContent = new Date().getFullYear();
 
         // Sample products data
         const products = [
-            { id: 1, type: 'flipbook', title: 'Flipbook Vintage', image: 'https://via.placeholder.com/300x200', price: 'Rp 150.000', demo: 'demo-flipbook.html', theme: 'vintage' },
-            { id: 2, type: 'flipbook', title: 'Flipbook Modern', image: 'https://via.placeholder.com/300x200', price: 'Rp 150.000', demo: 'demo-flipbook.html', theme: 'modern' },
-            { id: 3, type: 'website', title: 'Website Elegan', image: 'https://via.placeholder.com/300x200', price: 'Rp 200.000', demo: 'demo-website.html', theme: 'elegan' },
-            { id: 4, type: 'website', title: 'Website Minimalis', image: 'https://via.placeholder.com/300x200', price: 'Rp 200.000', demo: 'demo-website.html', theme: 'minimalis' },
-            { id: 5, type: 'video', title: 'Video Invitation', image: 'https://via.placeholder.com/300x200', price: 'Rp 250.000', demo: 'demo-video.html', theme: 'romantic' },
-            { id: 6, type: 'video', title: 'Video Cinematic', image: 'https://via.placeholder.com/300x200', price: 'Rp 250.000', demo: 'demo-video.html', theme: 'cinematic' }
+            { id: 1, type: 'flipbook', title: 'Flipbook FB01', image: 'assets/img/flip1.png', price: 'Rp 79.000', demo: 'https://flipbook.satutuju.site/flipbook1/', theme: 'vintage' },
+            { id: 2, type: 'flipbook', title: 'Flipbook FB02', image: 'assets/img/flip2.png', price: 'Rp 79.000', demo: 'https://flipbook.satutuju.site/flipbook2/', theme: 'retro' },
+            // { id: 3, type: 'website', title: 'Website Elegan', image: 'assets/img/flip2.png', price: 'Rp 99.000', demo: 'demo-website.html', theme: 'elegan' },
+            // { id: 4, type: 'website', title: 'Website Minimalis', image: 'assets/img/flip1.png', price: 'Rp 200.000', demo: 'demo-website.html', theme: 'minimalis' },
+            { id: 5, type: 'video', title: 'Video VW01', image: 'assets/img/video1.png', price: 'Rp 45.000', demo: 'https://flipbook.satutuju.site/flipbook1/', theme: 'romantic' }
         ];
 
         // Function to render cards
@@ -359,8 +705,8 @@
                             <div class="card-body">
                                 <h5 class="card-title">${product.title}</h5>
                                 <p class="card-text">${product.price}</p>
-                                <a href="${product.demo}" class="btn btn-demo me-2">Demo</a>
-                                <a href="https://wa.me/628123456789?text=${encodeURIComponent(`saya ingin pesan undangan digital type: ${product.type} tema: ${product.theme}`)}" class="btn btn-whatsapp" target="_blank">WhatsApp</a>
+                                <a href="${product.demo}" class="btn btn-demo me-2" target="_blank">Demo</a>
+                                <a href="https://wa.me/6281288027657?text=${encodeURIComponent(`saya ingin pesan undangan digital type: ${product.type} tema: ${product.theme}`)}" class="btn btn-whatsapp" target="_blank">WhatsApp</a>
                             </div>
                         </div>
                     </div>
