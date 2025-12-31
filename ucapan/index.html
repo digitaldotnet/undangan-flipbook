@@ -103,7 +103,7 @@ button:hover {
     <input id="name" type="text" placeholder="Nama Anda">
     <textarea id="comment" placeholder="Tulis ucapan dan doa..."></textarea>
 
-    <button onclick="kirimUcapan()">Kirim</button>
+    <button id="btnKirim">Kirim</button>
 
     <div class="divider"></div>
 
@@ -112,35 +112,41 @@ button:hover {
 
   </div>
 </div>
-
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script type="module">
 import { createClient } from
 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
 
-const SUPABASE_URL = 'https://klhjovidkfvjzshquhqt.supabase.co';
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtsaGpvdmlka2Z2anpzaHF1aHF0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjY1MzQ2MzIsImV4cCI6MjA4MjExMDYzMn0.6OjoyeCjgtx6gXFsySGH68w9TGkyf1p0fvkKVRyjy5w';
+/* ===== CONFIG ===== */
+const supabase = createClient(
+  'https://klhjovidkfvjzshquhqt.supabase.co',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtsaGpvdmlka2Z2anpzaHF1aHF0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjY1MzQ2MzIsImV4cCI6MjA4MjExMDYzMn0.6OjoyeCjgtx6gXFsySGH68w9TGkyf1p0fvkKVRyjy5w'
+);
 
-const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
-
-/* ambil group dari URL */
 const params = new URLSearchParams(window.location.search);
 const groupName = params.get('group') || 'default';
 
 /* ===== LOAD AWAL ===== */
 async function loadUcapan() {
-  const { data } = await supabase
+  const { data, error } = await supabase
     .from('Tamu')
     .select('*')
     .eq('Group', groupName)
     .order('created_at', { ascending: false });
 
-  document.getElementById('listUcapan').innerHTML = '';
+  if (error) {
+    console.error(error);
+    return;
+  }
+
+  $('#listUcapan').html('');
   data.forEach(renderItem);
 }
+
 loadUcapan();
 
-/* ===== REALTIME (INSERT ONLY) ===== */
-supabase
+/* ===== REALTIME LISTENER ===== */
+const channel = supabase
   .channel(`tamu-${groupName}`)
   .on(
     'postgres_changes',
@@ -154,51 +160,58 @@ supabase
       renderItem(payload.new, true);
     }
   )
-  .subscribe();
+  .subscribe(status => {
+    console.log('Realtime status:', status);
+  });
 
-/* ===== SUBMIT ===== */
-window.kirimUcapan = async function () {
-  const name = document.getElementById('name').value.trim();
-  const comment = document.getElementById('comment').value.trim();
+/* ===== SUBMIT (jQuery) ===== */
+$('#btnKirim').on('click', async function () {
+  const name = $('#name').val().trim();
+  const comment = $('#comment').val().trim();
 
   if (!name || !comment) {
     alert('Nama dan ucapan wajib diisi');
     return;
   }
 
-  await supabase.from('Tamu').insert({
+  const { error } = await supabase.from('Tamu').insert({
     Name: name,
     Coment: comment,
     Group: groupName
   });
 
-  // ❌ JANGAN render di sini
-  // ✅ realtime yang akan handle
+  if (error) {
+    alert('Gagal kirim ucapan');
+    console.error(error);
+    return;
+  }
 
-  document.getElementById('name').value = '';
-  document.getElementById('comment').value = '';
-};
+  $('#name').val('');
+  $('#comment').val('');
+});
 
 /* ===== RENDER ===== */
 function renderItem(item, prepend = false) {
-  const el = document.createElement('div');
-  el.className = 'item';
-  el.innerHTML = `
-    <strong>${escapeHtml(item.Name)}</strong>
-    <p>${escapeHtml(item.Coment)}</p>
+  const html = `
+    <div class="item">
+      <strong>${escapeHtml(item.Name)}</strong>
+      <p>${escapeHtml(item.Coment)}</p>
+    </div>
   `;
 
-  const list = document.getElementById('listUcapan');
-  prepend ? list.prepend(el) : list.appendChild(el);
+  prepend
+    ? $('#listUcapan').prepend(html)
+    : $('#listUcapan').append(html);
 }
 
-/* ===== XSS PROTECTION ===== */
+/* ===== XSS PROTECT ===== */
 function escapeHtml(text) {
   return text.replace(/[&<>"']/g, m =>
     ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[m])
   );
 }
 </script>
+
 
 
 </body>
