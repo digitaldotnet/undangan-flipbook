@@ -10,7 +10,7 @@ body {
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,.6);
+  background: RGB(229, 229, 229);
   display: flex;
   justify-content: center;
   align-items: center;
