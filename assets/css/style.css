@@ -27,6 +27,10 @@ body.bg-video1 {
   background-image: url('../img/bg-video1.png');
 }
 
+body.bg-web1 {
+  background-image: url('../img/bg-web1.png');
+}
+
 /* .overlay {
   position: fixed;
   inset: 0;
