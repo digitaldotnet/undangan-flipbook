@@ -43,6 +43,8 @@ const path = window.location.pathname
   .replace(/^\/|\/$/g, '');
 const groupName = path || 'default';
 
+console.log(groupName);
+
 /* ===== LOAD AWAL (NEWEST FIRST) ===== */
 async function loadUcapan() {
   const { data, error } = await supabase
