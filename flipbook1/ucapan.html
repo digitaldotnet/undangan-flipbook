@@ -39,11 +39,11 @@ const supabase = createClient(
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtsaGpvdmlka2Z2anpzaHF1aHF0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjY1MzQ2MzIsImV4cCI6MjA4MjExMDYzMn0.6OjoyeCjgtx6gXFsySGH68w9TGkyf1p0fvkKVRyjy5w'
 );
 
-const path = window.location.pathname
-  .replace(/^\/|\/$/g, '');
-const groupName = path || 'default';
+const segments = window.location.pathname
+  .split('/')
+  .filter(Boolean);
 
-console.log(groupName);
+const groupName = segments[0] || 'default';
 
 /* ===== LOAD AWAL (NEWEST FIRST) ===== */
 async function loadUcapan() {
