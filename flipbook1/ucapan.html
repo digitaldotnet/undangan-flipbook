@@ -39,8 +39,9 @@ const supabase = createClient(
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtsaGpvdmlka2Z2anpzaHF1aHF0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjY1MzQ2MzIsImV4cCI6MjA4MjExMDYzMn0.6OjoyeCjgtx6gXFsySGH68w9TGkyf1p0fvkKVRyjy5w'
 );
 
-const params = new URLSearchParams(window.location.search);
-const groupName = params.get('group') || 'default';
+const path = window.location.pathname
+  .replace(/^\/|\/$/g, '');
+const groupName = path || 'default';
 
 /* ===== LOAD AWAL (NEWEST FIRST) ===== */
 async function loadUcapan() {
