@@ -4,93 +4,9 @@
   <meta charset="UTF-8">
   <title>Kirim Ucapan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- <link rel="stylesheet" href="style.css"> -->
+  <link rel="stylesheet" href="../assets/css/ucapan.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-  <style>
-    * {
-  box-sizing: border-box;
-  font-family: 'Segoe UI', sans-serif;
-}
-
-body {
-  margin: 0;
-}
-
-.overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.modal {
-  background: #fff;
-  width: 95%;
-  max-width: 420px;
-  max-height: 90vh;
-  overflow-y: auto;
-  padding: 20px;
-  border-radius: 16px;
-}
-
-.modal h2, h3 {
-  text-align: center;
-  margin-bottom: 12px;
-}
-
-input, textarea {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 10px;
-  border-radius: 10px;
-  border: 1px solid #ddd;
-}
-
-textarea {
-  min-height: 80px;
-  resize: none;
-}
-
-button {
-  width: 100%;
-  padding: 12px;
-  border: none;
-  background: #e91e63;
-  color: white;
-  font-size: 16px;
-  border-radius: 12px;
-  cursor: pointer;
-}
-
-button:hover {
-  background: #d81b60;
-}
-
-.divider {
-  height: 1px;
-  background: #eee;
-  margin: 16px 0;
-}
-
-.list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.item {
-  background: #fafafa;
-  padding: 10px;
-  border-radius: 10px;
-}
-
-.item strong {
-  color: #e91e63;
-}
-
-  </style>
 </head>
 <body>
 
@@ -126,7 +42,7 @@ const supabase = createClient(
 const params = new URLSearchParams(window.location.search);
 const groupName = params.get('group') || 'default';
 
-/* ===== LOAD AWAL ===== */
+/* ===== LOAD AWAL (NEWEST FIRST) ===== */
 async function loadUcapan() {
   const { data, error } = await supabase
     .from('Tamu')
@@ -134,19 +50,15 @@ async function loadUcapan() {
     .eq('Group', groupName)
     .order('created_at', { ascending: false });
 
-  if (error) {
-    console.error(error);
-    return;
-  }
+  if (error) return console.error(error);
 
   $('#listUcapan').html('');
-  data.forEach(renderItem);
+  data.forEach(item => renderItem(item, false));
 }
-
 loadUcapan();
 
-/* ===== REALTIME LISTENER ===== */
-const channel = supabase
+/* ===== REALTIME ===== */
+supabase
   .channel(`tamu-${groupName}`)
   .on(
     'postgres_changes',
@@ -160,17 +72,19 @@ const channel = supabase
       renderItem(payload.new, true);
     }
   )
-  .subscribe(status => {
-    console.log('Realtime status:', status);
-  });
+  .subscribe();
 
-/* ===== SUBMIT (jQuery) ===== */
+/* ===== SUBMIT ===== */
 $('#btnKirim').on('click', async function () {
   const name = $('#name').val().trim();
   const comment = $('#comment').val().trim();
 
   if (!name || !comment) {
-    alert('Nama dan ucapan wajib diisi');
+    Swal.fire({
+      icon: 'warning',
+      title: 'Oops...',
+      text: 'Nama dan ucapan wajib diisi'
+    });
     return;
   }
 
@@ -181,20 +95,30 @@ $('#btnKirim').on('click', async function () {
   });
 
   if (error) {
-    alert('Gagal kirim ucapan');
-    console.error(error);
+    Swal.fire('Gagal', 'Ucapan tidak terkirim', 'error');
     return;
   }
 
   $('#name').val('');
   $('#comment').val('');
+
+  Swal.fire({
+    icon: 'success',
+    title: 'Terima kasih 💖',
+    text: 'Ucapanmu sudah terkirim',
+    timer: 2000,
+    showConfirmButton: false
+  });
 });
 
-/* ===== RENDER ===== */
-function renderItem(item, prepend = false) {
+/* ===== RENDER ITEM ===== */
+function renderItem(item, prepend) {
   const html = `
     <div class="item">
-      <strong>${escapeHtml(item.Name)}</strong>
+      <div class="header">
+        <strong>${escapeHtml(item.Name)}</strong>
+        <span class="date">${formatDate(item.created_at)}</span>
+      </div>
       <p>${escapeHtml(item.Coment)}</p>
     </div>
   `;
@@ -204,6 +128,18 @@ function renderItem(item, prepend = false) {
     : $('#listUcapan').append(html);
 }
 
+/* ===== DATE FORMAT ===== */
+function formatDate(dateStr) {
+  const d = new Date(dateStr);
+  return d.toLocaleString('id-ID', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit'
+  });
+}
+
 /* ===== XSS PROTECT ===== */
 function escapeHtml(text) {
   return text.replace(/[&<>"']/g, m =>
@@ -211,6 +147,7 @@ function escapeHtml(text) {
   );
 }
 </script>
+
 
 
 
