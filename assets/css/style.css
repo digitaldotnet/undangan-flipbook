@@ -23,6 +23,10 @@ body.bg-flip2 {
   background-image: url('../img/bg-flip2.png');
 }
 
+body.bg-flip3 {
+  background-image: url('../img/bg-flip3.png');
+}
+
 body.bg-video1 {
   background-image: url('../img/bg-video1.png');
 }
