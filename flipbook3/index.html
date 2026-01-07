@@ -29,6 +29,12 @@
       17 • 07 • 2026
     </p>
 
+    <p class="guest-name" id="guestName"
+      data-aos="fade-down"
+      data-aos-delay="100">
+      Kepada Yth. Bapak/Ibu/Saudara/i
+    </p>
+
     <a href="flipbook.html"
        class="btn"
        data-aos="fade-up"
@@ -40,6 +46,21 @@
   <!-- JS -->
   <script src="../assets/js/aos.js"></script>
   <script>
+    function getQueryParam(name) {
+    const params = new URLSearchParams(window.location.search);
+    return params.get(name);
+  }
+
+  const guest = getQueryParam('to');
+
+  if (guest) {
+    // decode + sanitasi ringan
+    const safeGuest = decodeURIComponent(guest).replace(/\+/g, ' ').trim();
+
+    document.getElementById('guestName').innerHTML =
+      `Kepada Yth. Bapak/Ibu/Saudara/i<br><strong>${safeGuest}</strong>`;
+  }
+
     AOS.init({
       once: true,      // animasi cuma sekali
       offset: 0        // langsung aktif

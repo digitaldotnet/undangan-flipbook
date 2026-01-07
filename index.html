@@ -50,13 +50,13 @@
                         </div>
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="assets/img/flip1.png" class="d-block w-100" alt="Flipbook Vintage">
+                                <img src="assets/img/flip1.webp" class="d-block w-100" alt="Flipbook Vintage">
                             </div>
                             <div class="carousel-item">
-                                <img src="assets/img/flip2.png" class="d-block w-100" alt="Website Elegan">
+                                <img src="assets/img/flip2.webp" class="d-block w-100" alt="Website Elegan">
                             </div>
                             <div class="carousel-item">
-                                <img src="assets/img/flip3.png" class="d-block w-100" alt="Video Romantic">
+                                <img src="assets/img/flip3.webp" class="d-block w-100" alt="Video Romantic">
                             </div>
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
@@ -193,7 +193,7 @@
 
                     <div class="col-12 col-md-4">
                     <div class="testimonial-card">
-                        <img src="assets/img/no-picture.jpg" alt="Sari">
+                        <img src="assets/img/no-picture.webp" loading="lazy" alt="Sari">
                         <p class="quote">
                         “Undangan digitalnya sangat cantik, elegan, dan mudah dibagikan ke keluarga serta teman.”
                         </p>
@@ -204,7 +204,7 @@
 
                     <div class="col-12 col-md-4">
                     <div class="testimonial-card">
-                        <img src="assets/img/no-picture.jpg" alt="Budi">
+                        <img src="assets/img/no-picture.webp" loading="lazy" alt="Budi">
                         <p class="quote">
                         “Proses pemesanan cepat, admin responsif, dan hasil undangannya sesuai ekspektasi.”
                         </p>
@@ -215,7 +215,7 @@
 
                     <div class="col-12 col-md-4">
                     <div class="testimonial-card">
-                        <img src="assets/img/no-picture.jpg" alt="Lina">
+                        <img src="assets/img/no-picture.webp" loading="lazy" alt="Lina">
                         <p class="quote">
                         “Tema flipbook vintage-nya romantis banget, tamu undangan banyak yang memuji.”
                         </p>
@@ -233,7 +233,7 @@
 
                     <div class="col-12 col-md-4">
                     <div class="testimonial-card">
-                        <img src="assets/img/no-picture.jpg" alt="Rina">
+                        <img src="assets/img/no-picture.webp" loading="lazy" alt="Rina">
                         <p class="quote">
                         “Website undangannya smooth di HP, tampilannya eksklusif seperti undangan mahal.”
                         </p>
@@ -244,7 +244,7 @@
 
                     <div class="col-12 col-md-4">
                     <div class="testimonial-card">
-                        <img src="assets/img/no-picture.jpg" alt="Doni">
+                        <img src="assets/img/no-picture.webp" loading="lazy" alt="Doni">
                         <p class="quote">
                         “Sangat membantu di masa sekarang, praktis tanpa cetak undangan fisik.”
                         </p>
@@ -255,7 +255,7 @@
 
                     <div class="col-12 col-md-4">
                     <div class="testimonial-card">
-                        <img src="assets/img/no-picture.jpg" alt="Maya">
+                        <img src="assets/img/no-picture.webp" loading="lazy" alt="Maya">
                         <p class="quote">
                         “Videonya keren dan emosional, keluarga kami sangat suka.”
                         </p>
@@ -360,9 +360,9 @@
 
         // Sample products data
         const products = [
-            { id: 1, type: 'flipbook', title: 'Flipbook FB01', image: 'assets/img/flip1.png', price: 'Rp 89.000', demo: 'https://satutuju.site/flipbook1/', theme: 'vintage' },
-            { id: 2, type: 'flipbook', title: 'Flipbook FB02', image: 'assets/img/flip2.png', price: 'Rp 89.000', demo: 'https://satutuju.site/flipbook2/', theme: 'vintage' },
-            { id: 3, type: 'flipbook', title: 'Flipbook FB03', image: 'assets/img/flip3.png', price: 'Rp 89.000', demo: 'https://satutuju.site/flipbook3/', theme: 'vintage' }
+            { id: 1, type: 'flipbook', title: 'Flipbook FB01', image: 'assets/img/flip1.webp', price: 'Rp 89.000', demo: 'https://satutuju.site/flipbook1/', theme: 'vintage' },
+            { id: 2, type: 'flipbook', title: 'Flipbook FB02', image: 'assets/img/flip2.webp', price: 'Rp 89.000', demo: 'https://satutuju.site/flipbook2/', theme: 'vintage' },
+            { id: 3, type: 'flipbook', title: 'Flipbook FB03', image: 'assets/img/flip3.webp', price: 'Rp 89.000', demo: 'https://satutuju.site/flipbook3/', theme: 'vintage' }
             // { id: 3, type: 'website', title: 'Website WS01', image: 'assets/img/web1.png', price: 'Rp 99.000', demo: 'https://flipbook.satutuju.site/website1/', theme: 'elegan' },
             // { id: 4, type: 'website', title: 'Website Minimalis', image: 'assets/img/flip1.png', price: 'Rp 200.000', demo: 'demo-website.html', theme: 'minimalis' },
             // { id: 5, type: 'video', title: 'Video VW01', image: 'assets/img/video1.png', price: 'Rp 45.000', demo: 'https://flipbook.satutuju.site/video1/', theme: 'romantic' }
@@ -376,7 +376,7 @@
                 const card = `
                     <div class="col-md-4 mb-4" data-aos="fade-up">
                         <div class="card">
-                            <img src="${product.image}" class="card-img-top" alt="${product.title}">
+                            <img src="${product.image}" loading="lazy" class="card-img-top" alt="${product.title}">
                             <div class="card-body">
                                 <h5 class="card-title">${product.title}</h5>
                                 <p class="card-text">${product.price}</p>
