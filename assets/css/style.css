@@ -27,6 +27,10 @@ body.bg-flip3 {
   background-image: url('../img/bg-flip3.png');
 }
 
+body.bg-flip4 {
+  background-image: url('../img/bg-flip4.png');
+}
+
 body.bg-video1 {
   background-image: url('../img/bg-video1.png');
 }
