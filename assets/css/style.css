@@ -31,6 +31,10 @@ body.bg-flip4 {
   background-image: url('../img/bg-flip4.png');
 }
 
+body.bg-flip5 {
+  background-image: url('../img/bg-flip5.png');
+}
+
 body.bg-video1 {
   background-image: url('../img/bg-video1.png');
 }
