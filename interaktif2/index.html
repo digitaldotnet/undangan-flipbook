@@ -136,6 +136,193 @@
         .modal { z-index: 11000 !important; }
         .modal-backdrop { z-index: 10500 !important; }
         .modal-content { border-radius: 20px; border:none; }
+
+        .save-date-modal {
+  border-radius: 18px;
+  padding: 10px;
+}
+
+.save-date-modal h4 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.save-date-modal .date {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.event-time {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 15px;
+}
+
+.event-time p {
+  font-size: 14px;
+}
+
+.location {
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.btn-map {
+  display: inline-block;
+  padding: 10px 22px;
+  border-radius: 25px;
+  background: #000;
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.btn-map:hover {
+  background: #333;
+  color: #fff;
+}
+
+/* The Couple */
+        #couple {            
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .couple-container {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .couple-item {
+            text-align: center;
+        }
+
+        .couple-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 20px;
+            border: 5px solid #ad7673;
+        }
+
+        .couple-item h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: #ad7673;
+        }
+
+        .couple-item p {
+            font-size: 1rem;
+            /* color: #efe9dc; */
+        }
+
+        .form-control, .form-select {
+            border: 2px solid #ad7673;
+            border-radius: 0;
+            padding: 12px;
+            margin-bottom: 15px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 12px;
+            background: #ad7673;
+            color: #efe9dc;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .btn-submit:hover {
+            background: #333;
+        }
+
+        .wish-item {
+            background: #f9f9f9;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid #000;
+        }
+
+        .wish-item h5 {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .wish-item p {
+            margin-bottom: 5px;
+            color: #666;
+        }
+
+        .wish-item small {
+            color: #999;
+        }
+
+        .wishes-list {
+            max-height: 400px;
+            overflow-y: auto;
+            margin-top: 30px;
+        }
+
+        /* Gift */
+        #gift {
+            background: #f9f9f9;
+            text-align: center;
+        }
+
+        .gift-box {
+            background: #fff;
+            padding: 30px;
+            margin: 20px 0;
+            border: 2px solid #000;
+        }
+
+        .gift-box i {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .gift-box h4 {
+            margin: 15px 0 10px;
+        }
+
+        /* Gallery */
+        #gallery {
+            background: #efe9dc;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            /* border-radius: 50px;
+            margin: 50px; */
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            aspect-ratio: 1;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
     </style>
 </head>
 <body>
@@ -152,7 +339,7 @@
         <i id="musicIcon" class="fa-solid fa-compact-disc fa-2x"></i>
     </div>
     <audio id="weddingAudio" loop>
-        <source src="../assets/music/ssong.mp3" type="audio/mpeg">
+        <source src="../assets/music/song.mp3" type="audio/mpeg">
     </audio>
 
     <div class="room-wrapper">
