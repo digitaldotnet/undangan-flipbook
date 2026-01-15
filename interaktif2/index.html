@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Interaktif</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        body, html {
+            height: 100vh;
+            width: 100vw;
+            margin: 0;
+            padding: 0;
+            overflow: hidden; 
+            background-color: #090402;
+            /* Flexbox untuk memastikan room-wrapper benar-benar di tengah */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* --- HERO SECTION --- */
+        #hero-section {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #ad7673; 
+            color: #efe9dc;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000; /* Paling depan */
+            transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+            text-align: center;
+        }
+
+        #hero-section.hide {
+            transform: translateY(-100%);
+            pointer-events: none; /* Penting! Agar klik bisa tembus ke bawah setelah hero hilang */
+        }
+
+        .hero-btn {
+            background: #efe9dc;
+            color: #ad7673;
+            border: none;
+            padding: 12px 35px;
+            font-weight: bold;
+            border-radius: 50px;
+            margin-top: 25px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        /* --- ROOM WRAPPER (Tampilan Utama) --- */
+        .room-wrapper {
+            position: relative;
+            height: 100vh;
+            /* Menggunakan aspect-ratio agar tetap proporsional di semua layar */
+            aspect-ratio: 9 / 19; 
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+            background-color: #000;
+        }
+
+        .bg-kamar {
+            height: 100%;
+            width: auto;
+            display: block;
+        }
+
+        /* --- ANIMASI & OVERLAY --- */
+        @keyframes continuousZoom {
+            0%, 100% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.08); }
+        }
+
+        .overlay-item {
+            position: absolute;
+            transform: translateX(-50%);
+            cursor: pointer;
+            z-index: 20; /* Lebih rendah dari modal tapi di atas background */
+            animation: continuousZoom 3s ease-in-out infinite;
+            filter: drop-shadow(0 5px 5px rgba(0,0,0,0.3));
+            transition: all 0.3s ease;
+        }
+
+        .overlay-item:hover {
+            animation-play-state: paused;
+            filter: drop-shadow(0 0 15px #ad7673);
+            transform: translateX(-50%) scale(1.1);
+        }
+
+        /* POSISI (Gunakan % agar responsif) */
+        .monitor-overlay { bottom: 35%; left: 50.3%; width: 35%; }
+        .save-overlay { bottom: 65%; left: 50.3%; width: 25%; }
+        .gallery-overlay { bottom: 61%; left: 20.3%; width: 35%; }
+        .wishes-overlay { bottom: 51%; left: 20.3%; width: 25%; }
+        .couple-overlay { bottom: 51%; left: 50.3%; width: 28%; }
+        .gift-overlay { bottom: 53%; left: 80.3%; width: 28%; }
+        .rsvp-overlay { bottom: 40%; left: 20.3%; width: 20%; }
+        .thankyou-overlay { bottom: 36%; left: 80.3%; width: 18%; }
+
+        /* HIGHLIGHT LAMPU */
+        .light-highlight {
+            position: absolute;
+            background: radial-gradient(circle, rgba(255,220,180,0.3) 0%, rgba(0,0,0,0) 70%);
+            width: 200px;
+            height: 200px;
+            pointer-events: none;
+            z-index: 10;
+            mix-blend-mode: screen;
+        }
+
+        /* MUSIC ICON */
+        .music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 999;
+            background: #ad7673;
+            width: 50px; height: 50px;
+            border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            color: white; cursor: pointer;
+        }
+
+        .rotate { animation: spin 4s linear infinite; }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        /* MODAL FIX */
+        .modal { z-index: 11000 !important; }
+        .modal-backdrop { z-index: 10500 !important; }
+        .modal-content { border-radius: 20px; border:none; }
+    </style>
+</head>
+<body>
+
+    <div id="hero-section">
+        <p class="mb-1">The Wedding of</p>
+        <h1 style="font-size: 3rem; font-family: 'Georgia', serif;">Jane & Shane</h1>
+        <button class="hero-btn" onclick="openInvitation()">
+            <i class="fa-solid fa-envelope-open-text me-2"></i> Buka Undangan
+        </button>
+    </div>
+
+    <div class="music-control" id="musicBtn" onclick="toggleMusic()">
+        <i id="musicIcon" class="fa-solid fa-compact-disc fa-2x"></i>
+    </div>
+    <audio id="weddingAudio" loop>
+        <source src="../assets/music/song.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="room-wrapper">
+        <img src="img/bg-android.png" class="bg-kamar" alt="Kamar">
+        
+        <div class="light-highlight" style="bottom: 30%; left: 40%;"></div>
+
+        <img src="img/welcome.png" class="overlay-item monitor-overlay" data-bs-toggle="modal" data-bs-target="#welcome">
+        <img src="img/save.png" class="overlay-item save-overlay" data-bs-toggle="modal" data-bs-target="#save">
+        <img src="img/gallery.png" class="overlay-item gallery-overlay" data-bs-toggle="modal" data-bs-target="#gallery">
+        <img src="img/wishes.png" class="overlay-item wishes-overlay" data-bs-toggle="modal" data-bs-target="#wishes">
+        <img src="img/couple.png" class="overlay-item couple-overlay" data-bs-toggle="modal" data-bs-target="#couple">
+        <img src="img/gift.png" class="overlay-item gift-overlay" data-bs-toggle="modal" data-bs-target="#gift">
+        <img src="img/rsvp.png" class="overlay-item rsvp-overlay" data-bs-toggle="modal" data-bs-target="#rsvp">
+        <img src="img/thankyou.png" class="overlay-item thankyou-overlay" data-bs-toggle="modal" data-bs-target="#thankyou">
+    </div>
+
+    <div class="modal fade" id="welcome" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-center p-4">
+                <div class="modal-header border-0"><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+                <div class="modal-body">
+                    <h5>Welcome</h5>
+                    <p>Kami mengundang Anda hadir di pernikahan kami.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+<!-- home -->
+<div class="modal fade" id="homeModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title">Welcome</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <p>Dengan penuh kebahagiaan,
+kami mengundang Anda
+untuk hadir dan berbagi kebahagiaan
+di hari pernikahan kami.</p>
+<h3 style="margin-top: 40px;">Jane & Shane</h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- save -->
+<div class="modal fade" id="save" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content save-date-modal">
+<div class="modal-header">
+        <h5 class="modal-title">Save The Date</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <p class="date" data-aos="fade-up" data-aos-delay="100">
+          <strong>Minggu</strong><br>
+          17 Juli 2026
+        </p>
+
+        <div class="event-time" data-aos="fade-up" data-aos-delay="200">
+          <p><strong>Akad</strong><br>08.00 WIB</p>
+          <p><strong>Resepsi</strong><br>09.00 – 14.00 WIB</p>
+        </div>
+
+        <p class="location" data-aos="fade-up" data-aos-delay="300">
+          <strong>Lokasi</strong><br>
+          Ballroom, Hotel ABC Jakarta
+        </p>
+
+        <!-- MAP BUTTON -->
+        <a href="https://www.google.com/maps/search/?api=1&query=H"
+           target="_blank"
+           class="btn btn-map"
+           data-aos="zoom-in"
+           data-aos-delay="400">
+          📍 Lihat Lokasi
+        </a>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- couple -->
+<div class="modal fade" id="couple" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content save-date-modal">
+<div class="modal-header">
+        <h5 class="modal-title">The Couple</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <div class="couple-container">
+                    <div class="couple-item" data-aos="fade-right">
+                        <img src="../assets/img/pria.png" alt="Groom" class="couple-img">
+                        <h3>John Doe</h3>
+                        <p>Putra dari<br>Bapak Ahmad & Ibu Siti</p>
+                    </div>                    
+                    <div class="couple-item" data-aos="fade-left">
+                        <img src="../assets/img/wanita.png" alt="Bride" class="couple-img">
+                        <h3>Jane Smith</h3>
+                        <p>Putri dari<br>Bapak Budi & Ibu Ani</p>
+                    </div>
+                </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- wishes -->
+<div class="modal fade" id="wishes" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content save-date-modal">
+<div class="modal-header">
+        <h5 class="modal-title">The Couple</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <form id="wishForm" data-aos="fade-up">
+                    <input type="text" class="form-control" id="wishName" placeholder="Nama Anda" required>
+                    <textarea class="form-control" id="wishMessage" rows="4" placeholder="Ucapan & Doa" required></textarea>
+                    <button type="submit" class="btn-submit">KIRIM UCAPAN</button>
+                </form>
+                <div class="wishes-list" id="wishesList" data-aos="fade-up"></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- rsvp -->
+<div class="modal fade" id="rsvp" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content save-date-modal">
+<div class="modal-header">
+        <h5 class="modal-title">RSVP</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <form id="rsvpForm" data-aos="fade-up">
+                    <input type="text" class="form-control" placeholder="Nama Anda" required>
+                    <select class="form-select" required>
+                        <option value="">Konfirmasi Kehadiran</option>
+                        <option value="hadir">Hadir</option>
+                        <option value="tidak">Tidak Hadir</option>
+                    </select>
+                    <button type="submit" class="btn-submit">KIRIM KONFIRMASI</button>
+                </form>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- gallery -->
+<div class="modal fade" id="gallery" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content save-date-modal">
+<div class="modal-header">
+        <h5 class="modal-title">Gallery</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <div class="gallery-grid" data-aos="fade-up">
+                    <div class="gallery-item" onclick="openModal(this)">
+                        <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=400" alt="Gallery 1">
+                    </div>
+                    <div class="gallery-item" onclick="openModal(this)">
+                        <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=400" alt="Gallery 2">
+                    </div>
+                    <div class="gallery-item" onclick="openModal(this)">
+                        <img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?w=400" alt="Gallery 3">
+                    </div>
+                    <div class="gallery-item" onclick="openModal(this)">
+                        <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=400" alt="Gallery 4">
+                    </div>
+                </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- gift -->
+<div class="modal fade" id="gift" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content save-date-modal">
+<div class="modal-header">
+        <h5 class="modal-title">The Gift</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <p data-aos="fade-up">Tanpa mengurangi rasa hormat, bagi anda yang ingin memberikan tanda kasih untuk kami, dapat melalui:</p>
+                <div class="gift-box" data-aos="zoom-in">
+                    <i class="fab fa-cc-mastercard"></i>
+                    <h4>Bank Mandiri</h4>
+                    <p><strong>1234567890</strong></p>
+                    <p>a.n. John Doe</p>
+                </div>
+                <div class="gift-box" data-aos="zoom-in">
+                    <i class="fab fa-cc-visa"></i>
+                    <h4>Bank BCA</h4>
+                    <p><strong>0987654321</strong></p>
+                    <p>a.n. Jane Smith</p>
+                </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- thankyou -->
+<div class="modal fade" id="thankyou" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content save-date-modal">
+<div class="modal-header">
+        <h5 class="modal-title">Thank you</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <h2 class="section-title">Thank You</h2>
+                    <p style="font-size: 1.1rem; line-height: 1.8;">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu kepada kami.</p>
+                    <p style="margin-top: 40px;">Wassalamualaikum Wr. Wb.</p>
+                    <h3 style="margin-top: 40px;">Jane & Shane</h3>
+    </div>
+  </div>
+</div>
+</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const audio = document.getElementById('weddingAudio');
+        const musicIcon = document.getElementById('musicIcon');
+        let isPlaying = false;
+
+        function openInvitation() {
+            document.getElementById('hero-section').classList.add('hide');
+            playMusic();
+        }
+
+        function playMusic() {
+            audio.play().catch(e => console.log("Audio play blocked"));
+            isPlaying = true;
+            musicIcon.classList.add('rotate');
+        }
+
+        function toggleMusic() {
+            if (isPlaying) {
+                audio.pause();
+                musicIcon.classList.remove('rotate');
+            } else {
+                audio.play();
+                musicIcon.classList.add('rotate');
+            }
+            isPlaying = !isPlaying;
+        }
+    </script>
+</body>
+</html>
