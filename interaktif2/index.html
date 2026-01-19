@@ -366,6 +366,7 @@
 
 /* BODY */
 .retro-body {
+  overflow-y: auto;
   padding: 1.2rem;
   color: #3b2f2f;
   text-align: center;
@@ -409,6 +410,59 @@
   font-family: 'Fredoka', sans-serif;
 }
 
+/* ==== PHOTO FRAME ==== */
+.photo-frame {
+  background: #ffffff;
+  border: 4px solid #3b2f2f;
+  border-radius: 18px;
+  padding: 8px;
+  box-shadow: 6px 6px 0 #3b2f2f;
+  position: relative;
+}
+
+/* little sticker effect */
+.photo-frame::after {
+  content: "❤";
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: #ffd166;
+  border: 3px solid #3b2f2f;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.photo-frame img {
+  width: 100%;
+  border-radius: 12px;
+}
+
+/* playful tilt */
+.tilt-left {
+  transform: rotate(-2deg);
+}
+
+.tilt-right {
+  transform: rotate(2deg);
+}
+
+/* ===== GALLERY GRID ===== */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
 
     </style>
 </head>
@@ -443,19 +497,6 @@
         <img src="img/rsvp.png" class="overlay-item rsvp-overlay" data-bs-toggle="modal" data-bs-target="#rsvp">
         <img src="img/thankyou.png" class="overlay-item thankyou-overlay" data-bs-toggle="modal" data-bs-target="#thankyou">
     </div>
-
-    <div class="modal fade" id="welcome1" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content text-center p-4">
-                <div class="modal-header border-0"><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
-                <div class="modal-body">
-                    <h5>Welcome</h5>
-                    <p>Kami mengundang Anda hadir di pernikahan kami.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    
     
 <!-- home -->
  <div class="modal fade cartoon-modal" id="welcome">
@@ -468,27 +509,9 @@
       <div class="retro-body">
         <div class="retro-box">
           💍 Selamat Datang di Pernikahan<br>
-          <strong>Andi & Sinta</strong>
+          <strong>Shane & Jane</strong>
         </div>
         <p>Terima kasih sudah menjadi bagian dari hari bahagia kami 🤍</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="homeModal1">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-        <div class="modal-header">
-        <h5 class="modal-title">Welcome</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body text-center">
-        <p>Dengan penuh kebahagiaan,
-kami mengundang Anda
-untuk hadir dan berbagi kebahagiaan
-di hari pernikahan kami.</p>
-<h3 style="margin-top: 40px;">Jane & Shane</h3>
       </div>
     </div>
   </div>
@@ -530,44 +553,39 @@ di hari pernikahan kami.</p>
 
 <!-- couple -->
  <div class="modal fade cartoon-modal" id="couple">
-  <div class="modal-dialog modal-dialog-centered">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content retro-window">
+
       <div class="retro-header">
         <span class="retro-title">THE COUPLE</span>
         <button class="retro-close" data-bs-dismiss="modal">✕</button>
       </div>
+
       <div class="retro-body">
-        <div class="retro-box">🤵 Andi Pratama</div>
-        <div class="retro-box">👰 Sinta Maharani</div>
+
+        <!-- GROOM -->
+        <div class="photo-frame tilt-left mb-3">
+          <img src="../assets/img/pria.png" alt="Groom">
+        </div>
+        <div class="retro-box">
+          🤵 <strong>Shane Joe</strong><br>
+          Putra dari Bpk. A & Ibu B
+        </div>
+
+        <!-- BRIDE -->
+        <div class="photo-frame tilt-right mt-4 mb-3">
+          <img src="../assets/img/wanita.png" alt="Bride">
+        </div>
+        <div class="retro-box">
+          👰 <strong>Jane Shey</strong><br>
+          Putri dari Bpk. C & Ibu D
+        </div>
+
       </div>
     </div>
   </div>
 </div>
 
-<div class="modal fade" id="couple1" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content save-date-modal">
-<div class="modal-header">
-        <h5 class="modal-title">The Couple</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body text-center">
-        <div class="couple-container">
-                    <div class="couple-item" data-aos="fade-right">
-                        <img src="../assets/img/pria.png" alt="Groom" class="couple-img">
-                        <h3>John Doe</h3>
-                        <p>Putra dari<br>Bapak Ahmad & Ibu Siti</p>
-                    </div>                    
-                    <div class="couple-item" data-aos="fade-left">
-                        <img src="../assets/img/wanita.png" alt="Bride" class="couple-img">
-                        <h3>Jane Smith</h3>
-                        <p>Putri dari<br>Bapak Budi & Ibu Ani</p>
-                    </div>
-                </div>
-    </div>
-  </div>
-</div>
-</div>
 
 <!-- wishes -->
  <div class="modal fade cartoon-modal" id="wishes">
@@ -584,25 +602,6 @@ di hari pernikahan kami.</p>
       </div>
     </div>
   </div>
-</div>
-
-<div class="modal fade" id="wishes1" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content save-date-modal">
-<div class="modal-header">
-        <h5 class="modal-title">The Couple</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body text-center">
-        <form id="wishForm" data-aos="fade-up">
-                    <input type="text" class="form-control" id="wishName" placeholder="Nama Anda" required>
-                    <textarea class="form-control" id="wishMessage" rows="4" placeholder="Ucapan & Doa" required></textarea>
-                    <button type="submit" class="btn-submit">KIRIM UCAPAN</button>
-                </form>
-                <div class="wishes-list" id="wishesList" data-aos="fade-up"></div>
-    </div>
-  </div>
-</div>
 </div>
 
 <!-- rsvp -->
@@ -625,70 +624,41 @@ di hari pernikahan kami.</p>
   </div>
 </div>
 
-<div class="modal fade" id="rsvp1" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content save-date-modal">
-<div class="modal-header">
-        <h5 class="modal-title">RSVP</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body text-center">
-        <form id="rsvpForm" data-aos="fade-up">
-                    <input type="text" class="form-control" placeholder="Nama Anda" required>
-                    <select class="form-select" required>
-                        <option value="">Konfirmasi Kehadiran</option>
-                        <option value="hadir">Hadir</option>
-                        <option value="tidak">Tidak Hadir</option>
-                    </select>
-                    <button type="submit" class="btn-submit">KIRIM KONFIRMASI</button>
-                </form>
-    </div>
-  </div>
-</div>
-</div>
-
 <!-- gallery -->
  <div class="modal fade cartoon-modal" id="gallery">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content retro-window">
+
       <div class="retro-header">
         <span class="retro-title">GALLERY</span>
         <button class="retro-close" data-bs-dismiss="modal">✕</button>
       </div>
-      <div class="retro-body">
-        <div class="retro-box">📸 Foto Prewedding</div>
-        <div class="retro-box">📸 Foto Engagement</div>
-        <div class="retro-box">📸 Foto Kenangan</div>
-      </div>
-    </div>
-  </div>
-</div>
 
-<div class="modal fade" id="gallery1" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content save-date-modal">
-<div class="modal-header">
-        <h5 class="modal-title">Gallery</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <div class="retro-body">
+
+        <div class="gallery-grid">
+
+          <div class="photo-frame tilt-left">
+            <img src="../assets/img/wedding1.png" alt="">
+          </div>
+
+          <div class="photo-frame tilt-right">
+            <img src="../assets/img/wedding2.png" alt="">
+          </div>
+
+          <div class="photo-frame tilt-left">
+            <img src="../assets/img/wedding3.png" alt="">
+          </div>
+
+          <div class="photo-frame tilt-right">
+            <img src="../assets/img/wedding4.png" alt="">
+          </div>
+
+        </div>
+
       </div>
-      <div class="modal-body text-center">
-        <div class="gallery-grid" data-aos="fade-up">
-                    <div class="gallery-item" onclick="openModal(this)">
-                        <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=400" alt="Gallery 1">
-                    </div>
-                    <div class="gallery-item" onclick="openModal(this)">
-                        <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=400" alt="Gallery 2">
-                    </div>
-                    <div class="gallery-item" onclick="openModal(this)">
-                        <img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?w=400" alt="Gallery 3">
-                    </div>
-                    <div class="gallery-item" onclick="openModal(this)">
-                        <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=400" alt="Gallery 4">
-                    </div>
-                </div>
     </div>
   </div>
-</div>
 </div>
 
 <!-- gift -->
@@ -703,38 +673,18 @@ di hari pernikahan kami.</p>
         <div class="retro-box">
           💳 BCA<br>
           1234567890<br>
-          a.n Andi
+          a.n Shane
+        </div>
+
+        <div class="retro-box">
+          💳 BRI<br>
+          1234567890<br>
+          a.n Jane
         </div>
         <a href="#" class="retro-btn">📋 Salin</a>
       </div>
     </div>
   </div>
-</div>
-
-<div class="modal fade" id="gift1" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content save-date-modal">
-<div class="modal-header">
-        <h5 class="modal-title">The Gift</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body text-center">
-        <p data-aos="fade-up">Tanpa mengurangi rasa hormat, bagi anda yang ingin memberikan tanda kasih untuk kami, dapat melalui:</p>
-                <div class="gift-box" data-aos="zoom-in">
-                    <i class="fab fa-cc-mastercard"></i>
-                    <h4>Bank Mandiri</h4>
-                    <p><strong>1234567890</strong></p>
-                    <p>a.n. John Doe</p>
-                </div>
-                <div class="gift-box" data-aos="zoom-in">
-                    <i class="fab fa-cc-visa"></i>
-                    <h4>Bank BCA</h4>
-                    <p><strong>0987654321</strong></p>
-                    <p>a.n. Jane Smith</p>
-                </div>
-    </div>
-  </div>
-</div>
 </div>
 
 <!-- thankyou -->
@@ -753,23 +703,6 @@ di hari pernikahan kami.</p>
       </div>
     </div>
   </div>
-</div>
-
-<div class="modal fade" id="thankyou1" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content save-date-modal">
-<div class="modal-header">
-        <h5 class="modal-title">Thank you</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body text-center">
-        <h2 class="section-title">Thank You</h2>
-                    <p style="font-size: 1.1rem; line-height: 1.8;">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu kepada kami.</p>
-                    <p style="margin-top: 40px;">Wassalamualaikum Wr. Wb.</p>
-                    <h3 style="margin-top: 40px;">Jane & Shane</h3>
-    </div>
-  </div>
-</div>
 </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
