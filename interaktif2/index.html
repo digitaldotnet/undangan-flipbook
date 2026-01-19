@@ -7,7 +7,8 @@
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Press+Start+2P&display=swap" rel="stylesheet">
+
     <style>
         body, html {
             height: 100vh;
@@ -270,12 +271,12 @@
 
         /* Gift */
         #gift {
-            background: #f9f9f9;
+            /* background: #f9f9f9; */
             text-align: center;
         }
 
         .gift-box {
-            background: #fff;
+            /* background: #fff; */
             padding: 30px;
             margin: 20px 0;
             border: 2px solid #000;
@@ -292,7 +293,7 @@
 
         /* Gallery */
         #gallery {
-            background: #efe9dc;
+            /* background: #efe9dc; */
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -323,6 +324,92 @@
         .gallery-item:hover img {
             transform: scale(1.1);
         }
+
+       /* ===== RETRO CARTOON MODAL ===== */
+.cartoon-modal .modal-content {
+  background: transparent;
+  border: none;
+}
+
+.retro-window {
+  background: #fff7d6;
+  border: 4px solid #3b2f2f;
+  border-radius: 18px;
+  box-shadow: 8px 8px 0 #3b2f2f;
+  font-family: 'Fredoka', sans-serif;
+  overflow: hidden;
+}
+
+/* HEADER */
+.retro-header {
+  background: #ffd166;
+  border-bottom: 4px solid #3b2f2f;
+  padding: 10px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.retro-title {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.75rem;
+  color: #3b2f2f;
+}
+
+.retro-close {
+  background: #ef476f;
+  border: 3px solid #3b2f2f;
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+}
+
+/* BODY */
+.retro-body {
+  padding: 1.2rem;
+  color: #3b2f2f;
+  text-align: center;
+  background-color: #efe9dc;
+}
+
+/* BOX */
+.retro-box {
+  background: #ffdede;
+  border: 3px solid #3b2f2f;
+  border-radius: 14px;
+  padding: 0.75rem;
+  margin-bottom: 0.8rem;
+}
+
+/* BUTTON */
+.retro-btn {
+  display: inline-block;
+  background: #06d6a0;
+  border: 3px solid #3b2f2f;
+  padding: 8px 18px;
+  border-radius: 999px;
+  color: #3b2f2f;
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow: 4px 4px 0 #3b2f2f;
+  transition: 0.2s;
+}
+
+.retro-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 #3b2f2f;
+}
+
+/* INPUT */
+.retro-input, .retro-textarea {
+  width: 100%;
+  border: 3px solid #3b2f2f;
+  border-radius: 12px;
+  padding: 8px;
+  font-family: 'Fredoka', sans-serif;
+}
+
+
     </style>
 </head>
 <body>
@@ -357,7 +444,7 @@
         <img src="img/thankyou.png" class="overlay-item thankyou-overlay" data-bs-toggle="modal" data-bs-target="#thankyou">
     </div>
 
-    <div class="modal fade" id="welcome" tabindex="-1">
+    <div class="modal fade" id="welcome1" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content text-center p-4">
                 <div class="modal-header border-0"><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
@@ -371,7 +458,25 @@
     
     
 <!-- home -->
-<div class="modal fade" id="homeModal">
+ <div class="modal fade cartoon-modal" id="welcome">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content retro-window">
+      <div class="retro-header">
+        <span class="retro-title">WELCOME</span>
+        <button class="retro-close" data-bs-dismiss="modal">✕</button>
+      </div>
+      <div class="retro-body">
+        <div class="retro-box">
+          💍 Selamat Datang di Pernikahan<br>
+          <strong>Andi & Sinta</strong>
+        </div>
+        <p>Terima kasih sudah menjadi bagian dari hari bahagia kami 🤍</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="homeModal1">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
         <div class="modal-header">
@@ -390,46 +495,56 @@ di hari pernikahan kami.</p>
 </div>
 
 <!-- save -->
-<div class="modal fade" id="save" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content save-date-modal">
-<div class="modal-header">
-        <h5 class="modal-title">Save The Date</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+ 
+<div class="modal fade cartoon-modal" id="save" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content retro-window">
+
+      <div class="retro-header">
+        <span class="retro-title">Save The Date</span>
+        <button type="button" class="retro-close" data-bs-dismiss="modal">✕</button>
       </div>
-      <div class="modal-body text-center">
-        <p class="date" data-aos="fade-up" data-aos-delay="100">
+
+      <div class="retro-body text-center">
+        <p class="retro-date">
           <strong>Minggu</strong><br>
           17 Juli 2026
         </p>
 
-        <div class="event-time" data-aos="fade-up" data-aos-delay="200">
+        <div class="retro-info">
           <p><strong>Akad</strong><br>08.00 WIB</p>
           <p><strong>Resepsi</strong><br>09.00 – 14.00 WIB</p>
         </div>
 
-        <p class="location" data-aos="fade-up" data-aos-delay="300">
-          <strong>Lokasi</strong><br>
+        <p class="retro-location">
           Ballroom, Hotel ABC Jakarta
         </p>
 
-        <!-- MAP BUTTON -->
-        <a href="https://www.google.com/maps/search/?api=1&query=H"
-           target="_blank"
-           class="btn btn-map"
-           data-aos="zoom-in"
-           data-aos-delay="400">
-          📍 Lihat Lokasi
-        </a>
-
+        <a href="#" class="retro-btn">📍 Open Map</a>
       </div>
 
     </div>
   </div>
 </div>
 
+
 <!-- couple -->
-<div class="modal fade" id="couple" tabindex="-1">
+ <div class="modal fade cartoon-modal" id="couple">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content retro-window">
+      <div class="retro-header">
+        <span class="retro-title">THE COUPLE</span>
+        <button class="retro-close" data-bs-dismiss="modal">✕</button>
+      </div>
+      <div class="retro-body">
+        <div class="retro-box">🤵 Andi Pratama</div>
+        <div class="retro-box">👰 Sinta Maharani</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="couple1" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content save-date-modal">
 <div class="modal-header">
@@ -455,7 +570,23 @@ di hari pernikahan kami.</p>
 </div>
 
 <!-- wishes -->
-<div class="modal fade" id="wishes" tabindex="-1">
+ <div class="modal fade cartoon-modal" id="wishes">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content retro-window">
+      <div class="retro-header">
+        <span class="retro-title">WISHES</span>
+        <button class="retro-close" data-bs-dismiss="modal">✕</button>
+      </div>
+      <div class="retro-body">
+        <input class="retro-input" placeholder="Nama">
+        <textarea class="retro-textarea mt-2" rows="3" placeholder="Ucapan"></textarea>
+        <a href="#" class="retro-btn mt-3">💌 Kirim</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="wishes1" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content save-date-modal">
 <div class="modal-header">
@@ -475,7 +606,26 @@ di hari pernikahan kami.</p>
 </div>
 
 <!-- rsvp -->
-<div class="modal fade" id="rsvp" tabindex="-1">
+ <div class="modal fade cartoon-modal" id="rsvp">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content retro-window">
+      <div class="retro-header">
+        <span class="retro-title">RSVP</span>
+        <button class="retro-close" data-bs-dismiss="modal">✕</button>
+      </div>
+      <div class="retro-body">
+        <input class="retro-input" placeholder="Nama">
+        <select class="retro-input mt-2">
+          <option>Hadir</option>
+          <option>Tidak Hadir</option>
+        </select>
+        <a href="#" class="retro-btn mt-3">✅ Konfirmasi</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="rsvp1" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content save-date-modal">
 <div class="modal-header">
@@ -498,7 +648,23 @@ di hari pernikahan kami.</p>
 </div>
 
 <!-- gallery -->
-<div class="modal fade" id="gallery" tabindex="-1">
+ <div class="modal fade cartoon-modal" id="gallery">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content retro-window">
+      <div class="retro-header">
+        <span class="retro-title">GALLERY</span>
+        <button class="retro-close" data-bs-dismiss="modal">✕</button>
+      </div>
+      <div class="retro-body">
+        <div class="retro-box">📸 Foto Prewedding</div>
+        <div class="retro-box">📸 Foto Engagement</div>
+        <div class="retro-box">📸 Foto Kenangan</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="gallery1" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content save-date-modal">
 <div class="modal-header">
@@ -526,7 +692,26 @@ di hari pernikahan kami.</p>
 </div>
 
 <!-- gift -->
-<div class="modal fade" id="gift" tabindex="-1">
+ <div class="modal fade cartoon-modal" id="gift">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content retro-window">
+      <div class="retro-header">
+        <span class="retro-title">GIFT</span>
+        <button class="retro-close" data-bs-dismiss="modal">✕</button>
+      </div>
+      <div class="retro-body">
+        <div class="retro-box">
+          💳 BCA<br>
+          1234567890<br>
+          a.n Andi
+        </div>
+        <a href="#" class="retro-btn">📋 Salin</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="gift1" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content save-date-modal">
 <div class="modal-header">
@@ -553,7 +738,24 @@ di hari pernikahan kami.</p>
 </div>
 
 <!-- thankyou -->
-<div class="modal fade" id="thankyou" tabindex="-1">
+ <div class="modal fade cartoon-modal" id="thankyou">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content retro-window">
+      <div class="retro-header">
+        <span class="retro-title">THANK YOU</span>
+        <button class="retro-close" data-bs-dismiss="modal">✕</button>
+      </div>
+      <div class="retro-body">
+        <div class="retro-box">
+          🤍 Terima kasih atas doa & kehadirannya
+        </div>
+        <p>Semoga kebaikan kembali kepada Anda ✨</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="thankyou1" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content save-date-modal">
 <div class="modal-header">
