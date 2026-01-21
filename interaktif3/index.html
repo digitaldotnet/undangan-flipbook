@@ -9,7 +9,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Press+Start+2P&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Dancing+Script:wght@600&family=Cormorant+Garamond:wght@400;500&display=swap" rel="stylesheet">
     <style>
+      :root {
+  --paper: #f7f4ef;
+  --paper-dark: #e6d8c3;
+  --brown: #6b4e3d;
+  --gold: #c7a46b;
+  --shadow: rgba(0,0,0,0.25);
+}
+
+
         body, html {
             height: 100vh;
             width: 100vw;
@@ -326,69 +336,84 @@
         }
 
        /* ===== RETRO CARTOON MODAL ===== */
-.cartoon-modal .modal-content {
-  background: transparent;
-  border: none;
+.cartoon-modal .modal-dialog {
+  max-width: 380px;
 }
 
 .retro-window {
-  background: #fff7d6;
-  border: 4px solid #3b2f2f;
-  border-radius: 18px;
-  box-shadow: 8px 8px 0 #3b2f2f;
-  font-family: 'Fredoka', sans-serif;
+  background: var(--paper);
+  border-radius: 22px;
+  box-shadow: 0 20px 40px var(--shadow);
   overflow: hidden;
+  position: relative;
+  font-family: 'Cormorant Garamond', serif;
+  color: var(--brown);
 }
 
-/* HEADER */
+/* efek tape */
+.retro-window::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 35%;
+  width: 90px;
+  height: 24px;
+  background: var(--paper-dark);
+  opacity: .9;
+  transform: rotate(-2deg);
+  border-radius: 4px;
+}
+
 .retro-header {
-  background: #ffd166;
-  border-bottom: 4px solid #3b2f2f;
-  padding: 10px 14px;
+  background: transparent;
+  padding: 14px 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .retro-title {
-  font-family: 'Press Start 2P', cursive;
-  font-size: 0.75rem;
-  color: #3b2f2f;
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  letter-spacing: 2px;
+  color: var(--brown);
 }
 
 .retro-close {
-  background: #ef476f;
-  border: 3px solid #3b2f2f;
-  width: 26px;
-  height: 26px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  opacity: .5;
   cursor: pointer;
-  display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
-/* BODY */
+.retro-close:hover {
+  opacity: .8;
+}
+
 .retro-body {
-  overflow-y: auto;
-  padding: 1.2rem;
-  color: #3b2f2f;
+  padding: 16px 18px 22px;
   text-align: center;
-  background-color: #efe9dc;
 }
 
-/* BOX */
+.retro-body p {
+  font-size: 15px;
+  line-height: 1.8;
+}
+
 .retro-box {
-  background: #ffdede;
-  border: 3px solid #3b2f2f;
-  border-radius: 14px;
-  padding: 0.75rem;
-  margin-bottom: 0.8rem;
+  background: #fff;
+  border-radius: 16px;
+  padding: 12px 14px;
+  margin-bottom: 12px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+  font-size: 14px;
 }
 
 /* BUTTON */
 .retro-btn {
   display: inline-block;
-  background: #06d6a0;
+  background: #3F6391;
   border: 3px solid #3b2f2f;
   padding: 8px 18px;
   border-radius: 999px;
@@ -413,39 +438,20 @@
   font-family: 'Fredoka', sans-serif;
 }
 
-/* ==== PHOTO FRAME ==== */
 .photo-frame {
-  background: #ffffff;
-  border: 4px solid #3b2f2f;
-  border-radius: 18px;
-  padding: 8px;
-  box-shadow: 6px 6px 0 #3b2f2f;
-  position: relative;
-}
-
-/* little sticker effect */
-.photo-frame::after {
-  content: "❤";
-  position: absolute;
-  top: -10px;
-  right: -10px;
-  background: #ffd166;
-  border: 3px solid #3b2f2f;
-  border-radius: 50%;
-  width: 28px;
-  height: 28px;
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: #fff;
+  padding: 6px;
+  border-radius: 14px;
+  box-shadow: 0 10px 18px rgba(0,0,0,0.2);
+  width: fit-content;
+  margin: auto;
 }
 
 .photo-frame img {
-  width: 100%;
-  border-radius: 12px;
+  width: 140px;
+  border-radius: 10px;
 }
 
-/* playful tilt */
 .tilt-left {
   transform: rotate(-2deg);
 }
@@ -621,6 +627,167 @@
   z-index: 1;
   display: none;
 }
+
+body {
+    background: #f3efe8;
+    font-family: 'Cormorant Garamond', serif;
+    color: #6b4e3d;
+}
+
+/* Image kecil di home */
+.popup-trigger {
+    width: 120px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.popup-trigger:hover {
+    transform: scale(1.06) rotate(-1deg);
+}
+
+/* Modal utama */
+.wedding-modal {
+    background: #f7f4ef;
+    border-radius: 22px;
+    box-shadow: 0 20px 45px rgba(0,0,0,0.25);
+    padding: 10px;
+    position: relative;
+}
+
+/* Tape effect */
+.wedding-modal::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 35%;
+    width: 80px;
+    height: 22px;
+    background: #e6d8c3;
+    opacity: 0.9;
+    transform: rotate(-2deg);
+    border-radius: 4px;
+}
+
+/* Title */
+.modal-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: #6b4e3d;
+    letter-spacing: 1px;
+}
+
+/* Body text */
+.modal-body p {
+    font-size: 16px;
+    line-height: 1.9;
+}
+
+/* Script text */
+.script-text {
+    font-family: 'Dancing Script', cursive;
+    font-size: 26px;
+    color: #c7a46b;
+    margin-bottom: 10px;
+}
+
+/* Divider */
+.divider {
+    width: 70px;
+    height: 2px;
+    background: #c7a46b;
+    margin: 18px auto;
+    border-radius: 5px;
+}
+
+/* Date */
+.date-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    letter-spacing: 3px;
+    color: #8a6a4f;
+}
+
+/* Close button soft */
+.btn-close {
+    opacity: 0.4;
+}
+
+.btn-close:hover {
+    opacity: 0.7;
+}
+
+.retro-date {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+
+.retro-info {
+  display: flex;
+  justify-content: space-around;
+  margin: 10px 0;
+  font-size: 14px;
+}
+
+.retro-location {
+  font-style: italic;
+  font-size: 14px;
+}
+
+.retro-input,
+.retro-textarea {
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid var(--paper-dark);
+  padding: 8px 12px;
+  font-family: inherit;
+  font-size: 14px;
+}
+
+.retro-input:focus,
+.retro-textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+}
+
+.retro-btn {
+  display: inline-block;
+  background: var(--gold);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 18px;
+  font-size: 14px;
+  text-decoration: none;
+  margin-top: 8px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+.retro-btn:hover {
+  background: #b6955f;
+}
+
+.wish-pop {
+  display: none;
+  background: var(--gold);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 14px;
+  font-size: 13px;
+  text-align: center;
+  margin: 10px 0;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+#copyStatus {
+  font-size: 13px;
+  color: var(--gold);
+}
+
     </style>
 </head>
 <body>
@@ -658,9 +825,38 @@
         <img src="img/rsvp.png" class="overlay-item rsvp-overlay" data-bs-toggle="modal" data-bs-target="#rsvp">
         <!-- <img src="img/thankyou.png" class="overlay-item thankyou-overlay" data-bs-toggle="modal" data-bs-target="#thankyou"> -->
     </div>
-    
+    <div class="modal fade" id="welcome" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content wedding-modal">
+
+            <div class="modal-header border-0">
+                <h5 class="modal-title">Welcome</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body text-center">
+                <p class="script-text">
+                    With Love
+                </p>
+
+                <p>
+                    Selamat datang di website pernikahan kami.  
+                    Merupakan suatu kebahagiaan bagi kami apabila
+                    Bapak/Ibu/Saudara berkenan hadir dan memberikan doa.
+                </p>
+
+                <div class="divider"></div>
+
+                <p class="date-text">
+                    26 • 01 • 26
+                </p>
+            </div>
+
+        </div>
+    </div>
+</div>
 <!-- home -->
- <div class="modal fade cartoon-modal" id="welcome">
+ <div class="modal fade cartoon-modal" id="welcssome">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content retro-window">
       <div class="retro-header">
