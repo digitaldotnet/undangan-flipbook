@@ -109,7 +109,7 @@
         /* HIGHLIGHT LAMPU */
         .light-highlight {
             position: absolute;
-            background: radial-gradient(circle, rgba(255,220,180,0.3) 0%, rgba(0,0,0,0) 70%);
+            background: radial-gradient(circle, rgba(255, 181, 180, 0.3) 0%, rgba(0,0,0,0) 70%);
             width: 200px;
             height: 200px;
             pointer-events: none;
@@ -362,6 +362,9 @@
   width: 26px;
   height: 26px;
   cursor: pointer;
+  display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* BODY */
@@ -584,18 +587,27 @@
 
 /* Icon */
 .lamp-icon {
-  font-size: 80px;
+  font-size: 25px;
   cursor: pointer;
   color: #555;
-  position: relative;
   z-index: 1;
   transition: all 0.3s ease;
+
+  position: fixed;
+            top: 80px;
+            right: 20px;
+            z-index: 999;
+            background: #494848;
+            width: 50px; height: 50px;
+            border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            color: white; cursor: pointer;
 }
 
 /* Saat aktif (highlight) */
 .lamp-icon.active {
   color: #ffc107;
-  z-index: 1051;
+  z-index: 2;
   text-shadow:
     0 0 10px rgba(255, 193, 7, 0.8),
     0 0 30px rgba(255, 193, 7, 0.6);
@@ -606,7 +618,7 @@
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.7);
-  z-index: 1050;
+  z-index: 1;
   display: none;
 }
     </style>
