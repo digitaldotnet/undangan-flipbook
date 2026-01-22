@@ -25,7 +25,7 @@
             width: 100vw;
             margin: 0;
             padding: 0;
-            overflow: hidden; 
+            /* overflow: hidden;  */
             background-color: #090402;
             /* Flexbox untuk memastikan room-wrapper benar-benar di tengah */
             display: flex;
@@ -130,11 +130,11 @@
         /* MUSIC ICON */
         .music-control {
             position: fixed;
-            top: 20px;
+            top: 15px;
             right: 20px;
             z-index: 999;
             background: #494848;
-            width: 50px; height: 50px;
+            width: 30px; height: 30px;
             border-radius: 50%;
             display: flex; justify-content: center; align-items: center;
             color: white; cursor: pointer;
@@ -502,7 +502,7 @@
 
 .wish-name {
   font-weight: 600;
-  color: #ef476f;
+  color: #ffd166;
 }
 
 .wish-time {
@@ -552,29 +552,6 @@
   position: relative; /* anchor pop */
 }
 
-.wish-pop {
-  position: absolute;
-  bottom: 16px;
-  left: 50%;
-  transform: translateX(-50%) scale(0.8);
-  background: #06d6a0;
-  border: 4px solid #3b2f2f;
-  border-radius: 16px;
-  padding: 10px 18px;
-  color: #3b2f2f;
-  font-family: 'Fredoka', sans-serif;
-  font-weight: 600;
-  box-shadow: 6px 6px 0 #3b2f2f;
-  opacity: 0;
-  z-index: 20; /* DI ATAS SEMUA KONTEN MODAL */
-  pointer-events: none;
-}
-
-/* aktif */
-.wish-pop.show {
-  animation: popShow 0.35s ease-out forwards;
-}
-
 /* animasi kartun */
 @keyframes popShow {
   0% {
@@ -593,18 +570,18 @@
 
 /* Icon */
 .lamp-icon {
-  font-size: 25px;
+  font-size: 1em;
   cursor: pointer;
   color: #555;
   z-index: 1;
   transition: all 0.3s ease;
 
   position: fixed;
-            top: 80px;
+            top: 50px;
             right: 20px;
             z-index: 999;
             background: #494848;
-            width: 50px; height: 50px;
+            width: 30px; height: 30px;
             border-radius: 50%;
             display: flex; justify-content: center; align-items: center;
             color: white; cursor: pointer;
@@ -766,17 +743,6 @@ body {
   background: #b6955f;
 }
 
-.wish-pop {
-  display: none;
-  background: var(--gold);
-  color: #fff;
-  padding: 8px 12px;
-  border-radius: 14px;
-  font-size: 13px;
-  text-align: center;
-  margin: 10px 0;
-}
-
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -804,7 +770,7 @@ body {
     <i id="lampIcon" class="fas fa-lightbulb lamp-icon"></i>
   </div>
     <div class="music-control" id="musicBtn" onclick="toggleMusic()">
-        <i id="musicIcon" class="fa-solid fa-compact-disc fa-2x"></i>
+        <i id="musicIcon" class="fa-solid fa-compact-disc fa-1x"></i>
     </div>
     <audio id="weddingAudio" loop>
         <source src="../assets/music/song.mp3" type="audio/mpeg">
@@ -822,7 +788,7 @@ body {
         <img src="img/wishes.png" class="overlay-item wishes-overlay" data-bs-toggle="modal" data-bs-target="#wishes">
         <img src="img/couple.png" class="overlay-item couple-overlay" data-bs-toggle="modal" data-bs-target="#couple">
         <img src="img/gift.png" class="overlay-item gift-overlay" data-bs-toggle="modal" data-bs-target="#gift">
-        <img src="img/rsvp.png" class="overlay-item rsvp-overlay" data-bs-toggle="modal" data-bs-target="#rsvp">
+        <img src="img/rsvp.png" class="overlay-item rsvp-overlay d-none" data-bs-toggle="modal" data-bs-target="#rsvp">
         <!-- <img src="img/thankyou.png" class="overlay-item thankyou-overlay" data-bs-toggle="modal" data-bs-target="#thankyou"> -->
     </div>
     <div class="modal fade" id="welcome" tabindex="-1">
@@ -855,30 +821,12 @@ body {
         </div>
     </div>
 </div>
-<!-- home -->
- <div class="modal fade cartoon-modal" id="welcssome">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content retro-window">
-      <div class="retro-header">
-        <span class="retro-title">WELCOME</span>
-        <button class="retro-close" data-bs-dismiss="modal">✕</button>
-      </div>
-      <div class="retro-body">
-        <div class="retro-box">
-          💍 Selamat Datang di Pernikahan<br>
-          <strong>Shane & Jane</strong>
-        </div>
-        <p>Terima kasih sudah menjadi bagian dari hari bahagia kami 🤍</p>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- save -->
  
 <div class="modal fade cartoon-modal" id="save" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content retro-window">
+    <div class="modal-content wedding-modal">
 
       <div class="retro-header">
         <span class="retro-title">Save The Date</span>
@@ -911,7 +859,7 @@ body {
 <!-- couple -->
  <div class="modal fade cartoon-modal" id="couple">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content retro-window">
+    <div class="modal-content wedding-modal">
 
       <div class="retro-header">
         <span class="retro-title">THE COUPLE</span>
@@ -947,7 +895,7 @@ body {
 <!-- wishes -->
  <div class="modal fade cartoon-modal" id="wishes">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content retro-window">
+    <div class="modal-content wedding-modal">
 
       <!-- HEADER -->
       <div class="retro-header">
@@ -963,11 +911,11 @@ body {
           <input id="name" class="retro-input mb-2" placeholder="Nama">
           <textarea id="comment" class="retro-textarea" rows="3" placeholder="Tulis ucapan..."></textarea>
           <a href="#" class="retro-btn mt-2" id="btnKirim">💌 Kirim Ucapan</a>
+
+          <div class="text-danger d-none mt-2" id="wishPop"></div>
         </div>
 
-        <div class="wish-pop" id="wishPop">
-        💌 Ucapan berhasil dikirim!
-        </div>
+        
 
         <!-- LIST UCAPAN -->
         <div class="wishes-list">
@@ -982,7 +930,7 @@ body {
 <!-- rsvp -->
  <div class="modal fade cartoon-modal" id="rsvp">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content retro-window">
+    <div class="modal-content wedding-modal">
       <div class="retro-header">
         <span class="retro-title">RSVP</span>
         <button class="retro-close" data-bs-dismiss="modal">✕</button>
@@ -1002,7 +950,7 @@ body {
 <!-- gallery -->
  <div class="modal fade cartoon-modal" id="gallery">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content retro-window">
+    <div class="modal-content wedding-modal">
 
       <div class="retro-header">
         <span class="retro-title">GALLERY</span>
@@ -1039,7 +987,7 @@ body {
 <!-- gift -->
  <div class="modal fade cartoon-modal" id="gift">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content retro-window">
+    <div class="modal-content wedding-modal">
       <div class="retro-header">
         <span class="retro-title">GIFT</span>
         <button class="retro-close" data-bs-dismiss="modal">✕</button>
@@ -1071,7 +1019,7 @@ body {
 <!-- thankyou -->
  <div class="modal fade cartoon-modal" id="thankyou">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content retro-window">
+    <div class="modal-content wedding-modal">
       <div class="retro-header">
         <span class="retro-title">THANK YOU</span>
         <button class="retro-close" data-bs-dismiss="modal">✕</button>
@@ -1182,7 +1130,7 @@ async function loadUcapan() {
 
   if (error) return console.error(error);
 
-  $('#wishes-list').html('');
+  $('.wishes-list').html('');
   data.forEach(item => renderItem(item, false));
 }
 loadUcapan();
@@ -1210,7 +1158,9 @@ $('#btnKirim').on('click', async function () {
   const comment = $('#comment').val().trim();
 
   if (!name || !comment) {
-    $('#wishPop').val('Nama dan ucapan wajib diisi');
+    console.log('dasdd');
+    $('#wishPop').removeClass('d-none');
+    $('#wishPop').html('Nama dan ucapan wajib diisi');
     // Swal.fire({
     //   icon: 'warning',
     //   title: 'Oops...',
@@ -1226,7 +1176,8 @@ $('#btnKirim').on('click', async function () {
   });
 
   if (error) {
-    $('#wishPop').val('Ucapan tidak terkirim');
+    $('#wishPop').removeClass('d-none');
+    $('#wishPop').html('Ucapan tidak terkirim');
     // Swal.fire('Gagal', 'Ucapan tidak terkirim', 'error');
     return;
   }
@@ -1234,7 +1185,8 @@ $('#btnKirim').on('click', async function () {
   $('#name').val('');
   $('#comment').val('');
 
-  $('#wishPop').val('💌 Ucapan berhasil dikirim!');
+  $('#wishPop').removeClass('d-none');
+  $('#wishPop').html('💌 Ucapan berhasil dikirim!');
 //   Swal.fire({
 //     icon: 'success',
 //     title: 'Terima kasih 💖',
@@ -1259,8 +1211,8 @@ function renderItem(item, prepend) {
   `;
 
   prepend
-    ? $('#wishes-list').prepend(html)
-    : $('#wishes-list').append(html);
+    ? $('.wishes-list').prepend(html)
+    : $('.wishes-list').append(html);
 }
 
 /* ===== DATE FORMAT ===== */
