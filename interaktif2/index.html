@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Press+Start+2P&display=swap" rel="stylesheet">
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         body, html {
             height: 100vh;
@@ -119,12 +119,13 @@
 
         /* MUSIC ICON */
         .music-control {
+          font-size: 1.5em;
             position: fixed;
-            bottom: 20px;
+            top: 10px;
             right: 20px;
             z-index: 999;
             background: #ad7673;
-            width: 50px; height: 50px;
+            width: 40px; height: 40px;
             border-radius: 50%;
             display: flex; justify-content: center; align-items: center;
             color: white; cursor: pointer;
@@ -362,6 +363,9 @@
   width: 26px;
   height: 26px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* BODY */
@@ -464,6 +468,136 @@
   }
 }
 
+/* ===== WISHES LIST ===== */
+
+.wishes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+/* Card Ucapan */
+.wish-card {
+  background: #ffffff;
+  border: 3px solid #3b2f2f;
+  border-radius: 14px;
+  padding: 0.75rem;
+  box-shadow: 4px 4px 0 #3b2f2f;
+  font-size: 0.9rem;
+}
+
+/* Header Ucapan */
+.wish-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.4rem;
+}
+
+.wish-name {
+  font-weight: 600;
+  color: #ef476f;
+}
+
+.wish-time {
+  font-size: 0.75rem;
+  background: #ffd166;
+  padding: 2px 8px;
+  border: 2px solid #3b2f2f;
+  border-radius: 999px;
+}
+
+/* Text */
+.wish-message {
+  background: #fff7d6;
+  border: 2px dashed #3b2f2f;
+  border-radius: 10px;
+  padding: 0.5rem;
+  line-height: 1.4;
+}
+
+/* ===== WISHES SCROLL LIMIT ===== */
+
+.wishes-list {
+  max-height: 320px;           /* kira-kira 4 card */
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+/* scrollbar khusus wishes */
+.wishes-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.wishes-list::-webkit-scrollbar-thumb {
+  background: #ffd166;
+  border: 2px solid #3b2f2f;
+  border-radius: 6px;
+}
+
+@media (max-width: 576px) {
+  .wishes-list {
+    max-height: 280px;
+  }
+}
+/* ===== WISH SUCCESS POP ===== */
+
+.retro-window {
+  position: relative; /* anchor pop */
+}
+
+/* animasi kartun */
+@keyframes popShow {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) scale(0.6);
+  }
+  60% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+}
+/* Icon */
+.lamp-icon {
+  font-size: 1.5em;
+  cursor: pointer;
+  color: #555;
+  z-index: 1;
+  transition: all 0.3s ease;
+
+  position: fixed;
+            top: 50px;
+            right: 20px;
+            z-index: 999;
+            background: #ad7673;
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            color: white; cursor: pointer;
+}
+
+/* Saat aktif (highlight) */
+.lamp-icon.active {
+  color: #ffc107;
+  z-index: 2;
+  text-shadow:
+    0 0 10px rgba(255, 193, 7, 0.8),
+    0 0 30px rgba(255, 193, 7, 0.6);
+}
+
+/* Overlay */
+#overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+  display: none;
+}
     </style>
 </head>
 <body>
@@ -475,14 +609,17 @@
             <i class="fa-solid fa-envelope-open-text me-2"></i> Buka Undangan
         </button>
     </div>
-
+<div class="icon-wrapper">
+    <i id="lampIcon" class="fas fa-lightbulb lamp-icon"></i>
+  </div>
     <div class="music-control" id="musicBtn" onclick="toggleMusic()">
-        <i id="musicIcon" class="fa-solid fa-compact-disc fa-2x"></i>
+        <i id="musicIcon" class="fa-solid fa-compact-disc"></i>
     </div>
     <audio id="weddingAudio" loop>
         <source src="../assets/music/song.mp3" type="audio/mpeg">
     </audio>
-
+<!-- Overlay -->
+<div id="overlay"></div>
     <div class="room-wrapper">
         <img src="img/bg-android.png" class="bg-kamar" alt="Kamar">
         
@@ -591,18 +728,36 @@
  <div class="modal fade cartoon-modal" id="wishes">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content retro-window">
+
+      <!-- HEADER -->
       <div class="retro-header">
         <span class="retro-title">WISHES</span>
         <button class="retro-close" data-bs-dismiss="modal">✕</button>
       </div>
+
+      <!-- BODY -->
       <div class="retro-body">
-        <input class="retro-input" placeholder="Nama">
-        <textarea class="retro-textarea mt-2" rows="3" placeholder="Ucapan"></textarea>
-        <a href="#" class="retro-btn mt-3">💌 Kirim</a>
+
+        <!-- FORM -->
+        <div class="retro-box">
+          <input id="name" class="retro-input mb-2" placeholder="Nama">
+          <textarea id="comment" class="retro-textarea" rows="3" placeholder="Tulis ucapan..."></textarea>
+          <a href="#" class="retro-btn mt-2" id="btnKirim">💌 Kirim Ucapan</a>
+        </div>
+
+        <div class="text-danger d-none mt-2" id="wishPop">
+        💌 Ucapan berhasil dikirim!
+        </div>
+
+        <!-- LIST UCAPAN -->
+        <div class="wishes-list">
+        </div>
+
       </div>
     </div>
   </div>
 </div>
+
 
 <!-- rsvp -->
  <div class="modal fade cartoon-modal" id="rsvp">
@@ -670,18 +825,24 @@
         <button class="retro-close" data-bs-dismiss="modal">✕</button>
       </div>
       <div class="retro-body">
-        <div class="retro-box">
+        <div class="retro-box" id="giftAccount1"
+             data-account="1111111111">
           💳 BCA<br>
-          1234567890<br>
+          1111111111<br>
           a.n Shane
         </div>
+        <a href="#" class="retro-btn mb-3" id="copyGiftBtn1">📋 Salin</a>
 
-        <div class="retro-box">
+        <div class="retro-box" id="giftAccount2"
+             data-account="2222222222">
           💳 BRI<br>
-          1234567890<br>
+          2222222222<br>
           a.n Jane
         </div>
-        <a href="#" class="retro-btn">📋 Salin</a>
+        <a href="#" class="retro-btn" id="copyGiftBtn2">📋 Salin</a>
+        <p id="copyStatus" style="display:none; margin-top:8px;">
+          ✅ Nomor berhasil disalin!
+        </p>
       </div>
     </div>
   </div>
@@ -706,11 +867,21 @@
 </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script>
         const audio = document.getElementById('weddingAudio');
         const musicIcon = document.getElementById('musicIcon');
         let isPlaying = false;
+$('#lampIcon').on('click', function () {
+    $(this).toggleClass('active');
+    $('#overlay').fadeToggle(200);
+  });
+
+  // Klik overlay untuk menutup
+  $('#overlay').on('click', function () {
+    $('#lampIcon').removeClass('active');
+    $(this).fadeOut(200);
+  });
 
         function openInvitation() {
             document.getElementById('hero-section').classList.add('hide');
@@ -733,6 +904,153 @@
             }
             isPlaying = !isPlaying;
         }
+
+        document.getElementById("copyGiftBtn1").addEventListener("click", function () {
+            const account = document.getElementById("giftAccount1").dataset.account;
+
+            navigator.clipboard.writeText(account).then(() => {
+                const status = document.getElementById("copyStatus");
+                status.style.display = "block";
+
+                // efek kartun kecil
+                this.innerText = "✅ Tersalin!";
+                setTimeout(() => {
+                this.innerText = "📋 Salin Rekening";
+                }, 2000);
+            });
+        });
+
+        document.getElementById("copyGiftBtn2").addEventListener("click", function () {
+            const account = document.getElementById("giftAccount2").dataset.account;
+
+            navigator.clipboard.writeText(account).then(() => {
+                const status = document.getElementById("copyStatus");
+                status.style.display = "block";
+
+                // efek kartun kecil
+                this.innerText = "✅ Tersalin!";
+                setTimeout(() => {
+                this.innerText = "📋 Salin Rekening";
+                }, 2000);
+            });
+        });
     </script>
+
+    <script type="module">
+import { createClient } from
+'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+
+/* ===== CONFIG ===== */
+const supabase = createClient(
+  'https://klhjovidkfvjzshquhqt.supabase.co',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtsaGpvdmlka2Z2anpzaHF1aHF0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjY1MzQ2MzIsImV4cCI6MjA4MjExMDYzMn0.6OjoyeCjgtx6gXFsySGH68w9TGkyf1p0fvkKVRyjy5w'
+);
+
+const segments = window.location.pathname
+  .split('/')
+  .filter(Boolean);
+
+const groupName = segments[0] || 'default';
+
+/* ===== LOAD AWAL (NEWEST FIRST) ===== */
+async function loadUcapan() {
+  const { data, error } = await supabase
+    .from('Tamu')
+    .select('*')
+    .eq('Group', groupName)
+    .order('created_at', { ascending: false });
+
+  if (error) return console.error(error);
+
+  $('.wishes-list').html('');
+  data.forEach(item => renderItem(item, false));
+}
+loadUcapan();
+
+/* ===== REALTIME ===== */
+supabase
+  .channel(`tamu-${groupName}`)
+  .on(
+    'postgres_changes',
+    {
+      event: 'INSERT',
+      schema: 'public',
+      table: 'Tamu',
+      filter: `Group=eq.${groupName}`
+    },
+    payload => {
+      renderItem(payload.new, true);
+    }
+  )
+  .subscribe();
+
+/* ===== SUBMIT ===== */
+$('#btnKirim').on('click', async function () {
+  const name = $('#name').val().trim();
+  const comment = $('#comment').val().trim();
+
+  if (!name || !comment) {
+    $('#wishPop').removeClass('d-none');
+    $('#wishPop').html('Nama dan ucapan wajib diisi');
+    return;
+  }
+
+  const { error } = await supabase.from('Tamu').insert({
+    Name: name,
+    Coment: comment,
+    Group: groupName
+  });
+
+  if (error) {
+    $('#wishPop').removeClass('d-none');
+    $('#wishPop').html('Ucapan tidak terkirim');
+    return;
+  }
+
+  $('#name').val('');
+  $('#comment').val('');
+
+  $('#wishPop').removeClass('d-none');
+  $('#wishPop').html('💌 Ucapan berhasil dikirim!');
+});
+
+/* ===== RENDER ITEM ===== */
+function renderItem(item, prepend) {
+  const html = `
+  <div class="wish-card">
+            <div class="wish-header">
+              <span class="wish-name">${escapeHtml(item.Name)}</span>
+              <span class="wish-time">${formatDate(item.created_at)}</span>
+            </div>
+            <div class="wish-message">
+              ${escapeHtml(item.Coment)}
+            </div>
+          </div>
+  `;
+
+  prepend
+    ? $('.wishes-list').prepend(html)
+    : $('.wishes-list').append(html);
+}
+
+/* ===== DATE FORMAT ===== */
+function formatDate(dateStr) {
+  const d = new Date(dateStr);
+  return d.toLocaleString('id-ID', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit'
+  });
+}
+
+/* ===== XSS PROTECT ===== */
+function escapeHtml(text) {
+  return text.replace(/[&<>"']/g, m =>
+    ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[m])
+  );
+}
+</script>
 </body>
 </html>
