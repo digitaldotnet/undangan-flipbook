@@ -1,0 +1,674 @@
+body,
+html {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #ad7673;
+  /* Flexbox untuk memastikan room-wrapper benar-benar di tengah */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* --- HERO SECTION --- */
+#hero-section {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #ad7673;
+  color: #efe9dc;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000; /* Paling depan */
+  transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+  text-align: center;
+}
+
+#hero-section.hide {
+  transform: translateY(-100%);
+  pointer-events: none; /* Penting! Agar klik bisa tembus ke bawah setelah hero hilang */
+}
+
+.hero-btn {
+  background: #efe9dc;
+  color: #ad7673;
+  border: none;
+  padding: 12px 35px;
+  font-weight: bold;
+  border-radius: 50px;
+  margin-top: 25px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* --- ROOM WRAPPER (Tampilan Utama) --- */
+.room-wrapper {
+  position: relative;
+  height: 100vh;
+  /* Menggunakan aspect-ratio agar tetap proporsional di semua layar */
+  /* aspect-ratio: 9 / 19;  */
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+  background-color: #000;
+}
+
+.bg-kamar {
+  height: 100%;
+  width: auto;
+  display: block;
+}
+
+/* --- ANIMASI & OVERLAY --- */
+@keyframes continuousZoom {
+  0%,
+  100% {
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    transform: translateX(-50%) scale(1.08);
+  }
+}
+
+.overlay-item {
+  position: absolute;
+  transform: translateX(-50%);
+  cursor: pointer;
+  z-index: 20; /* Lebih rendah dari modal tapi di atas background */
+  animation: continuousZoom 3s ease-in-out infinite;
+  filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.3));
+  transition: all 0.3s ease;
+}
+
+.overlay-item:hover {
+  animation-play-state: paused;
+  filter: drop-shadow(0 0 15px #ad7673);
+  transform: translateX(-50%) scale(1.1);
+}
+
+/* POSISI (Gunakan % agar responsif) */
+.monitor-overlay {
+  bottom: 35.2%;
+  left: 51%;
+  width: 35%;
+}
+.save-overlay {
+  bottom: 65%;
+  left: 48.3%;
+  width: 25%;
+}
+.gallery-overlay {
+  bottom: 61%;
+  left: 20.3%;
+  width: 35%;
+}
+.wishes-overlay {
+  bottom: 51%;
+  left: 20.3%;
+  width: 25%;
+}
+.couple-overlay {
+  bottom: 51%;
+  left: 50.3%;
+  width: 28%;
+}
+.gift-overlay {
+  bottom: 53%;
+  left: 80.3%;
+  width: 28%;
+}
+.rsvp-overlay {
+  bottom: 40%;
+  left: 17.3%;
+  width: 20%;
+}
+.thankyou-overlay {
+  bottom: 36%;
+  left: 80.3%;
+  width: 18%;
+}
+
+/* HIGHLIGHT LAMPU */
+.light-highlight {
+  position: absolute;
+  background: radial-gradient(
+    circle,
+    rgba(255, 220, 180, 0.3) 0%,
+    rgba(0, 0, 0, 0) 70%
+  );
+  width: 200px;
+  height: 200px;
+  pointer-events: none;
+  z-index: 10;
+  mix-blend-mode: screen;
+}
+
+/* MUSIC ICON */
+.music-control {
+  font-size: 1.5em;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 999;
+  background: #ad7673;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  cursor: pointer;
+}
+
+.rotate {
+  animation: spin 4s linear infinite;
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* MODAL FIX */
+.modal {
+  z-index: 11000 !important;
+}
+.modal-backdrop {
+  z-index: 10500 !important;
+}
+.modal-content {
+  border-radius: 20px;
+  border: none;
+}
+
+.save-date-modal {
+  border-radius: 18px;
+  padding: 10px;
+}
+
+.save-date-modal h4 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.save-date-modal .date {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.event-time {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 15px;
+}
+
+.event-time p {
+  font-size: 14px;
+}
+
+.location {
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.btn-map {
+  display: inline-block;
+  padding: 10px 22px;
+  border-radius: 25px;
+  background: #000;
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.btn-map:hover {
+  background: #333;
+  color: #fff;
+}
+
+/* The Couple */
+#couple {
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.couple-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.couple-item {
+  text-align: center;
+}
+
+.couple-img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 20px;
+  border: 5px solid #ad7673;
+}
+
+.couple-item h3 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  color: #ad7673;
+}
+
+.couple-item p {
+  font-size: 1rem;
+  /* color: #efe9dc; */
+}
+
+.form-control,
+.form-select {
+  border: 2px solid #ad7673;
+  border-radius: 0;
+  padding: 12px;
+  margin-bottom: 15px;
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 12px;
+  background: #ad7673;
+  color: #efe9dc;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  letter-spacing: 2px;
+}
+
+.btn-submit:hover {
+  background: #333;
+}
+
+.wish-item {
+  background: #f9f9f9;
+  padding: 20px;
+  margin-bottom: 15px;
+  border-left: 4px solid #000;
+}
+
+.wish-item h5 {
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+.wish-item p {
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.wish-item small {
+  color: #999;
+}
+
+.wishes-list {
+  max-height: 400px;
+  overflow-y: auto;
+  margin-top: 30px;
+}
+
+/* Gift */
+#gift {
+  /* background: #f9f9f9; */
+  text-align: center;
+}
+
+.gift-box {
+  /* background: #fff; */
+  padding: 30px;
+  margin: 20px 0;
+  border: 2px solid #000;
+}
+
+.gift-box i {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.gift-box h4 {
+  margin: 15px 0 10px;
+}
+
+/* Gallery */
+#gallery {
+  /* background: #efe9dc; */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  /* border-radius: 50px;
+            margin: 50px; */
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  aspect-ratio: 1;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.1);
+}
+
+/* ===== RETRO CARTOON MODAL ===== */
+.cartoon-modal .modal-content {
+  background: transparent;
+  border: none;
+}
+
+.retro-window {
+  background: #fff7d6;
+  border: 4px solid #3b2f2f;
+  border-radius: 18px;
+  box-shadow: 8px 8px 0 #3b2f2f;
+  font-family: "Fredoka", sans-serif;
+  overflow: hidden;
+}
+
+/* HEADER */
+.retro-header {
+  background: #ffd166;
+  border-bottom: 4px solid #3b2f2f;
+  padding: 10px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.retro-title {
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.75rem;
+  color: #3b2f2f;
+}
+
+.retro-close {
+  background: #ef476f;
+  border: 3px solid #3b2f2f;
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* BODY */
+.retro-body {
+  overflow-y: auto;
+  padding: 1.2rem;
+  color: #3b2f2f;
+  text-align: center;
+  background-color: #efe9dc;
+}
+
+/* BOX */
+.retro-box {
+  background: #ffdede;
+  border: 3px solid #3b2f2f;
+  border-radius: 14px;
+  padding: 0.75rem;
+  margin-bottom: 0.8rem;
+}
+
+/* BUTTON */
+.retro-btn {
+  display: inline-block;
+  background: #06d6a0;
+  border: 3px solid #3b2f2f;
+  padding: 8px 18px;
+  border-radius: 999px;
+  color: #3b2f2f;
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow: 4px 4px 0 #3b2f2f;
+  transition: 0.2s;
+}
+
+.retro-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 #3b2f2f;
+}
+
+/* INPUT */
+.retro-input,
+.retro-textarea {
+  width: 100%;
+  border: 3px solid #3b2f2f;
+  border-radius: 12px;
+  padding: 8px;
+  font-family: "Fredoka", sans-serif;
+}
+
+/* ==== PHOTO FRAME ==== */
+.photo-frame {
+  background: #ffffff;
+  border: 4px solid #3b2f2f;
+  border-radius: 18px;
+  padding: 8px;
+  box-shadow: 6px 6px 0 #3b2f2f;
+  position: relative;
+}
+
+/* little sticker effect */
+.photo-frame::after {
+  content: "❤";
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: #ffd166;
+  border: 3px solid #3b2f2f;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.photo-frame img {
+  width: 100%;
+  border-radius: 12px;
+}
+
+/* playful tilt */
+.tilt-left {
+  transform: rotate(-2deg);
+}
+
+.tilt-right {
+  transform: rotate(2deg);
+}
+
+/* ===== GALLERY GRID ===== */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ===== WISHES LIST ===== */
+
+.wishes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+/* Card Ucapan */
+.wish-card {
+  background: #ffffff;
+  border: 3px solid #3b2f2f;
+  border-radius: 14px;
+  padding: 0.75rem;
+  box-shadow: 4px 4px 0 #3b2f2f;
+  font-size: 0.9rem;
+}
+
+/* Header Ucapan */
+.wish-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.4rem;
+}
+
+.wish-name {
+  font-weight: 600;
+  color: #ef476f;
+}
+
+.wish-time {
+  font-size: 0.75rem;
+  background: #ffd166;
+  padding: 2px 8px;
+  border: 2px solid #3b2f2f;
+  border-radius: 999px;
+}
+
+/* Text */
+.wish-message {
+  background: #fff7d6;
+  border: 2px dashed #3b2f2f;
+  border-radius: 10px;
+  padding: 0.5rem;
+  line-height: 1.4;
+}
+
+/* ===== WISHES SCROLL LIMIT ===== */
+
+.wishes-list {
+  max-height: 320px; /* kira-kira 4 card */
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+/* scrollbar khusus wishes */
+.wishes-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.wishes-list::-webkit-scrollbar-thumb {
+  background: #ffd166;
+  border: 2px solid #3b2f2f;
+  border-radius: 6px;
+}
+
+@media (max-width: 576px) {
+  .wishes-list {
+    max-height: 280px;
+  }
+}
+/* ===== WISH SUCCESS POP ===== */
+
+.retro-window {
+  position: relative; /* anchor pop */
+}
+
+/* animasi kartun */
+@keyframes popShow {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) scale(0.6);
+  }
+  60% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+}
+/* Icon */
+.lamp-icon {
+  font-size: 1.5em;
+  cursor: pointer;
+  color: #555;
+  z-index: 1;
+  transition: all 0.3s ease;
+
+  position: fixed;
+  top: 65px;
+  right: 20px;
+  z-index: 999;
+  background: #ad7673;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  cursor: pointer;
+}
+
+/* Saat aktif (highlight) */
+.lamp-icon.active {
+  color: #ffc107;
+  z-index: 2;
+  text-shadow: 0 0 10px rgba(255, 193, 7, 0.8), 0 0 30px rgba(255, 193, 7, 0.6);
+}
+
+/* Overlay */
+#overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+  display: none;
+}
+
+.modal-responsive {
+  width: 90%;
+  max-width: none; /* override default bootstrap */
+  margin: 1rem; /* jarak dari sisi layar */
+}
+
+/* Batasi tinggi modal */
+.modal-responsive .modal-content {
+  max-height: 70%; /* tidak full layar */
+  overflow-y: auto; /* scroll kalau konten panjang */
+}
+
+/* Optional: biar lebih enak di desktop */
+@media (min-width: 768px) {
+  .modal-responsive {
+    /* margin: 2rem auto; */
+    max-width: 600px; /* atau 700px sesuai selera */
+  }
+}

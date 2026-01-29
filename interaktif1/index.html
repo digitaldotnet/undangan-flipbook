@@ -1,586 +1,224 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <title>Digital Invitation</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-  <style>
-   /* RESET */
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-}
-
-/* BODY = DESKTOP BACKGROUND */
-body {
-  background: #0d0d0d;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: sans-serif;
-}
-
-/* OPENING */
-.opening {
-  position: fixed;
-  inset: 0;
-  background: #000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-}
-
-.opening button {
-  padding: 14px 28px;
-  border-radius: 30px;
-  border: none;
-  font-size: 16px;
-}
-
-/* MOBILE CANVAS */
-.mobile-canvas {
-  width: 100%;
-  max-width: 420px;           /* KUNCI MOBILE LOOK */
-  height: 100vh;
-  background: url('img/bg.png') center / cover no-repeat;
-  position: relative;
-  overflow: hidden;
-}
-
-.modal-header{
- background-color: #c1272d;
- color: white;
-}
-
-/* DESKTOP FEEL */
-@media (min-width: 768px) {
-  .mobile-canvas {
-    height: 90vh;
-    border-radius: 18px;
-    /* box-shadow: 0 0 40px rgba(0,0,0,.5); */
-  }
-}
-
-/* MENU ITEM */
-.menu-item {
-  position: absolute;
-  width: 18%;
-  cursor: pointer;
-  animation: pulse 4s infinite;
-  will-change: transform, filter;
-}
-
-/* POSITION (FIX – SEMUA DEVICE SAMA) */
-.home    { top: 6%; left: 5%; }
-.save  { top: 6%; left: 30%; }
-.couple    { top: 6%; left: 55%; }
-.rsvp    { top: 6%; left: 78%; }
-
-.wishes  { bottom: 4%; left: 5%; }
-.gallery { bottom: 4%; left: 30%; }
-.gift    { bottom: 4%; left: 55%; }
-.thankyou    { bottom: 4%; left: 78%; }
-
-/* MUSIC */
-.music-control {
-  position: absolute;
-  bottom: 320px;
-  left: 10px;
-  width: 48px;
-}
-
-.rotate {
-  animation: spin 4s linear infinite;
-}
-
-/* ANIMATION */
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-    filter: drop-shadow(0 4px 6px rgba(236, 12, 12, 0.788));
-  }
-  50% {
-    transform: scale(1.08);
-    filter: drop-shadow(0 0 20px rgba(236, 12, 12, 0.100));
-  }
-  100% {
-    transform: scale(1);
-    filter: drop-shadow(0 4px 6px rgba(236, 12, 12, 0.788));
-  }
-}
-
-@keyframes spin {
-  from { transform: rotate(0); }
-  to { transform: rotate(360deg); }
-}
-
-.save-date-modal {
-  border-radius: 18px;
-  padding: 10px;
-}
-
-.save-date-modal h4 {
-  font-size: 22px;
-  margin-bottom: 10px;
-}
-
-.save-date-modal .date {
-  font-size: 18px;
-  margin-bottom: 15px;
-}
-
-.event-time {
-  display: flex;
-  justify-content: space-around;
-  margin-bottom: 15px;
-}
-
-.event-time p {
-  font-size: 14px;
-}
-
-.location {
-  font-size: 14px;
-  margin-bottom: 20px;
-}
-
-.btn-map {
-  display: inline-block;
-  padding: 10px 22px;
-  border-radius: 25px;
-  background: #000;
-  color: #fff;
-  text-decoration: none;
-  font-size: 14px;
-}
-
-.btn-map:hover {
-  background: #333;
-  color: #fff;
-}
-
-/* The Couple */
-        #couple {            
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
-
-        .couple-container {
-            display: flex;
-            flex-direction: column;
-            gap: 40px;
-        }
-
-        .couple-item {
-            text-align: center;
-        }
-
-        .couple-img {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin: 0 auto 20px;
-            border: 5px solid #c1272d;
-        }
-
-        .couple-item h3 {
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-            color: #c1272d;
-        }
-
-        .couple-item p {
-            font-size: 1rem;
-            /* color: #efe9dc; */
-        }
-
-        .form-control, .form-select {
-            border: 2px solid #c1272d;
-            border-radius: 0;
-            padding: 12px;
-            margin-bottom: 15px;
-        }
-
-        .btn-submit {
-            width: 100%;
-            padding: 12px;
-            background: #c1272d;
-            color: #efe9dc;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-            letter-spacing: 2px;
-        }
-
-        .btn-submit:hover {
-            background: #333;
-        }
-
-        .wish-item {
-            background: #f9f9f9;
-            padding: 20px;
-            margin-bottom: 15px;
-            border-left: 4px solid #000;
-        }
-
-        .wish-item h5 {
-            margin-bottom: 10px;
-            font-size: 1.1rem;
-        }
-
-        .wish-item p {
-            margin-bottom: 5px;
-            color: #666;
-        }
-
-        .wish-item small {
-            color: #999;
-        }
-
-        .wishes-list {
-            max-height: 400px;
-            overflow-y: auto;
-            margin-top: 30px;
-        }
-
-        /* Gift */
-        #gift {
-            background: #f9f9f9;
-            text-align: center;
-        }
-
-        .gift-box {
-            background: #fff;
-            padding: 30px;
-            margin: 20px 0;
-            border: 2px solid #000;
-        }
-
-        .gift-box i {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-
-        .gift-box h4 {
-            margin: 15px 0 10px;
-        }
-
-        /* Gallery */
-        #gallery {
-            background: #efe9dc;
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            /* border-radius: 50px;
-            margin: 50px; */
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-        }
-
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-            aspect-ratio: 1;
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-  </style>
-</head>
-
-<body>
-
-<!-- OPENING SCREEN -->
-<div class="opening" id="opening">
-  <button id="openBtn">Tap to Open Invitation</button>
-</div>
-
-<!-- MOBILE CANVAS -->
-<div class="mobile-canvas d-none" id="canvas">
-
-  <!-- MENU ITEMS -->
-  <img src="img/welcome.png" class="menu-item home" data-aos="zoom-in" data-bs-toggle="modal" data-bs-target="#homeModal">
-  <img src="img/gallery.png" class="menu-item gallery" data-aos="zoom-in" data-bs-toggle="modal" data-bs-target="#gallery">
-  <img src="img/the couple.png" class="menu-item couple" data-aos="zoom-in" data-bs-toggle="modal" data-bs-target="#couple">
-  <img src="img/rsvp.png" class="menu-item rsvp" data-aos="zoom-in" data-bs-toggle="modal" data-bs-target="#rsvp">
-  <img src="img/the whises.png" class="menu-item wishes" data-aos="zoom-in" data-bs-toggle="modal" data-bs-target="#wishes">
-  <img src="img/gift.png" class="menu-item gift" data-aos="zoom-in" data-bs-toggle="modal" data-bs-target="#gift">
-  <img src="img/save the date.png" class="menu-item save" data-aos="zoom-in" data-bs-toggle="modal" data-bs-target="#save">
-  <img src="img/thankyou.png" class="menu-item thankyou" data-aos="zoom-in" data-bs-toggle="modal" data-bs-target="#thankyou">
-
-  <!-- MUSIC ICON -->
-  <div class="music-control">
-    <!-- <img src="assets/img/icons/music.png"> -->
-    <i class="fas fa-music"  id="musicIcon"></i>
-  </div>
-
-</div>
-
-<!-- MUSIC -->
-<audio id="bgMusic" loop>
-  <source src="../assets/music/song.mp3" type="audio/mpeg">
-</audio>
-
-<!-- home -->
-<div class="modal fade" id="homeModal">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-        <div class="modal-header">
-        <h5 class="modal-title">Welcome</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body text-center">
-        <p>Dengan penuh kebahagiaan,
-kami mengundang Anda
-untuk hadir dan berbagi kebahagiaan
-di hari pernikahan kami.</p>
-<h3 style="margin-top: 40px;">Jane & Shane</h3>
-      </div>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Interaktif</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <div id="hero-section">
+      <p class="mb-1">The Wedding of</p>
+      <h1 style="font-size: 3rem; font-family: 'Georgia', serif;">Jane & Shane</h1>
+      <button class="hero-btn" id="btnOpenInvitation">
+        <i class="fa-solid fa-envelope-open-text me-2"></i> Buka Undangan </button>
     </div>
-  </div>
-</div>
-
-<!-- save -->
-<div class="modal fade" id="save" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content save-date-modal">
-<div class="modal-header">
-        <h5 class="modal-title">Save The Date</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body text-center">
-        <p class="date" data-aos="fade-up" data-aos-delay="100">
-          <strong>Minggu</strong><br>
-          17 Juli 2026
-        </p>
-
-        <div class="event-time" data-aos="fade-up" data-aos-delay="200">
-          <p><strong>Akad</strong><br>08.00 WIB</p>
-          <p><strong>Resepsi</strong><br>09.00 – 14.00 WIB</p>
+    <div class="icon-wrapper">
+      <i id="lampIcon" class="fas fa-lightbulb lamp-icon"></i>
+    </div>
+    <div class="music-control" id="musicBtn" id="btnToggleMusic">
+      <i id="musicIcon" class="fa-solid fa-compact-disc"></i>
+    </div>
+    <audio id="weddingAudio" loop>
+      <source src="../assets/music/song.mp3" type="audio/mpeg">
+    </audio>
+    <!-- Overlay -->
+    <div id="overlay"></div>
+    <div class="room-wrapper">
+      <img src="img/bg-android.png" class="bg-kamar" alt="Kamar">
+      <div class="light-highlight" style="bottom: 30%; left: 40%;"></div>
+      <img src="img/welcome.png" class="overlay-item monitor-overlay" data-bs-toggle="modal" data-bs-target="#welcome">
+      <img src="img/save.png" class="overlay-item save-overlay" data-bs-toggle="modal" data-bs-target="#save">
+      <img src="img/gallery.png" class="overlay-item gallery-overlay" data-bs-toggle="modal" data-bs-target="#gallery">
+      <img src="img/wishes.png" class="overlay-item wishes-overlay" data-bs-toggle="modal" data-bs-target="#wishes">
+      <img src="img/couple.png" class="overlay-item couple-overlay" data-bs-toggle="modal" data-bs-target="#couple">
+      <img src="img/gift.png" class="overlay-item gift-overlay" data-bs-toggle="modal" data-bs-target="#gift">
+      <img src="img/rsvp.png" class="overlay-item rsvp-overlay" data-bs-toggle="modal" data-bs-target="#rsvp">
+      <img src="img/thankyou.png" class="overlay-item thankyou-overlay" data-bs-toggle="modal" data-bs-target="#thankyou">
+    </div>
+    <!-- home -->
+    <div class="modal fade modal-responsive" id="welcome">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content retro-window">
+          <div class="retro-header">
+            <span class="retro-title">WELCOME</span>
+            <button class="retro-close" data-bs-dismiss="modal">✕</button>
+          </div>
+          <div class="retro-body">
+            <div class="retro-box"> 💍 Selamat Datang di Pernikahan <br>
+              <strong>Shane & Jane</strong>
+            </div>
+            <p>Terima kasih sudah menjadi bagian dari hari bahagia kami 🤍</p>
+          </div>
         </div>
-
-        <p class="location" data-aos="fade-up" data-aos-delay="300">
-          <strong>Lokasi</strong><br>
-          Ballroom, Hotel ABC Jakarta
-        </p>
-
-        <!-- MAP BUTTON -->
-        <a href="https://www.google.com/maps/search/?api=1&query=H"
-           target="_blank"
-           class="btn btn-map"
-           data-aos="zoom-in"
-           data-aos-delay="400">
-          📍 Lihat Lokasi
-        </a>
-
       </div>
-
     </div>
-  </div>
-</div>
-
-<!-- couple -->
-<div class="modal fade" id="couple" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content save-date-modal">
-<div class="modal-header">
-        <h5 class="modal-title">The Couple</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <!-- save -->
+    <div class="modal fade modal-responsive" id="save" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content retro-window">
+          <div class="retro-header">
+            <span class="retro-title">Save The Date</span>
+            <button type="button" class="retro-close" data-bs-dismiss="modal">✕</button>
+          </div>
+          <div class="retro-body text-center">
+            <p class="retro-date">
+              <strong>Minggu</strong>
+              <br> 17 Juli 2026
+            </p>
+            <div class="retro-info">
+              <p>
+                <strong>Akad</strong>
+                <br>08.00 WIB
+              </p>
+              <p>
+                <strong>Resepsi</strong>
+                <br>09.00 – 14.00 WIB
+              </p>
+            </div>
+            <p class="retro-location"> Ballroom, Hotel ABC Jakarta </p>
+            <a href="#" class="retro-btn">📍 Open Map</a>
+          </div>
+        </div>
       </div>
-      <div class="modal-body text-center">
-        <div class="couple-container">
-                    <div class="couple-item" data-aos="fade-right">
-                        <img src="../assets/img/pria.png" alt="Groom" class="couple-img">
-                        <h3>John Doe</h3>
-                        <p>Putra dari<br>Bapak Ahmad & Ibu Siti</p>
-                    </div>                    
-                    <div class="couple-item" data-aos="fade-left">
-                        <img src="../assets/img/wanita.png" alt="Bride" class="couple-img">
-                        <h3>Jane Smith</h3>
-                        <p>Putri dari<br>Bapak Budi & Ibu Ani</p>
-                    </div>
-                </div>
     </div>
-  </div>
-</div>
-</div>
-
-<!-- wishes -->
-<div class="modal fade" id="wishes" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content save-date-modal">
-<div class="modal-header">
-        <h5 class="modal-title">The Couple</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <!-- couple -->
+    <div class="modal fade modal-responsive" id="couple">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content retro-window">
+          <div class="retro-header">
+            <span class="retro-title">THE COUPLE</span>
+            <button class="retro-close" data-bs-dismiss="modal">✕</button>
+          </div>
+          <div class="retro-body">
+            <!-- GROOM -->
+            <div class="photo-frame tilt-left mb-3">
+              <img src="../assets/img/pria.png" alt="Groom">
+            </div>
+            <div class="retro-box"> 🤵 <strong>Shane Joe</strong>
+              <br> Putra dari Bpk. A & Ibu B
+            </div>
+            <!-- BRIDE -->
+            <div class="photo-frame tilt-right mt-4 mb-3">
+              <img src="../assets/img/wanita.png" alt="Bride">
+            </div>
+            <div class="retro-box"> 👰 <strong>Jane Shey</strong>
+              <br> Putri dari Bpk. C & Ibu D
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="modal-body text-center">
-        <form id="wishForm" data-aos="fade-up">
-                    <input type="text" class="form-control" id="wishName" placeholder="Nama Anda" required>
-                    <textarea class="form-control" id="wishMessage" rows="4" placeholder="Ucapan & Doa" required></textarea>
-                    <button type="submit" class="btn-submit">KIRIM UCAPAN</button>
-                </form>
-                <div class="wishes-list" id="wishesList" data-aos="fade-up"></div>
     </div>
-  </div>
-</div>
-</div>
-
-<!-- rsvp -->
-<div class="modal fade" id="rsvp" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content save-date-modal">
-<div class="modal-header">
-        <h5 class="modal-title">RSVP</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <!-- wishes -->
+    <div class="modal fade modal-responsive" id="wishes">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content retro-window">
+          <!-- HEADER -->
+          <div class="retro-header">
+            <span class="retro-title">WISHES</span>
+            <button class="retro-close" data-bs-dismiss="modal">✕</button>
+          </div>
+          <!-- BODY -->
+          <div class="retro-body">
+            <!-- FORM -->
+            <div class="retro-box">
+              <input id="name" class="retro-input mb-2" placeholder="Nama">
+              <textarea id="comment" class="retro-textarea" rows="3" placeholder="Tulis ucapan..."></textarea>
+              <a href="#" class="retro-btn mt-2" id="btnKirim">💌 Kirim Ucapan</a>
+            </div>
+            <div class="text-danger d-none mt-2" id="wishPop"> 💌 Ucapan berhasil dikirim! </div>
+            <!-- LIST UCAPAN -->
+            <div class="wishes-list"></div>
+          </div>
+        </div>
       </div>
-      <div class="modal-body text-center">
-        <form id="rsvpForm" data-aos="fade-up">
-                    <input type="text" class="form-control" placeholder="Nama Anda" required>
-                    <select class="form-select" required>
-                        <option value="">Konfirmasi Kehadiran</option>
-                        <option value="hadir">Hadir</option>
-                        <option value="tidak">Tidak Hadir</option>
-                    </select>
-                    <button type="submit" class="btn-submit">KIRIM KONFIRMASI</button>
-                </form>
     </div>
-  </div>
-</div>
-</div>
-
-<!-- gallery -->
-<div class="modal fade" id="gallery" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content save-date-modal">
-<div class="modal-header">
-        <h5 class="modal-title">Gallery</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <!-- rsvp -->
+    <div class="modal fade modal-responsive" id="rsvp">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content retro-window">
+          <div class="retro-header">
+            <span class="retro-title">RSVP</span>
+            <button class="retro-close" data-bs-dismiss="modal">✕</button>
+          </div>
+          <div class="retro-body">
+            <input class="retro-input" id="rsvpName" placeholder="Nama">
+            <select class="retro-input mt-2" id="rsvpStatus">
+              <option value="true">Hadir</option>
+              <option value="false">Tidak Hadir</option>
+            </select>
+            <a href="#" id="btnRsvp" class="retro-btn mt-3">✅ Konfirmasi</a>
+            <div id="rsvpPop" class="d-none mt-2 text-danger"></div>
+          </div>
+        </div>
       </div>
-      <div class="modal-body text-center">
-        <div class="gallery-grid" data-aos="fade-up">
-                    <div class="gallery-item" onclick="openModal(this)">
-                        <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=400" alt="Gallery 1">
-                    </div>
-                    <div class="gallery-item" onclick="openModal(this)">
-                        <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=400" alt="Gallery 2">
-                    </div>
-                    <div class="gallery-item" onclick="openModal(this)">
-                        <img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?w=400" alt="Gallery 3">
-                    </div>
-                    <div class="gallery-item" onclick="openModal(this)">
-                        <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=400" alt="Gallery 4">
-                    </div>
-                </div>
     </div>
-  </div>
-</div>
-</div>
-
-<!-- gift -->
-<div class="modal fade" id="gift" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content save-date-modal">
-<div class="modal-header">
-        <h5 class="modal-title">The Gift</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <!-- gallery -->
+    <div class="modal fade modal-responsive" id="gallery">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content retro-window">
+          <div class="retro-header">
+            <span class="retro-title">GALLERY</span>
+            <button class="retro-close" data-bs-dismiss="modal">✕</button>
+          </div>
+          <div class="retro-body">
+            <div class="gallery-grid">
+              <div class="photo-frame tilt-left">
+                <img src="../assets/img/wedding1.png" alt="">
+              </div>
+              <div class="photo-frame tilt-right">
+                <img src="../assets/img/wedding2.png" alt="">
+              </div>
+              <div class="photo-frame tilt-left">
+                <img src="../assets/img/wedding3.png" alt="">
+              </div>
+              <div class="photo-frame tilt-right">
+                <img src="../assets/img/wedding4.png" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="modal-body text-center">
-        <p data-aos="fade-up">Tanpa mengurangi rasa hormat, bagi anda yang ingin memberikan tanda kasih untuk kami, dapat melalui:</p>
-                <div class="gift-box" data-aos="zoom-in">
-                    <i class="fab fa-cc-mastercard"></i>
-                    <h4>Bank Mandiri</h4>
-                    <p><strong>1234567890</strong></p>
-                    <p>a.n. John Doe</p>
-                </div>
-                <div class="gift-box" data-aos="zoom-in">
-                    <i class="fab fa-cc-visa"></i>
-                    <h4>Bank BCA</h4>
-                    <p><strong>0987654321</strong></p>
-                    <p>a.n. Jane Smith</p>
-                </div>
     </div>
-  </div>
-</div>
-</div>
-
-<!-- thankyou -->
-<div class="modal fade" id="thankyou" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content save-date-modal">
-<div class="modal-header">
-        <h5 class="modal-title">Thank you</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <!-- gift -->
+    <div class="modal fade modal-responsive" id="gift">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content retro-window">
+          <div class="retro-header">
+            <span class="retro-title">GIFT</span>
+            <button class="retro-close" data-bs-dismiss="modal">✕</button>
+          </div>
+          <div class="retro-body">
+            <div class="retro-box" id="giftAccount1" data-account="1111111111"> 💳 BCA <br> 1111111111 <br> a.n Shane </div>
+            <a href="#" class="retro-btn mb-3" id="copyGiftBtn1">📋 Salin</a>
+            <div class="retro-box" id="giftAccount2" data-account="2222222222"> 💳 BRI <br> 2222222222 <br> a.n Jane </div>
+            <a href="#" class="retro-btn" id="copyGiftBtn2">📋 Salin</a>
+            <p id="copyStatus" style="display:none; margin-top:8px;"> ✅ Nomor berhasil disalin! </p>
+          </div>
+        </div>
       </div>
-      <div class="modal-body text-center">
-        <h2 class="section-title">Thank You</h2>
-                    <p style="font-size: 1.1rem; line-height: 1.8;">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu kepada kami.</p>
-                    <p style="margin-top: 40px;">Wassalamualaikum Wr. Wb.</p>
-                    <h3 style="margin-top: 40px;">Jane & Shane</h3>
     </div>
-  </div>
-</div>
-</div>
-
-<!-- JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-
-<script>
-   AOS.init({
-  duration: 1000,
-  once: true
-});
-
- $('.modal').on('shown.bs.modal', function () {
-    AOS.refresh();
-  });
-
-const music = document.getElementById("bgMusic");
-const icon = document.getElementById("musicIcon");
-let playing = false;
-
-$("#openBtn").on("click", function () {
-  $("#opening").addClass("d-none");
-  $("#canvas").removeClass("d-none");
-
-  music.play();
-  icon.classList.add("rotate");
-  playing = true;
-});
-
-$("#musicIcon").on("click", function () {
-  if (playing) {
-    music.pause();
-    icon.classList.remove("rotate");
-  } else {
-    music.play();
-    icon.classList.add("rotate");
-  }
-  playing = !playing;
-});
-
-
-</script>
-</body>
+    <!-- thankyou -->
+    <div class="modal fade modal-responsive" id="thankyou">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content retro-window">
+          <div class="retro-header">
+            <span class="retro-title">THANK YOU</span>
+            <button class="retro-close" data-bs-dismiss="modal">✕</button>
+          </div>
+          <div class="retro-body">
+            <div class="retro-box"> 🤍 Terima kasih atas doa & kehadirannya </div>
+            <p>Semoga kebaikan kembali kepada Anda ✨</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script type="module" src="assets/js/main.js"></script>
+  </body>
 </html>
