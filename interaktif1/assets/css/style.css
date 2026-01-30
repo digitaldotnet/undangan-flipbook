@@ -638,10 +638,30 @@ html {
   display: none;
 }
 
-.modal-responsive {
+/* .modal-responsive {
   width: 90%;
-  max-width: none; /* override default bootstrap */
-  margin: 1rem; /* jarak dari sisi layar */
+  max-width: none; 
+  margin: 1rem; 
+
+
+.modal-responsive .modal-content {
+  max-height: 70%; 
+  overflow-y: auto; 
+}
+
+
+@media (min-width: 768px) {
+  .modal-responsive {
+    
+    max-width: 600px; 
+  }
+} */
+
+.modal-responsive {
+  /* width: 90%; */
+  /* max-width: none;
+  margin-left: 20px;
+  margin-right: 20px; */
 }
 
 /* Batasi tinggi modal */
@@ -654,6 +674,6 @@ html {
 @media (min-width: 768px) {
   .modal-responsive {
     /* margin: 2rem auto; */
-    max-width: 600px; /* atau 700px sesuai selera */
+    /* max-width: 600px; */
   }
 }
