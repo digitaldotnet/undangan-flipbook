@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Interaktif</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <div id="hero-section">
+      <p class="mb-1">The Wedding of</p>
+      <h1 style="font-size: 3rem; font-family: 'Georgia', serif;">Jane & Shane</h1>
+      <button class="hero-btn" id="btnOpenInvitation">
+        <i class="fa-solid fa-envelope-open-text me-2"></i> Buka Undangan </button>
+    </div>
+    <div class="icon-wrapper">
+      <i id="lampIcon" class="fas fa-lightbulb lamp-icon"></i>
+    </div>
+    <div class="music-control" id="btnToggleMusic">
+      <i id="musicIcon" class="fa-solid fa-compact-disc"></i>
+    </div>
+    <audio id="weddingAudio" loop>
+      <source src="../assets/music/sodng.mp3" type="audio/mpeg">
+    </audio>
+    <!-- Overlay -->
+    <div id="overlay"></div>
+    <div class="room-wrapper">
+      <img src="img/bg-android.png" class="bg-kamar" alt="Kamar">
+      <div class="light-highlight" style="bottom: 30%; left: 40%;"></div>
+      <img src="img/welcome.png" class="overlay-item monitor-overlay" data-bs-toggle="modal" data-bs-target="#welcome">
+      <img src="img/save.png" class="overlay-item save-overlay" data-bs-toggle="modal" data-bs-target="#save">
+      <img src="img/gallery.png" class="overlay-item gallery-overlay" data-bs-toggle="modal" data-bs-target="#gallery">
+      <img src="img/wishes.png" class="overlay-item wishes-overlay" data-bs-toggle="modal" data-bs-target="#wishes">
+      <img src="img/couple.png" class="overlay-item couple-overlay" data-bs-toggle="modal" data-bs-target="#couple">
+      <img src="img/gift.png" class="overlay-item gift-overlay" data-bs-toggle="modal" data-bs-target="#gift">
+      <img src="img/rsvp.png" class="overlay-item rsvp-overlay" data-bs-toggle="modal" data-bs-target="#rsvp">
+      <!-- <img src="img/thankyou.png" class="overlay-item thankyou-overlay" data-bs-toggle="modal" data-bs-target="#thankyou"> -->
+    </div>
+    <!-- home -->
+    <div class="modal fade modal-responsive" id="welcome">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content retro-window">
+          <div class="retro-header">
+            <span class="retro-title">WELCOME</span>
+            <button class="retro-close" data-bs-dismiss="modal">✕</button>
+          </div>
+          <div class="retro-body">
+            <div class="retro-box"> 💍 Selamat Datang di Pernikahan <br>
+              <strong>Shane & Jane</strong>
+            </div>
+            <p>Terima kasih sudah menjadi bagian dari hari bahagia kami 🤍</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- save -->
+    <div class="modal fade modal-responsive" id="save" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content retro-window">
+          <div class="retro-header">
+            <span class="retro-title">Save The Date</span>
+            <button type="button" class="retro-close" data-bs-dismiss="modal">✕</button>
+          </div>
+          <div class="retro-body text-center">
+            <p class="retro-date">
+              <strong>Minggu</strong>
+              <br> 17 Juli 2026
+            </p>
+            <div class="retro-info">
+              <p>
+                <strong>Akad</strong>
+                <br>08.00 WIB
+              </p>
+              <p>
+                <strong>Resepsi</strong>
+                <br>09.00 – 14.00 WIB
+              </p>
+            </div>
+            <p class="retro-location"> Ballroom, Hotel ABC Jakarta </p>
+            <a href="#" class="retro-btn">📍 Open Map</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- couple -->
+    <div class="modal fade modal-responsive" id="couple">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content retro-window">
+          <div class="retro-header">
+            <span class="retro-title">THE COUPLE</span>
+            <button class="retro-close" data-bs-dismiss="modal">✕</button>
+          </div>
+          <div class="retro-body">
+            <!-- GROOM -->
+            <div class="photo-frame tilt-left mb-3">
+              <img src="../assets/img/pria.png" alt="Groom">
+            </div>
+            <div class="retro-box"> 🤵 <strong>Shane Joe</strong>
+              <br> Putra dari Bpk. A & Ibu B
+            </div>
+            <!-- BRIDE -->
+            <div class="photo-frame tilt-right mt-4 mb-3">
+              <img src="../assets/img/wanita.png" alt="Bride">
+            </div>
+            <div class="retro-box"> 👰 <strong>Jane Shey</strong>
+              <br> Putri dari Bpk. C & Ibu D
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- wishes -->
+    <div class="modal fade modal-responsive" id="wishes">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content retro-window">
+          <!-- HEADER -->
+          <div class="retro-header">
+            <span class="retro-title">WISHES</span>
+            <button class="retro-close" data-bs-dismiss="modal">✕</button>
+          </div>
+          <!-- BODY -->
+          <div class="retro-body">
+            <!-- FORM -->
+            <div class="retro-box">
+              <input id="name" class="retro-input mb-2" placeholder="Nama">
+              <textarea id="comment" class="retro-textarea" rows="3" placeholder="Tulis ucapan..."></textarea>
+              <a href="#" class="retro-btn mt-2" id="btnKirim">💌 Kirim Ucapan</a>
+            </div>
+            <div class="text-danger d-none mt-2" id="wishPop"> 💌 Ucapan berhasil dikirim! </div>
+            <!-- LIST UCAPAN -->
+            <div class="wishes-list"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- rsvp -->
+    <div class="modal fade modal-responsive" id="rsvp">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content retro-window">
+          <div class="retro-header">
+            <span class="retro-title">RSVP</span>
+            <button class="retro-close" data-bs-dismiss="modal">✕</button>
+          </div>
+          <div class="retro-body">
+            <input class="retro-input" id="rsvpName" placeholder="Nama">
+            <select class="retro-input mt-2" id="rsvpStatus">
+              <option value="true">Hadir</option>
+              <option value="false">Tidak Hadir</option>
+            </select>
+            <a href="#" id="btnRsvp" class="retro-btn mt-3">✅ Konfirmasi</a>
+            <div id="rsvpPop" class="d-none mt-2 text-danger"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- gallery -->
+    <div class="modal fade modal-responsive" id="gallery">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content retro-window">
+          <div class="retro-header">
+            <span class="retro-title">GALLERY</span>
+            <button class="retro-close" data-bs-dismiss="modal">✕</button>
+          </div>
+          <div class="retro-body">
+            <div class="gallery-grid">
+              <div class="photo-frame tilt-left">
+                <img src="../assets/img/wedding1.png" alt="">
+              </div>
+              <div class="photo-frame tilt-right">
+                <img src="../assets/img/wedding2.png" alt="">
+              </div>
+              <div class="photo-frame tilt-left">
+                <img src="../assets/img/wedding3.png" alt="">
+              </div>
+              <div class="photo-frame tilt-right">
+                <img src="../assets/img/wedding4.png" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- gift -->
+    <div class="modal fade modal-responsive" id="gift">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content retro-window">
+          <div class="retro-header">
+            <span class="retro-title">GIFT</span>
+            <button class="retro-close" data-bs-dismiss="modal">✕</button>
+          </div>
+          <div class="retro-body">
+            <div class="retro-box" id="giftAccount1" data-account="1111111111"> 💳 BCA <br> 1111111111 <br> a.n Shane </div>
+            <a href="#" class="retro-btn mb-3" id="copyGiftBtn1">📋 Salin</a>
+            <div class="retro-box" id="giftAccount2" data-account="2222222222"> 💳 BRI <br> 2222222222 <br> a.n Jane </div>
+            <a href="#" class="retro-btn" id="copyGiftBtn2">📋 Salin</a>
+            <p id="copyStatus" style="display:none; margin-top:8px;"> ✅ Nomor berhasil disalin! </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- thankyou -->
+    <div class="modal fade modal-responsive" id="thankyou">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content retro-window">
+          <div class="retro-header">
+            <span class="retro-title">THANK YOU</span>
+            <button class="retro-close" data-bs-dismiss="modal">✕</button>
+          </div>
+          <div class="retro-body">
+            <div class="retro-box"> 🤍 Terima kasih atas doa & kehadirannya </div>
+            <p>Semoga kebaikan kembali kepada Anda ✨</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script type="module" src="assets/js/main.js"></script>
+  </body>
+</html>
