@@ -27,7 +27,7 @@ function initCopyGift() {
         status.style.display = 'block';
 
         const originalText = this.innerText;
-        this.innerText = '✅ Tersalin!';
+        this.innerText = 'Tersalin!';
 
         setTimeout(() => {
           this.innerText = originalText;
