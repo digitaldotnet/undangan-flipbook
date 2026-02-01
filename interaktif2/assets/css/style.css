@@ -366,6 +366,11 @@ html {
 .cartoon-modal .modal-content {
   background: transparent;
   border: none;
+  
+}
+
+.cartoon-modal{
+max-height: 60%;
 }
 
 .retro-window {

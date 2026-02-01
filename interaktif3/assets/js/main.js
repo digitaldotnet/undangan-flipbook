@@ -11,6 +11,7 @@ initWishes(groupName);
 initRsvp(groupName);
 
 function initCopyGift() {
+  console.log('ss');
   document.querySelectorAll('[id^="copyGiftBtn"]').forEach(btn => {
     btn.addEventListener('click', async function () {
       const targetId = this.dataset.target;
@@ -22,7 +23,6 @@ function initCopyGift() {
 
       try {
         await navigator.clipboard.writeText(account);
-
         const status = document.getElementById('copyStatus');
         status.style.display = 'block';
 

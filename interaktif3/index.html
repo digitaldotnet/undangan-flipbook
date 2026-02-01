@@ -42,14 +42,13 @@
       <!-- <img src="img/thankyou.png" class="overlay-item thankyou-overlay" data-bs-toggle="modal" data-bs-target="#thankyou"> -->
     </div>
     <!-- home -->
-    <div class="modal fade" id="welcome" tabindex="-1">
+    <div class="modal fade cartoon-modal" id="welcome" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered modal-sm">
         <div class="modal-content wedding-modal">
-
-            <div class="modal-header border-0">
-                <h5 class="modal-title">Welcome</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
+          <div class="retro-header">
+        <span class="retro-title">Welcome</span>
+        <button type="button" class="retro-close" data-bs-dismiss="modal">✕</button>
+      </div>
 
             <div class="modal-body text-center">
                 <p class="script-text">
@@ -192,7 +191,7 @@
           <div class="retro-body">
             <div class="gallery-grid">
               <div class="photo-frame tilt-left">
-                <img src="../assets/img/wedding1.png" alt="">
+                <img src="../assets/img/wedding3.png" alt="">
               </div>
               <div class="photo-frame tilt-right">
                 <img src="../assets/img/wedding2.png" alt="">
@@ -218,10 +217,10 @@
           </div>
           <div class="retro-body">
             <div class="retro-box" id="giftAccount1" data-account="1111111111"> BCA <br> 1111111111 <br> a.n Shane </div>
-            <a href="#" class="retro-btn mb-3" id="copyGiftBtn1">Salin</a>
+            <a href="#" class="retro-btn mb-3" id="copyGiftBtn1" data-target="giftAccount1">Salin</a>
             <div class="retro-box" id="giftAccount2" data-account="2222222222"> BRI <br> 2222222222 <br> a.n Jane </div>
-            <a href="#" class="retro-btn" id="copyGiftBtn2">Salin</a>
-            <p id="copyStatus" style="display:none; margin-top:8px;"> Nomor berhasil disalin! </p>
+            <a href="#" class="retro-btn" id="copyGiftBtn2" data-target="giftAccount2">Salin</a>
+            <!-- <p id="copyStatus" style="display:none; margin-top:8px;"> Nomor berhasil disalin! </p> -->
           </div>
         </div>
       </div>

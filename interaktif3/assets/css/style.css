@@ -1,3 +1,6 @@
+/* =========================================
+   1. VARIABLES & BASE STYLES
+   ========================================= */
 :root {
   --paper: #f7f4ef;
   --paper-dark: #e6d8c3;
@@ -6,21 +9,23 @@
   --shadow: rgba(0,0,0,0.25);
 }
 
-body,
-html {
+body, html {
   height: 100vh;
   width: 100vw;
   margin: 0;
   padding: 0;
   overflow: hidden;
   background-color: #E0E3E6;
-  /* Flexbox untuk memastikan room-wrapper benar-benar di tengah */
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: 'Cormorant Garamond', serif;
+  color: #6b4e3d;
 }
 
-/* --- HERO SECTION --- */
+/* =========================================
+   2. HERO SECTION
+   ========================================= */
 #hero-section {
   position: fixed;
   top: 0;
@@ -33,14 +38,14 @@ html {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  z-index: 10000; /* Paling depan */
+  z-index: 10000;
   transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
   text-align: center;
 }
 
 #hero-section.hide {
   transform: translateY(-100%);
-  pointer-events: none; /* Penting! Agar klik bisa tembus ke bawah setelah hero hilang */
+  pointer-events: none;
 }
 
 .hero-btn {
@@ -55,12 +60,12 @@ html {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* --- ROOM WRAPPER (Tampilan Utama) --- */
+/* =========================================
+   3. ROOM WRAPPER & BACKGROUND
+   ========================================= */
 .room-wrapper {
   position: relative;
   height: 100vh;
-  /* Menggunakan aspect-ratio agar tetap proporsional di semua layar */
-  /* aspect-ratio: 9 / 19;  */
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
   background-color: #000;
 }
@@ -71,22 +76,14 @@ html {
   display: block;
 }
 
-/* --- ANIMASI & OVERLAY --- */
-@keyframes continuousZoom {
-  0%,
-  100% {
-    transform: translateX(-50%) scale(1);
-  }
-  50% {
-    transform: translateX(-50%) scale(1.08);
-  }
-}
-
+/* =========================================
+   4. OVERLAY ITEMS (Interactive Objects)
+   ========================================= */
 .overlay-item {
   position: absolute;
   transform: translateX(-50%);
   cursor: pointer;
-  z-index: 20; /* Lebih rendah dari modal tapi di atas background */
+  z-index: 20;
   animation: continuousZoom 3s ease-in-out infinite;
   filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.3));
   transition: all 0.3s ease;
@@ -98,53 +95,21 @@ html {
   transform: translateX(-50%) scale(1.1);
 }
 
-/* POSISI (Gunakan % agar responsif) */
-.monitor-overlay {
-  top: 2.2%;
-  left: 28%;
-  width: 30%;
-}
-.save-overlay {
-  bottom: 34%;
-  left: 78.3%;
-  width: 31%;
-}
-.gallery-overlay {
-  bottom: 31.3%;
-  left: 42.3%;
-  width: 29.9%;
-}
-.wishes-overlay {
-  top: 27.2%;
-  left: 27.3%;
-  width: 40%;
-}
-.couple-overlay {
-  top: 13%;
-  left: 71%;
-  width: 49%;
-}
-.gift-overlay {
-  bottom: 17%;
-  left: 24%;
-  width: 25%;
-}
-.rsvp-overlay {
-  bottom: 1%;
-  left: 35.3%;
-  width: 37%;
-}
-.thankyou-overlay {
-  bottom: 36%;
-  left: 80.3%;
-  width: 18%;
-}
+/* Positioning */
+.monitor-overlay { top: 7.2%; left: 28%; width: 30%; }
+.save-overlay { bottom: 40%; left: 80.3%; width: 31%; }
+.gallery-overlay { bottom: 38.3%; left: 44.3%; width: 29.9%; }
+.wishes-overlay { top: 27.2%; left: 27.3%; width: 40%; }
+.couple-overlay { top: 13%; left: 71%; width: 49%; }
+.gift-overlay { bottom: 25%; left: 24%; width: 20%; }
+.rsvp-overlay { bottom: 10%; left: 39.3%; width: 37%; }
+.thankyou-overlay { bottom: 36%; left: 80.3%; width: 18%; }
 
-/* MUSIC ICON */
-.music-control {
-  font-size: 1.5em;
+/* =========================================
+   5. FLOATING CONTROLS (Music & Lamp)
+   ========================================= */
+.music-control, .lamp-icon {
   position: fixed;
-  top: 20px;
   right: 20px;
   z-index: 999;
   background: #E1A602;
@@ -158,234 +123,53 @@ html {
   cursor: pointer;
 }
 
-.rotate {
-  animation: spin 4s linear infinite;
-}
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.music-control { top: 20px; font-size: 1.5em; }
+.lamp-icon { top: 65px; font-size: 1.5em; transition: all 0.3s ease; color: white; }
+
+.lamp-icon.active {
+  color: #A41A20;
+  z-index: 2;
+  text-shadow: 0 0 10px rgba(255, 193, 7, 0.8), 0 0 30px rgba(255, 193, 7, 0.6);
 }
 
-/* MODAL FIX */
-.modal {
-  z-index: 11000 !important;
+#overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+  display: none;
 }
-.modal-backdrop {
-  z-index: 10500 !important;
-}
+
+/* =========================================
+   6. MODAL SYSTEM (General & Cartoon Retro)
+   ========================================= */
+.modal { z-index: 11000 !important; }
+.modal-backdrop { z-index: 10500 !important; }
+
 .modal-content {
   border-radius: 20px;
   border: none;
 }
 
-.save-date-modal {
-  border-radius: 18px;
-  padding: 10px;
-}
-
-.save-date-modal h4 {
-  font-size: 22px;
-  margin-bottom: 10px;
-}
-
-.save-date-modal .date {
-  font-size: 18px;
-  margin-bottom: 15px;
-}
-
-.event-time {
-  display: flex;
-  justify-content: space-around;
-  margin-bottom: 15px;
-}
-
-.event-time p {
-  font-size: 14px;
-}
-
-.location {
-  font-size: 14px;
-  margin-bottom: 20px;
-}
-
-.btn-map {
-  display: inline-block;
-  padding: 10px 22px;
-  border-radius: 25px;
-  background: #000;
-  color: #fff;
-  text-decoration: none;
-  font-size: 14px;
-}
-
-.btn-map:hover {
-  background: #333;
-  color: #fff;
-}
-
-/* The Couple */
-#couple {
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-}
-
-.couple-container {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-}
-
-.couple-item {
-  text-align: center;
-}
-
-.couple-img {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin: 0 auto 20px;
-  border: 5px solid #ad7673;
-}
-
-.couple-item h3 {
-  font-size: 1.8rem;
-  margin-bottom: 10px;
-  color: #ad7673;
-}
-
-.couple-item p {
-  font-size: 1rem;
-  /* color: #efe9dc; */
-}
-
-.form-control,
-.form-select {
-  border: 2px solid #ad7673;
-  border-radius: 0;
-  padding: 12px;
-  margin-bottom: 15px;
-}
-
-.btn-submit {
-  width: 100%;
-  padding: 12px;
-  background: #ad7673;
-  color: #efe9dc;
-  border: none;
-  cursor: pointer;
-  font-size: 1rem;
-  letter-spacing: 2px;
-}
-
-.btn-submit:hover {
-  background: #333;
-}
-
-.wish-item {
-  background: #f9f9f9;
-  padding: 20px;
-  margin-bottom: 15px;
-  border-left: 4px solid #000;
-}
-
-.wish-item h5 {
-  margin-bottom: 10px;
-  font-size: 1.1rem;
-}
-
-.wish-item p {
-  margin-bottom: 5px;
-  color: #666;
-}
-
-.wish-item small {
-  color: #999;
-}
-
-.wishes-list {
-  max-height: 400px;
-  overflow-y: auto;
-  margin-top: 30px;
-}
-
-/* Gift */
-#gift {
-  /* background: #f9f9f9; */
-  text-align: center;
-}
-
-.gift-box {
-  /* background: #fff; */
-  padding: 30px;
-  margin: 20px 0;
-  border: 2px solid #000;
-}
-
-.gift-box i {
-  font-size: 3rem;
-  margin-bottom: 20px;
-}
-
-.gift-box h4 {
-  margin: 15px 0 10px;
-}
-
-/* Gallery */
-#gallery {
-  /* background: #efe9dc; */
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  /* border-radius: 50px;
-            margin: 50px; */
-}
-
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
-}
-
-.gallery-item {
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-  aspect-ratio: 1;
-}
-
-.gallery-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s;
-}
-
-.gallery-item:hover img {
-  transform: scale(1.1);
-}
-
-/* ===== RETRO CARTOON MODAL ===== */
+/* Cartoon Modal Specific */
 .cartoon-modal .modal-dialog {
-  max-width: 380px;
+  max-width: 92vw;
+  margin: auto;
+}
+
+.cartoon-modal .modal-content {
+  max-height: 80vh;
+  overflow-y: auto;
 }
 
 .retro-window {
   background: var(--paper);
   border-radius: 22px;
   box-shadow: 0 20px 40px var(--shadow);
-  overflow: hidden;
   position: relative;
-  font-family: 'Cormorant Garamond', serif;
   color: var(--brown);
 }
 
-/* efek tape */
 .retro-window::before {
   content: "";
   position: absolute;
@@ -397,24 +181,28 @@ html {
   opacity: .9;
   transform: rotate(-2deg);
   border-radius: 4px;
+  z-index: 5;
+  pointer-events: none;
 }
 
+/* Modal Headers & Titles */
 .retro-header {
-  background: transparent;
   padding: 14px 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: var(--paper);
+  z-index: 10;
 }
 
-.retro-title {
+.retro-title, .modal-title {
   font-family: 'Playfair Display', serif;
   font-size: 18px;
   letter-spacing: 2px;
   color: var(--brown);
 }
 
-.retro-close {
+.retro-close, .btn-close {
   background: none;
   border: none;
   font-size: 18px;
@@ -422,8 +210,35 @@ html {
   cursor: pointer;
 }
 
-.retro-close:hover {
-  opacity: .8;
+/* =========================================
+   7. FORM ELEMENTS & BUTTONS
+   ========================================= */
+.retro-input, .retro-textarea, .form-control, .form-select {
+  width: 100%;
+  border: 1px solid #3b2f2f;
+  border-radius: 12px;
+  padding: 8px;
+  font-family: 'Cormorant Garamond', serif;
+  margin-bottom: 12px;
+}
+
+.retro-btn, .btn-submit, .btn-map {
+  display: inline-block;
+  padding: 10px 22px;
+  border-radius: 25px;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.retro-box {
+  background: #fff;
+  border-radius: 16px;
+  padding: 12px 14px;
+  margin-bottom: 12px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+  font-size: 14px;
 }
 
 .retro-body {
@@ -436,85 +251,73 @@ html {
   line-height: 1.8;
 }
 
-.retro-box {
-  background: #fff;
-  border-radius: 16px;
-  padding: 12px 14px;
-  margin-bottom: 12px;
-  box-shadow: 0 6px 14px rgba(0,0,0,0.12);
-  font-size: 14px;
+.retro-btn { background: var(--gold); color: #fff; margin-top: 8px; }
+.btn-submit { background: #ad7673; color: #efe9dc; width: 100%; border: none; letter-spacing: 2px; }
+.btn-map { background: #000; color: #fff; }
+
+/* =========================================
+   8. SPECIFIC CONTENT MODULES
+   ========================================= */
+
+/* The Couple */
+.couple-img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 20px;
+  border: 5px solid #ad7673;
 }
 
-/* INPUT */
-.retro-input, .retro-textarea {
-  width: 100%;
-  border: 3px solid #3b2f2f;
-  border-radius: 12px;
-  padding: 8px;
-  font-family: 'Fredoka', sans-serif;
+.couple-item h3 { font-size: 1.8rem; color: #ad7673; }
+.script-text { font-family: 'Dancing Script', cursive; font-size: 26px; color: #c7a46b; }
+
+/* Gallery */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
 }
 
-.photo-frame {
+.gallery-item, .photo-frame {
   background: #fff;
   padding: 6px;
   border-radius: 14px;
   box-shadow: 0 10px 18px rgba(0,0,0,0.2);
-  width: fit-content;
-  margin: auto;
+  overflow: hidden;
 }
 
 .photo-frame img {
-  width: 140px;
+  width: 100%;
+  height: auto;
   border-radius: 10px;
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
 }
 
-/* playful tilt */
-.tilt-left {
-  transform: rotate(-2deg);
-}
-
-.tilt-right {
-  transform: rotate(2deg);
-}
-
-/* ===== GALLERY GRID ===== */
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.75rem;
-}
-
-@media (min-width: 768px) {
-  .gallery-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-/* ===== WISHES LIST ===== */
-
+/* Wishes / Ucapan */
 .wishes-list {
+  max-height: 320px;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  margin-top: 1rem;
+  padding-right: 4px;
 }
 
-/* Card Ucapan */
-.wish-card {
-  background: #ffffff;
-  border: 1px solid #3b2f2f;
-  border-radius: 14px;
-  padding: 0.75rem;
-  box-shadow: #3b2f2f;
-  font-size: 0.9rem;
-}
-
-/* Header Ucapan */
 .wish-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 0.4rem;
+}
+
+.wish-card, .wish-item {
+  background: #ffffff;
+  border: 1px solid #3b2f2f;
+  border-radius: 14px;
+  padding: 0.75rem;
 }
 
 .wish-name {
@@ -524,30 +327,17 @@ html {
 
 .wish-time {
   font-size: 0.75rem;
-  /* background: #ffd166; */
   padding: 2px 8px;
-  /* border: 2px solid #3b2f2f; */
   border-radius: 999px;
 }
 
-/* Text */
 .wish-message {
   background: #fff7d6;
-  /* border: 2px dashed #3b2f2f; */
   border-radius: 10px;
   padding: 0.5rem;
   line-height: 1.4;
 }
 
-/* ===== WISHES SCROLL LIMIT ===== */
-
-.wishes-list {
-  max-height: 320px; /* kira-kira 4 card */
-  overflow-y: auto;
-  padding-right: 4px;
-}
-
-/* scrollbar khusus wishes */
 .wishes-list::-webkit-scrollbar {
   width: 6px;
 }
@@ -558,238 +348,40 @@ html {
   border-radius: 6px;
 }
 
-@media (max-width: 576px) {
-  .wishes-list {
-    max-height: 280px;
-  }
-}
-/* ===== WISH SUCCESS POP ===== */
-
-.retro-window {
-  position: relative; /* anchor pop */
+/* =========================================
+   9. ANIMATIONS & UTILITIES
+   ========================================= */
+@keyframes continuousZoom {
+  0%, 100% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.08); }
 }
 
-/* animasi kartun */
-@keyframes popShow {
-  0% {
-    opacity: 0;
-    transform: translateX(-50%) scale(0.6);
-  }
-  60% {
-    opacity: 1;
-    transform: translateX(-50%) scale(1.05);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(-50%) scale(1);
-  }
-}
-/* Icon */
-.lamp-icon {
-  font-size: 1.5em;
-  cursor: pointer;
-  color: #555;
-  z-index: 1;
-  transition: all 0.3s ease;
-
-  position: fixed;
-  top: 65px;
-  right: 20px;
-  z-index: 999;
-  background: #E1A602;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  cursor: pointer;
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
-/* Saat aktif (highlight) */
-.lamp-icon.active {
-  color: #A41A20;
-  z-index: 2;
-  text-shadow: 0 0 10px rgba(255, 193, 7, 0.8), 0 0 30px rgba(255, 193, 7, 0.6);
-}
+.rotate { animation: spin 4s linear infinite; }
+.tilt-left { transform: rotate(-2deg); }
+.tilt-right { transform: rotate(2deg); }
 
-/* Overlay */
-#overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.7);
-  z-index: 1;
-  display: none;
-}
-
-.modal-responsive {
-  /* width: 90%; */
-  /* max-width: none;
-  margin-left: 20px;
-  margin-right: 20px; */
-}
-
-/* Batasi tinggi modal */
-.cartoon-modal.modal-content {
-  max-height: 70%; /* tidak full layar */
-  overflow-y: auto; /* scroll kalau konten panjang */
-}
-
-/* Optional: biar lebih enak di desktop */
-@media (min-width: 768px) {
-  .modal-responsive {
-    /* margin: 2rem auto; */
-    /* max-width: 600px; */
-  }
-}
-
-body {
-    background: #f3efe8;
-    font-family: 'Cormorant Garamond', serif;
-    color: #6b4e3d;
-}
-
-/* Image kecil di home */
-.popup-trigger {
-    width: 120px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.popup-trigger:hover {
-    transform: scale(1.06) rotate(-1deg);
-}
-
-/* Modal utama */
-.wedding-modal {
-    background: #f7f4ef;
-    border-radius: 22px;
-    box-shadow: 0 20px 45px rgba(0,0,0,0.25);
-    padding: 10px;
-    position: relative;
-}
-
-/* Tape effect */
-.wedding-modal::before {
-    content: "";
-    position: absolute;
-    top: -10px;
-    left: 35%;
-    width: 80px;
-    height: 22px;
-    background: #e6d8c3;
-    opacity: 0.9;
-    transform: rotate(-2deg);
-    border-radius: 4px;
-}
-
-/* Title */
-.modal-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    color: #6b4e3d;
-    letter-spacing: 1px;
-}
-
-/* Body text */
-.modal-body p {
-    font-size: 16px;
-    line-height: 1.9;
-}
-
-/* Script text */
-.script-text {
-    font-family: 'Dancing Script', cursive;
-    font-size: 26px;
-    color: #c7a46b;
-    margin-bottom: 10px;
-}
-
-/* Divider */
 .divider {
-    width: 70px;
-    height: 2px;
-    background: #c7a46b;
-    margin: 18px auto;
-    border-radius: 5px;
+  width: 70px;
+  height: 2px;
+  background: #c7a46b;
+  margin: 18px auto;
+  border-radius: 5px;
 }
 
-/* Date */
-.date-text {
-    font-family: 'Playfair Display', serif;
-    font-size: 15px;
-    letter-spacing: 3px;
-    color: #8a6a4f;
+/* =========================================
+   10. MEDIA QUERIES
+   ========================================= */
+@media (min-width: 768px) {
+  .gallery-grid { grid-template-columns: repeat(3, 1fr); }
 }
 
-/* Close button soft */
-.btn-close {
-    opacity: 0.4;
-}
-
-.btn-close:hover {
-    opacity: 0.7;
-}
-
-.retro-date {
-  font-family: 'Playfair Display', serif;
-  font-size: 22px;
-  margin-bottom: 12px;
-}
-
-.retro-info {
-  display: flex;
-  justify-content: space-around;
-  margin: 10px 0;
-  font-size: 14px;
-}
-
-.retro-location {
-  font-style: italic;
-  font-size: 14px;
-}
-
-.retro-input,
-.retro-textarea {
-  width: 100%;
-  border-radius: 14px;
-  border: 1px solid var(--paper-dark);
-  padding: 8px 12px;
-  font-family: inherit;
-  font-size: 14px;
-}
-
-.retro-input:focus,
-.retro-textarea:focus {
-  outline: none;
-  border-color: var(--gold);
-}
-
-.retro-btn {
-  display: inline-block;
-  background: var(--gold);
-  color: #fff;
-  padding: 8px 16px;
-  border-radius: 18px;
-  font-size: 14px;
-  text-decoration: none;
-  margin-top: 8px;
-  /* box-shadow: 0 6px 12px rgba(0,0,0,0.2); */
-}
-
-.retro-btn:hover {
-  background: #b6955f;
-}
-
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 14px;
-    padding-right: 8px;
-}
-
-#copyStatus {
-  font-size: 13px;
-  color: var(--gold);
+@media (max-width: 576px) {
+  .wishes-list { max-height: 280px; }
+  .gallery-grid { grid-template-columns: 1fr; }
+  .tilt-left, .tilt-right { transform: rotate(0deg); }
 }
