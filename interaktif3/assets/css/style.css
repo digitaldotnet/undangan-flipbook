@@ -385,3 +385,9 @@ body, html {
   .gallery-grid { grid-template-columns: 1fr; }
   .tilt-left, .tilt-right { transform: rotate(0deg); }
 }
+
+ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
