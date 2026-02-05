@@ -1,0 +1,412 @@
+/* =========================================
+   1. VARIABLES & BASE STYLES
+   ========================================= */
+:root {
+  --paper: #f7f4ef;
+  --paper-dark: #ffffff;
+  --brown: #1f3b5c;
+  --gold: #f3a6c8;
+  --shadow: rgba(0,0,0,0.25);
+
+  --pink-bg: #ffd1ea;
+  --pink-soft: #ffe6f3;
+  --pink-dark: #f3a6c8;
+  --ink: #2b2b2b;
+  --ink-soft: #555;
+  --white: #ffffff;
+  --shadow-soft: 0 18px 45px rgba(0,0,0,0.18);
+  --shadow-card: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+
+body, html {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: var(--pink-bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Montserrat', sans-serif;
+  color: var(--ink);
+}
+
+/* =========================================
+   2. HERO SECTION
+   ========================================= */
+#hero-section {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(160deg, #ffd1ea, #f9b6d0);
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+  text-align: center;
+}
+
+#hero-section.hide {
+  transform: translateY(-100%);
+  pointer-events: none;
+}
+
+.hero-btn {
+  background: #333333;
+  color: #fbc2e8;
+  border: none;
+  padding: 12px 35px;
+  font-weight: bold;
+  border-radius: 50px;
+  margin-top: 25px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* =========================================
+   3. ROOM WRAPPER & BACKGROUND
+   ========================================= */
+.room-wrapper {
+  position: relative;
+  height: 100vh;
+  box-shadow: var(--shadow-soft);
+  background-color: #000;
+}
+
+.bg-kamar {
+  height: 100%;
+  width: auto;
+  display: block;
+}
+
+/* =========================================
+   4. OVERLAY ITEMS (Interactive Objects)
+   ========================================= */
+.overlay-item {
+  position: absolute;
+  transform: translateX(-50%);
+  cursor: pointer;
+  z-index: 20;
+  animation: continuousZoom 3s ease-in-out infinite;
+  filter: drop-shadow(0 6px 10px rgba(0,0,0,.35));
+  transition: all 0.3s ease;
+}
+
+.overlay-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
+}
+
+body.lamp-on .overlay-item {
+  background: rgba(255, 209, 234, 0.95);
+  box-shadow:
+    0 0 0 3px #ffffff,
+    0 0 28px rgba(243, 166, 200, 1),
+    0 18px 36px rgba(0,0,0,0.55);
+  animation: none;
+}
+
+.overlay-item:hover {
+  animation-play-state: paused;
+  filter: drop-shadow(0 0 15px #ad7673);
+  transform: translateX(-50%) scale(1.1);
+}
+
+/* Positioning */
+.monitor-overlay { top: 33.2%; left: 9%; width: 15%; }
+.save-overlay { top: 45%; right: -3%; width: 14%; }
+.gallery-overlay { top: 43.3%; left: 10%; width: 13.9%; }
+.wishes-overlay { top: 36.2%; right: -3%; width: 15%; }
+.couple-overlay { top: 28%; right: -1%; width: 15%; }
+.gift-overlay { top: 64%; left: 12%; width: 14%; }
+.rsvp-overlay { top: 54%; left: 11%; width: 14%; }
+.thankyou-overlay { top: 54%; right: -4%; width: 15%; }
+
+/* =========================================
+   5. FLOATING CONTROLS (Music & Lamp)
+   ========================================= */
+.music-control, .lamp-icon {
+  position: absolute;
+  top: 2.5%;     /* jarak dari atas image */
+  right: 3%;     /* jarak dari kanan image */
+  z-index: 999;
+  background: #7b090e;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  cursor: pointer;
+}
+
+.music-control { top: 20px; font-size: 1.5em; }
+.lamp-icon { top: 65px; font-size: 1.5em; transition: all 0.3s ease; color: white; }
+
+.lamp-icon.active {
+  background: var(--pink-dark);
+  box-shadow: 0 0 18px rgba(243,166,200,.9);
+}
+
+#overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+  display: none;
+}
+
+/* =========================================
+   6. MODAL SYSTEM (General & Cartoon Retro)
+   ========================================= */
+.modal { z-index: 11000 !important; }
+.modal-backdrop { z-index: 10500 !important; }
+
+.modal-content {
+  border-radius: 26px;
+  border: none;
+  background: var(--pink-soft);
+  box-shadow: var(--shadow-soft);
+}
+
+/* Cartoon Modal Specific */
+.cartoon-modal .modal-dialog {
+  max-width: 92vw;
+  margin: auto;
+}
+
+.cartoon-modal .modal-content {
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.retro-window {
+  background: var(--pink-soft);
+  border-radius: 26px;
+  box-shadow: var(--shadow-soft);
+  position: relative;
+  color: var(--ink);
+}
+
+.retro-window::before {
+  display: none;
+}
+
+/* Modal Headers & Titles */
+.retro-header {
+  padding: 18px 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: transparent;
+  position: sticky;
+  top: 0;
+}
+
+.retro-title, .modal-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  letter-spacing: 3px;
+  font-weight: 600;
+}
+
+.retro-close, .btn-close {
+  background: none;
+  border: none;
+  font-size: 18px;
+  opacity: .5;
+  cursor: pointer;
+}
+
+/* =========================================
+   7. FORM ELEMENTS & BUTTONS
+   ========================================= */
+.retro-input, .retro-textarea, .form-control, .form-select {
+  width: 100%;
+  border: 1px solid #3b2f2f;
+  border-radius: 12px;
+  padding: 8px;
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 12px;
+}
+
+.retro-btn, .btn-submit, .btn-map {
+  display: inline-block;
+  padding: 10px 22px;
+  border-radius: 25px;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.retro-box {
+  background:  var(--paper-dark);
+  color: var(--brown);
+  border-radius: 16px;
+  padding: 12px 14px;
+  margin-bottom: 12px;
+  box-shadow: var(--shadow-card);
+  font-size: 14px;
+}
+
+.retro-body {
+  padding: 16px 18px 22px;
+  text-align: center;
+}
+
+.retro-body p {
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.retro-btn { background: var(--gold); color: #fff; margin-top: 8px; }
+.btn-submit { background: #ad7673; color: #efe9dc; width: 100%; border: none; letter-spacing: 2px; }
+.btn-map { background: #000; color: #fff; }
+
+/* =========================================
+   8. SPECIFIC CONTENT MODULES
+   ========================================= */
+
+/* The Couple */
+.couple-img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 20px;
+  border: 5px solid #ad7673;
+}
+
+.couple-item h3 { font-size: 1.8rem; color: #ad7673; }
+.script-text { font-family: 'Dancing Script', cursive; font-size: 26px; color: var(--pink-dark); }
+
+/* Gallery */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.gallery-item, .photo-frame {
+  background: #fff;
+  padding: 10px;
+  border-radius: 14px;
+  box-shadow: 0 10px 18px rgba(0,0,0,0.2);
+  overflow: hidden;
+  margin: 15px;
+}
+
+.photo-frame img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+/* Wishes / Ucapan */
+.wishes-list {
+  max-height: 320px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-right: 4px;
+}
+
+.wish-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.4rem;
+}
+
+.wish-card, .wish-item {
+  background: #ffffff;
+  border: 1px solid #3b2f2f;
+  border-radius: 14px;
+  padding: 0.75rem;
+}
+
+.wish-name {
+  font-weight: 600;
+  color: #1f3b5c;
+}
+
+.wish-time {
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.wish-message {
+  background: var(--pink-soft);
+  border-radius: 12px;
+  padding: 10px;
+}
+
+.wishes-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.wishes-list::-webkit-scrollbar-thumb {
+  background: var(--gold);
+  border: 1px solid #3b2f2f;
+  border-radius: 6px;
+}
+
+/* =========================================
+   9. ANIMATIONS & UTILITIES
+   ========================================= */
+@keyframes continuousZoom {
+  0%, 100% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.08); }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.rotate { animation: spin 4s linear infinite; }
+.tilt-left { transform: rotate(-2deg); }
+.tilt-right { transform: rotate(2deg); }
+
+.divider {
+  width: 70px;
+  height: 2px;
+  background: var(--pink-dark);
+  margin: 18px auto;
+  border-radius: 5px;
+}
+
+/* =========================================
+   10. MEDIA QUERIES
+   ========================================= */
+@media (min-width: 768px) {
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 576px) {
+  .wishes-list { max-height: 280px; }
+  .gallery-grid { grid-template-columns: 1fr; }
+  .tilt-left, .tilt-right { transform: rotate(0deg); }
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
