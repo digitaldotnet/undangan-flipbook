@@ -1,0 +1,199 @@
+body {
+  margin: 0;
+  height: 100svh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f5f5f5;
+  touch-action: manipulation;
+}
+
+#flipbook-wrapper {
+  width: 100vw;
+  height: 100svh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.flipbook-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+
+/* page image */
+.page img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;   /* ⬅️ KUNCI */
+  background: #fff;      /* biar nggak kosong */
+}
+
+
+#flipbook {
+  width: auto;
+  height: auto;
+  animation: fadeIn 0.6s ease;
+}
+
+.nav-controls {
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: rgba(0,0,0,0.5);
+  padding: 10px 16px;
+  border-radius: 999px;
+  backdrop-filter: blur(6px);
+  z-index: 999;
+}
+
+.nav-controls button {
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  background: white;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.nav-controls span {
+  color: white;
+  font-size: 14px;
+  min-width: 50px;
+  text-align: center;
+}
+
+#hintSwipe {
+  position: fixed;
+  bottom: calc(90px + env(safe-area-inset-bottom));
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.65);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-size: 14px;
+  z-index: 9999;
+  pointer-events: none;
+  animation: hintFade 4s ease forwards;
+}
+
+@keyframes hintFade {
+  0% { opacity: 0; transform: translate(-50%, 10px); }
+  15% { opacity: 1; transform: translate(-50%, 0); }
+  80% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* Mobile: boleh full */
+@media (max-width: 768px) {
+  .page img {
+    object-fit: cover;
+  }
+}
+
+/* Desktop / Tablet / Landscape */
+@media (min-width: 769px) {
+  .page img {
+    object-fit: contain;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.98); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.nav-controls button:disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+#coverGate {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(180deg, #f7f2ee, #e9dfd6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  text-align: center;
+}
+body.locked {
+  overflow: hidden;
+}
+
+.cover-content h1 {
+  margin-bottom: 8px;
+}
+
+.cover-content button {
+  margin-top: 20px;
+  padding: 14px 28px;
+  border-radius: 999px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  background: #000;
+  color: #fff;
+}
+
+.music-btn {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  z-index: 9999;
+}
+
+/* Map */
+.feature-section {
+  padding: 32px 16px;
+  text-align: center;
+}
+
+.feature-section h2 {
+  margin-bottom: 16px;
+}
+
+.feature-section input,
+.feature-section select,
+.feature-section textarea {
+  width: 100%;
+  max-width: 320px;
+  margin-bottom: 12px;
+  padding: 12px;
+}
+
+.action-btn {
+  padding: 12px 24px;
+  border-radius: 999px;
+  border: none;
+  background: black;
+  color: white;
+  cursor: pointer;
+}
+
+.wish-item {
+  background: #f3f3f3;
+  padding: 12px;
+  margin: 8px auto;
+  max-width: 360px;
+  border-radius: 8px;
+}

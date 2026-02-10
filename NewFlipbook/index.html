@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Undangan Pernikahan</title>
+
+  <!-- WAJIB SAMA VERSI -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<button id="musicToggle" class="music-btn">
+  🔊
+</button>
+<audio id="bgMusic" loop>
+  <source src="/assets/music/song.mp3" type="audio/mpeg">
+</audio>
+
+<div id="coverGate">
+  <div class="cover-content">
+    <h1>Undangan Pernikahan</h1>
+    <p>Kepada Yth.</p>
+    <p id="guestName">Tamu Undangan</p>
+
+    <button id="openInvitation">
+      Buka Undangan
+    </button>
+  </div>
+</div>
+
+<div id="flipbook-wrapper">
+  <div id="flipbook"></div>
+
+  <div class="nav-controls">
+    <button id="prevBtn">‹</button>
+    <span id="pageIndicator">1 / 10</span>
+    <button id="nextBtn">›</button>
+  </div>
+  
+</div>
+<div id="hintSwipe">Tap atau geser untuk lanjut →</div>
+<!-- WAJIB SEBELUM SCRIPT KITA -->
+ <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.min.js"></script>
+<!-- <script src="https://unpkg.com/page-flip@2.0.7/dist/js/page-flip.browser.min.js"></script> -->
+<script src="js/flipbook.js"></script>
+
+</body>
+</html>
