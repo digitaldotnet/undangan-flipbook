@@ -181,13 +181,15 @@ body.lamp-on .overlay-item {
 
 /* Cartoon Modal Specific */
 .cartoon-modal .modal-dialog {
-  max-width: 92vw;
-  margin: auto;
+  max-width: 420px;   /* ukuran mobile */
+  width: 100%;
+  margin: 1.75rem auto;
 }
 
 .cartoon-modal .modal-content {
   max-height: 80vh;
   overflow-y: auto;
+  overflow: hidden;
 }
 
 .retro-window {
@@ -263,6 +265,8 @@ body.lamp-on .overlay-item {
 .retro-body {
   padding: 16px 18px 22px;
   text-align: center;
+  overflow-y: auto;
+  max-height: calc(80vh - 70px); /* tinggi header */
 }
 
 .retro-body p {

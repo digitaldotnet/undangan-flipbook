@@ -154,8 +154,9 @@ body, html {
 
 /* Cartoon Modal Specific */
 .cartoon-modal .modal-dialog {
-  max-width: 92vw;
-  margin: auto;
+  max-height: 80vh;
+  overflow-y: auto;
+  overflow: hidden;
 }
 
 .cartoon-modal .modal-content {
