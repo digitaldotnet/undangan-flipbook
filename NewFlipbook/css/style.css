@@ -367,6 +367,12 @@ body.locked {
   width: 140px !important; /* Gunakan ukuran yang pas untuk tombol */
 }
 
+.location-overlay { 
+  top: 38.2% !important; 
+  left: 65% !important; /* Sesuaikan posisi agar masuk ke dalam halaman */
+  width: 110px !important; /* Gunakan ukuran yang pas untuk tombol */
+}
+
 @keyframes continuousZoom {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.05); }

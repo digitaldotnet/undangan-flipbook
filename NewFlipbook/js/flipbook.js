@@ -36,7 +36,8 @@ document.addEventListener("DOMContentLoaded", () => {
   function buildPages() {
     return pages
       .map((img, index) => {
-        const isRSVPPage = index === 5; // halaman ke-6
+        const isRSVPPage = index === 5;
+        const isSavePage = index === 2;
 
         return `
           <div class="page">
@@ -44,6 +45,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
             ${isRSVPPage ? `
               <img src="img/btn-ucapan.png" class="overlay-item wishes-overlay" data-bs-toggle="modal" data-bs-target="#wishes">
+            ` : ""}
+
+            ${isSavePage ? `
+              <a href="https://www.google.com/maps/place/Ritz-Carlton+Jkt,+Kuningan,+Kuningan+Tim.,+Kecamatan+Setiabudi,+Kota+Jakarta+Selatan,+Daerah+Khusus+Ibukota+Jakarta+12950/@-6.2285518,106.8246668,17z/data=!3m1!4b1!4m6!3m5!1s0x2e69f3e522f87729:0xdefece2f325ccb3d!8m2!3d-6.2285571!4d106.8272417!16s%2Fg%2F11yqrt3fq7?entry=ttu&g_ep=EgoyMDI2MDIwOC4wIKXMDSoASAFQAw%3D%3D" target="_blank"><img src="img/btn-lokasi.png" class="overlay-item location-overlay"></a>
             ` : ""}
           </div>
         `;
