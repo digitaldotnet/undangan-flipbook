@@ -1,3 +1,20 @@
+:root {
+  --paper: #f7f4ef;
+  --paper-dark: #ffffff;
+  --brown: #1f3b5c;
+  --gold: #c1272d;
+  --shadow: rgba(0,0,0,0.25);
+
+  --pink-bg: #fff;
+  --pink-soft: #fff;
+  --pink-dark: #fff;
+  --ink: #2b2b2b;
+  --ink-soft: #555;
+  --white: #ffffff;
+  --shadow-soft: 0 18px 45px rgba(0,0,0,0.18);
+  --shadow-card: 0 10px 25px rgba(0,0,0,0.15);
+}
+
 body {
   margin: 0;
   height: 100svh;
@@ -30,7 +47,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: contain;   /* ⬅️ KUNCI */
-  background: #fff;      /* biar nggak kosong */
+  background: transparent o !important;      /* biar nggak kosong */
 }
 
 
@@ -97,7 +114,7 @@ body {
 /* Mobile: boleh full */
 @media (max-width: 768px) {
   .page img {
-    object-fit: cover;
+    object-fit: contain !important;
   }
 }
 
@@ -196,4 +213,318 @@ body.locked {
   margin: 8px auto;
   max-width: 360px;
   border-radius: 8px;
+}
+
+.rsvp-hotspot {
+  position: absolute;
+  bottom: 18%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 48px;
+
+  background: rgba(255,255,255,0.85);
+  border-radius: 999px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 600;
+  font-size: 14px;
+  color: #000;
+
+  cursor: pointer;
+  z-index: 10;
+
+  animation: pulse 2s infinite;
+}
+
+
+.rsvp-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.rsvp-card {
+  background: #fff;
+  width: 90%;
+  max-width: 360px;
+  border-radius: 16px;
+  padding: 20px;
+  animation: popup .35s ease;
+}
+
+@keyframes popup {
+  from {
+    transform: scale(.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.rsvp-card h2 {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.rsvp-card input,
+.rsvp-card select,
+.rsvp-card textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+
+.rsvp-card textarea {
+  resize: none;
+  height: 80px;
+}
+
+.rsvp-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-primary {
+  flex: 1;
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: 999px;
+}
+
+.btn-secondary {
+  flex: 1;
+  background: #eee;
+  border: none;
+  padding: 12px;
+  border-radius: 999px;
+}
+
+/* Styling List Ucapan */
+.wishes-list::-webkit-scrollbar {
+    width: 5px;
+}
+.wishes-list::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}
+
+.wish-item {
+    background: #f8f9fa;
+    border-left: 4px solid #0d6efd;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.wish-item strong {
+    display: block;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.wish-item small {
+    font-size: 0.75rem;
+    color: #888;
+}
+
+.wish-item p {
+    margin: 5px 0 0;
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+.overlay-item {
+  position: absolute;
+  /* Hapus transform: translateX jika Anda ingin menggunakan right/left secara presisi */
+  cursor: pointer;
+  z-index: 99; /* Pastikan lebih tinggi dari elemen lain */
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,.2));
+  animation: continuousZoom 3s ease-in-out infinite;
+  border: none;
+  background: none; /* Pastikan tidak ada background bawaan */
+  outline: none;
+}
+
+/* Perbaiki ukuran: 1% terlalu kecil, gunakan ukuran px atau % yang terlihat */
+.wishes-overlay { 
+  top: 25.2% !important; 
+  left: 32% !important; /* Sesuaikan posisi agar masuk ke dalam halaman */
+  width: 140px !important; /* Gunakan ukuran yang pas untuk tombol */
+}
+
+@keyframes continuousZoom {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.modal-content {
+  border-radius: 26px;
+  border: none;
+  background: var(--pink-soft);
+  box-shadow: var(--shadow-soft);
+}
+
+/* Cartoon Modal Specific */
+.cartoon-modal .modal-dialog {
+  max-width: 420px;   /* ukuran mobile */
+  width: 100%;
+  margin: 1.75rem auto;
+}
+
+.cartoon-modal .modal-content {
+  max-height: 80vh;
+  overflow-y: auto;
+  overflow: hidden;
+}
+
+.retro-window {
+  background: var(--pink-soft);
+  border-radius: 26px;
+  box-shadow: var(--shadow-soft);
+  position: relative;
+  color: var(--ink);
+}
+
+.retro-window::before {
+  display: none;
+}
+
+/* Modal Headers & Titles */
+.retro-header {
+  padding: 18px 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: transparent;
+  position: sticky;
+  top: 0;
+}
+
+.retro-title, .modal-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  letter-spacing: 3px;
+  font-weight: 600;
+}
+
+.retro-close, .btn-close {
+  background: none;
+  border: none;
+  font-size: 18px;
+  opacity: .5;
+  cursor: pointer;
+}
+
+/* =========================================
+   7. FORM ELEMENTS & BUTTONS
+   ========================================= */
+.retro-input, .retro-textarea, .form-control, .form-select {
+  width: 100%;
+  border: 1px solid #3b2f2f;
+  border-radius: 12px;
+  padding: 8px;
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 12px;
+}
+
+.retro-btn, .btn-submit, .btn-map {
+  display: inline-block;
+  padding: 10px 22px;
+  border-radius: 25px;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.retro-box {
+  background:  var(--paper-dark);
+  color: var(--brown);
+  border-radius: 16px;
+  padding: 12px 14px;
+  margin-bottom: 12px;
+  box-shadow: var(--shadow-card);
+  font-size: 14px;
+}
+
+.retro-body {
+  padding: 16px 18px 22px;
+  text-align: center;
+  overflow-y: auto;
+  max-height: calc(80vh - 70px); /* tinggi header */
+}
+
+.retro-body p {
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.retro-btn { background: var(--gold); color: #fff; margin-top: 8px; }
+.btn-submit { background: #ad7673; color: #efe9dc; width: 100%; border: none; letter-spacing: 2px; }
+.btn-map { background: #000; color: #fff; }
+
+/* Wishes / Ucapan */
+.wishes-list {
+  max-height: 320px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-right: 4px;
+}
+
+.wish-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.4rem;
+}
+
+.wish-card, .wish-item {
+  background: #ffffff;
+  border: 1px solid #3b2f2f;
+  border-radius: 14px;
+  padding: 0.75rem;
+}
+
+.wish-name {
+  font-weight: 600;
+  color: #1f3b5c;
+}
+
+.wish-time {
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.wish-message {
+  background: #e0dede;
+  border-radius: 12px;
+  padding: 10px;
+}
+
+.wishes-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.wishes-list::-webkit-scrollbar-thumb {
+  background: var(--gold);
+  border: 1px solid #3b2f2f;
+  border-radius: 6px;
 }
