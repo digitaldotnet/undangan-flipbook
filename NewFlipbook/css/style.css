@@ -350,14 +350,16 @@ body.locked {
 
 .overlay-item {
   position: absolute;
-  /* Hapus transform: translateX jika Anda ingin menggunakan right/left secara presisi */
+  z-index: 9999 !important; /* Sangat penting */
+  pointer-events: auto !important; /* Memastikan tombol merespon klik */
   cursor: pointer;
-  z-index: 99; /* Pastikan lebih tinggi dari elemen lain */
+  
+  /* Hilangkan seleksi biru saat ditekan di mobile */
+  -webkit-tap-highlight-color: transparent; 
+  
+  /* Sisanya sesuai kode Anda */
   filter: drop-shadow(0 4px 6px rgba(0,0,0,.2));
   animation: continuousZoom 3s ease-in-out infinite;
-  border: none;
-  background: none; /* Pastikan tidak ada background bawaan */
-  outline: none;
 }
 
 /* Perbaiki ukuran: 1% terlalu kecil, gunakan ukuran px atau % yang terlihat */

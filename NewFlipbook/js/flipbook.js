@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
       maxHeight: 1350,
       showCover: !singlePage,
       mobileScrollSupport: false,
-      useMouseEvents: false,
+      useMouseEvents: true,
     });
 
     pageFlip.loadFromHTML(document.querySelectorAll(".page"));
@@ -131,10 +131,33 @@ document.addEventListener("DOMContentLoaded", () => {
     return Promise.all(promises);
   };
 
-  // Jalankan init setelah gambar siap
-  preloadImages().then(() => {
-    initFlipbook();
+  // Tambahkan fungsi ini untuk menangani isolasi klik
+function setupOverlayEvents() {
+  const overlays = document.querySelectorAll('.overlay-item');
+  
+  overlays.forEach(button => {
+    // 1. Hentikan 'click' agar tidak memicu flip otomatis
+    button.addEventListener('click', (e) => {
+      e.stopPropagation();
+    });
+
+    // 2. Hentikan 'mousedown' & 'touchstart' 
+    // Ini adalah kunci agar page-flip tidak menganggapnya awal dari tarikan (drag)
+    const stopPropagation = (e) => {
+      e.stopPropagation();
+    };
+
+    button.addEventListener('mousedown', stopPropagation);
+    button.addEventListener('touchstart', stopPropagation, { passive: true });
+    button.addEventListener('pointerdown', stopPropagation);
   });
+}
+
+// Panggil di dalam preloadImages().then(...)
+preloadImages().then(() => {
+  initFlipbook();
+  setupOverlayEvents(); // <--- Panggil fungsi di sini
+});
 
   let resizeTimeout;
   window.addEventListener("resize", () => {
