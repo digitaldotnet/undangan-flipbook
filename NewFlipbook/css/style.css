@@ -370,8 +370,8 @@ body.locked {
 }
 
 .location-overlay { 
-  top: 38.2% !important; 
-  left: 65% !important; /* Sesuaikan posisi agar masuk ke dalam halaman */
+  top: 16.2% !important; 
+  left: 30% !important; /* Sesuaikan posisi agar masuk ke dalam halaman */
   width: 110px !important; /* Gunakan ukuran yang pas untuk tombol */
 }
 
