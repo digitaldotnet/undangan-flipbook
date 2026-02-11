@@ -1,3 +1,15 @@
+import { initWishes } from './wishes.js';
+//import { initRsvp } from './rsvp.js';
+
+const segments = window.location.pathname
+  .split('/')
+  .filter(Boolean);
+
+const groupName = segments[0] || 'default';
+
+initWishes(groupName);
+//initRsvp(groupName);
+
 document.addEventListener("DOMContentLoaded", () => {
   let pageFlip;
   const pages = [
@@ -6,10 +18,9 @@ document.addEventListener("DOMContentLoaded", () => {
     "img/3.png",
     "img/4.png",
     "img/5.png",
-    "img/6.png",
+    "img/6.png", // RSVP PAGE
     "img/7.png",
-    "img/8.png",
-    "img/9.png",
+    "img/8.png"
   ];
 
   const flipbookEl = document.getElementById("flipbook");
@@ -19,25 +30,36 @@ document.addEventListener("DOMContentLoaded", () => {
     return window.innerWidth < 768 && window.innerHeight > window.innerWidth;
   }
 
+  /* ===============================
+     BUILD PAGES (+ RSVP HOTSPOT)
+  =============================== */
   function buildPages() {
     return pages
-      .map(
-        img => `
-        <div class="page">
-          <img src="${img}" alt="">
-        </div>`
-      )
+      .map((img, index) => {
+        const isRSVPPage = index === 5; // halaman ke-6
+
+        return `
+          <div class="page">
+            <img src="${img}" alt="">
+
+            ${isRSVPPage ? `
+              <img src="img/btn-ucapan.png" class="overlay-item wishes-overlay" data-bs-toggle="modal" data-bs-target="#wishes">
+            ` : ""}
+          </div>
+        `;
+      })
       .join("");
   }
 
+  /* ===============================
+     INIT FLIPBOOK
+  =============================== */
   function initFlipbook() {
-    // destroy sebelumnya
     if (pageFlip) {
       pageFlip.destroy();
       pageFlip = null;
     }
 
-    // rebuild DOM
     flipbookEl.innerHTML = buildPages();
 
     const singlePage = isSinglePage();
@@ -50,9 +72,9 @@ document.addEventListener("DOMContentLoaded", () => {
       maxWidth: 1000,
       minHeight: 420,
       maxHeight: 1350,
-      showCover: !singlePage, // 🔑 KUNCI UTAMA
+      showCover: !singlePage,
       mobileScrollSupport: false,
-      useMouseEvents: true,
+      useMouseEvents: false,
     });
 
     pageFlip.loadFromHTML(document.querySelectorAll(".page"));
@@ -61,19 +83,18 @@ document.addEventListener("DOMContentLoaded", () => {
       indicator.textContent = `${e.data + 1} / ${pageFlip.getPageCount()}`;
     });
 
-    pageFlip.on("flip", () => {
-      prevBtn.disabled = pageFlip.getCurrentPageIndex() === 0;
-      nextBtn.disabled =
-        pageFlip.getCurrentPageIndex() === pageFlip.getPageCount() - 1;
-    });
-
-    indicator.textContent = `1 / ${pageFlip.getPageCount()}`;    
+    indicator.textContent = `1 / ${pageFlip.getPageCount()}`;
   }
 
-  // tombol navigasi
+  /* ===============================
+     NAV BUTTON
+  =============================== */
   document.getElementById("prevBtn").onclick = () => pageFlip.flipPrev();
   document.getElementById("nextBtn").onclick = () => pageFlip.flipNext();
 
+  /* ===============================
+     HINT
+  =============================== */
   const hint = document.getElementById("hintSwipe");
 
   if (!localStorage.getItem("flipHintShown")) {
@@ -89,32 +110,49 @@ document.addEventListener("DOMContentLoaded", () => {
     const img = new Image();
     img.src = src;
   });
-  // init pertama
-  initFlipbook();
 
-  // 🔁 resize / rotate handler (INI YANG KAMU KELEWAT)
+  /* ===============================
+   PRELOAD IMAGES & INIT
+  =============================== */
+  const preloadImages = () => {
+    const promises = pages.map(src => {
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.src = src;
+        img.onload = resolve;
+        img.onerror = resolve; // Tetap lanjut meski 1 gambar error
+      });
+    });
+    return Promise.all(promises);
+  };
+
+  // Jalankan init setelah gambar siap
+  preloadImages().then(() => {
+    initFlipbook();
+  });
+
   let resizeTimeout;
   window.addEventListener("resize", () => {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(initFlipbook, 300);
   });
 
-  // music
-  const audio = document.getElementById("bgMusic");
+  /* ===============================
+     MUSIC
+  =============================== */
+  const bgMusic = document.getElementById("bgMusic");
+  const musicBtn = document.getElementById("musicToggle");
+
+  bgMusic.volume = 0.4;
 
   function tryPlayMusic() {
-    audio.play().catch(() => {});
+    bgMusic.play().catch(() => {});
     document.removeEventListener("click", tryPlayMusic);
     document.removeEventListener("touchstart", tryPlayMusic);
   }
 
   document.addEventListener("click", tryPlayMusic);
   document.addEventListener("touchstart", tryPlayMusic);
-
-  const bgMusic = document.getElementById("bgMusic");
-  const musicBtn = document.getElementById("musicToggle");
-
-  bgMusic.volume = 0.4;
 
   musicBtn.onclick = () => {
     if (bgMusic.paused) {
@@ -126,41 +164,27 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  // hero
+  /* ===============================
+     COVER GATE
+  =============================== */
   const coverGate = document.getElementById("coverGate");
   const openBtn = document.getElementById("openInvitation");
 
   openBtn.onclick = () => {
-    // pastikan element ada
-    if (!coverGate) return;
-
-    // animasi geser ke atas
-    coverGate.style.transition = "transform 1.5s ease, opacity 1.4s ease";
+    coverGate.style.transition = "transform 1.3s ease, opacity 1.2s ease";
     coverGate.style.transform = "translateY(-100%)";
     coverGate.style.opacity = "0";
     coverGate.style.pointerEvents = "none";
 
-    // play musik
     bgMusic.play().catch(() => {});
-
-    setTimeout(() => {
-      if (pageFlip && pageFlip.getCurrentPageIndex() === 0) {
-        pageFlip.flipNext();
-      }
-    }, 900);
   };
 
-  // nama tamu
-  function getGuestName() {
-    const params = new URLSearchParams(window.location.search);
-    return params.get("to");
-  }
-
-  const guest = getGuestName();
+  /* ===============================
+     GUEST NAME
+  =============================== */
+  const params = new URLSearchParams(window.location.search);
+  const guest = params.get("to");
   const guestEl = document.getElementById("guestName");
-
-  if (guest && guestEl) {
-    guestEl.textContent = guest;
-  }
+  if (guest && guestEl) guestEl.textContent = guest;
 
 });
