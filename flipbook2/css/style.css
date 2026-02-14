@@ -1,0 +1,556 @@
+:root {
+  --paper: #f7f4ef;
+  --paper-dark: #fff8ea;
+  --brown: #1f3b5c;
+  --gold: #63c1a6;
+  --shadow: rgba(0,0,0,0.25);
+
+  --pink-bg: #fff;
+  --pink-soft: #eb7482;
+  --pink-dark: #fff;
+  --ink: #2b2b2b;
+  --ink-soft: #555;
+  --white: #ffffff;
+  --shadow-soft: 0 18px 45px rgba(0,0,0,0.18);
+  --shadow-card: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+body {
+  margin: 0;
+  height: 100svh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f5f5f5;
+  touch-action: manipulation;
+}
+
+#flipbook-wrapper {
+  width: 100vw;
+  height: 100svh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.flipbook-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+
+/* page image */
+.page img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;   /* ⬅️ KUNCI */
+  background: transparent o !important;      /* biar nggak kosong */
+}
+
+
+#flipbook {
+  width: auto;
+  height: auto;
+  animation: fadeIn 0.6s ease;
+}
+
+.nav-controls {
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: rgba(0,0,0,0.5);
+  padding: 10px 16px;
+  border-radius: 999px;
+  backdrop-filter: blur(6px);
+  z-index: 999;
+}
+
+.nav-controls button {
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  background: white;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.nav-controls span {
+  color: white;
+  font-size: 14px;
+  min-width: 50px;
+  text-align: center;
+}
+
+#hintSwipe {
+  position: fixed;
+  bottom: calc(90px + env(safe-area-inset-bottom));
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.65);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-size: 14px;
+  z-index: 9999;
+  pointer-events: none;
+  animation: hintFade 4s ease forwards;
+}
+
+@keyframes hintFade {
+  0% { opacity: 0; transform: translate(-50%, 10px); }
+  15% { opacity: 1; transform: translate(-50%, 0); }
+  80% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* Mobile: boleh full */
+@media (max-width: 768px) {
+  .page img {
+    object-fit: contain !important;
+  }
+}
+
+/* Desktop / Tablet / Landscape */
+@media (min-width: 769px) {
+  .page img {
+    object-fit: contain;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.98); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.nav-controls button:disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+#coverGate {
+  position: fixed;
+  inset: 0;
+  background: #eb7482;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  text-align: center;
+}
+
+body.locked {
+  overflow: hidden;
+}
+
+.cover-content h1 {
+  margin-bottom: 8px;
+  color: #206451;
+}
+
+.cover-content p {
+  color: #206451;
+}
+
+.cover-content{
+  border: #63c1a6;
+  padding: 50px;
+  border-radius: 20px;
+  background: rgba(251, 252, 252, 0.35);
+  backdrop-filter: blur(6px);
+}
+
+.cover-content button {
+  margin-top: 20px;
+  padding: 14px 28px;
+  border-radius: 999px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  background: #63c1a6;
+  color: #206451;
+}
+
+.music-btn {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  z-index: 9999;
+}
+
+/* Map */
+.feature-section {
+  padding: 32px 16px;
+  text-align: center;
+}
+
+.feature-section h2 {
+  margin-bottom: 16px;
+}
+
+.feature-section input,
+.feature-section select,
+.feature-section textarea {
+  width: 100%;
+  max-width: 320px;
+  margin-bottom: 12px;
+  padding: 12px;
+}
+
+.action-btn {
+  padding: 12px 24px;
+  border-radius: 999px;
+  border: none;
+  background: black;
+  color: white;
+  cursor: pointer;
+}
+
+.wish-item {
+  background: #f3f3f3;
+  padding: 12px;
+  margin: 8px auto;
+  max-width: 360px;
+  border-radius: 8px;
+}
+
+.rsvp-hotspot {
+  position: absolute;
+  bottom: 18%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 48px;
+
+  background: rgba(255,255,255,0.85);
+  border-radius: 999px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 600;
+  font-size: 14px;
+  color: #000;
+
+  cursor: pointer;
+  z-index: 10;
+
+  animation: pulse 2s infinite;
+}
+
+
+.rsvp-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.rsvp-card {
+  background: #fff;
+  width: 90%;
+  max-width: 360px;
+  border-radius: 16px;
+  padding: 20px;
+  animation: popup .35s ease;
+}
+
+@keyframes popup {
+  from {
+    transform: scale(.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.rsvp-card h2 {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.rsvp-card input,
+.rsvp-card select,
+.rsvp-card textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  border: 1px solid #fff8ea;
+  font-size: 14px;  
+}
+
+.rsvp-card textarea {
+  resize: none;
+  height: 80px;
+}
+
+.rsvp-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-primary {
+  flex: 1;
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: 999px;
+}
+
+.btn-secondary {
+  flex: 1;
+  background: #eee;
+  border: none;
+  padding: 12px;
+  border-radius: 999px;
+}
+
+/* Styling List Ucapan */
+.wishes-list::-webkit-scrollbar {
+    width: 5px;
+}
+.wishes-list::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}
+
+.wish-item {
+    background: #f8f9fa;
+    border-left: 4px solid #0d6efd;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.wish-item strong {
+    display: block;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.wish-item small {
+    font-size: 0.75rem;
+    color: #888;
+}
+
+.wish-item p {
+    margin: 5px 0 0;
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+.overlay-item {
+  position: absolute;
+  z-index: 9999 !important; /* Sangat penting */
+  pointer-events: auto !important; /* Memastikan tombol merespon klik */
+  cursor: pointer;
+  
+  /* Hilangkan seleksi biru saat ditekan di mobile */
+  -webkit-tap-highlight-color: transparent; 
+  
+  /* Sisanya sesuai kode Anda */
+  filter: drop-shadow(0 4px 6px rgba(238, 8, 8, 0));
+  animation: continuousZoom 1s ease-in-out infinite;
+}
+
+/* Perbaiki ukuran: 1% terlalu kecil, gunakan ukuran px atau % yang terlihat */
+.wishes-overlay { 
+  top: 9.2% !important; 
+  left: 24% !important; /* Sesuaikan posisi agar masuk ke dalam halaman */
+  width: 220px !important; /* Gunakan ukuran yang pas untuk tombol */
+}
+
+.location-overlay { 
+  top: 13.2% !important; 
+  left: 54% !important; /* Sesuaikan posisi agar masuk ke dalam halaman */
+  width: 110px !important; /* Gunakan ukuran yang pas untuk tombol */
+}
+
+@keyframes continuousZoom {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.modal-content {
+  border-radius: 26px;
+  border: none;
+  background: var(--pink-soft);
+  box-shadow: var(--shadow-soft);
+}
+
+/* Cartoon Modal Specific */
+.cartoon-modal .modal-dialog {
+  max-width: 420px;   /* ukuran mobile */
+  width: 100%;
+  margin: 1.75rem auto;
+}
+
+.cartoon-modal .modal-content {
+  max-height: 80vh;
+  overflow-y: auto;
+  overflow: hidden;
+}
+
+.retro-window {
+  background: var(--pink-soft);
+  border-radius: 26px;
+  box-shadow: var(--shadow-soft);
+  position: relative;
+  color: var(--ink);
+}
+
+.retro-window::before {
+  display: none;
+}
+
+/* Modal Headers & Titles */
+.retro-header {
+  padding: 18px 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: transparent;
+  position: sticky;
+  top: 0;
+}
+
+.retro-title, .modal-title {
+  color:#943a22;
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  letter-spacing: 3px;
+  font-weight: 600;
+}
+
+.retro-close, .btn-close {
+  background: none;
+  border: none;
+  font-size: 18px;
+  opacity: .5;
+  cursor: pointer;
+}
+
+/* =========================================
+   7. FORM ELEMENTS & BUTTONS
+   ========================================= */
+.retro-input, .retro-textarea, .form-control, .form-select {
+  width: 100%;
+  border: 1px solid #3b2f2f;
+  border-radius: 12px;
+  padding: 8px;
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 12px;
+  background-color: #fff8ea;
+}
+
+.retro-btn, .btn-submit, .btn-map {
+  display: inline-block;
+  padding: 10px 22px;
+  border-radius: 25px;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.retro-box {
+  background:  var(--paper-dark);
+  color: var(--brown);
+  border-radius: 16px;
+  padding: 12px 14px;
+  margin-bottom: 12px;
+  box-shadow: var(--shadow-card);
+  font-size: 14px;
+}
+
+.retro-body {
+  padding: 16px 18px 22px;
+  text-align: center;
+  overflow-y: auto;
+  max-height: calc(80vh - 70px); /* tinggi header */
+}
+
+.retro-body p {
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.retro-btn { background: var(--gold); color: #206451; margin-top: 8px; }
+.btn-submit { background: #ad7673; color: #206451; width: 100%; border: none; letter-spacing: 2px; }
+.btn-map { background: #000; color: #fff; }
+
+/* Wishes / Ucapan */
+.wishes-list {
+  max-height: 320px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-right: 4px;
+}
+
+.wish-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.4rem;
+}
+
+.wish-card, .wish-item {
+  background: #fff8ea;
+  border: 1px solid #f59b83;
+  border-radius: 14px;
+  padding: 0.75rem;
+}
+
+.wish-name {
+  font-weight: 600;
+  color: #943a22;
+}
+
+.wish-time {
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 999px;
+  color: #943a22;
+}
+
+.wish-message {
+  background: #63c1a66a;
+  border-radius: 12px;
+  padding: 10px;
+  color: #206451;
+}
+
+.wishes-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.wishes-list::-webkit-scrollbar-thumb {
+  background: var(--gold);
+  border: 1px solid #3b2f2f;
+  border-radius: 6px;
+}

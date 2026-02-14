@@ -3,54 +3,94 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jane & Shane Wedding Invitation</title>
-  <link rel="stylesheet" href="../assets/css/style.css">
+  <title>Undangan Pernikahan</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- WAJIB SAMA VERSI -->
+  <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="../assets/css/aos.css">
 </head>
-<body class="cover bg-flip1">
+</head>
+<body>
 
-  <div class="overlay"></div>
+<button id="musicToggle" class="music-btn">
+  🔊
+</button>
+<audio id="bgMusic" loop>
+  <source src="/assets/music/song.mp3" type="audio/mpeg">
+</audio>
 
-  <div class="content"
-       data-aos="zoom-in"
-       data-aos-duration="1200"
-       data-aos-easing="ease-out-cubic">
-    <p class="subtitle" data-aos="fade-down" data-aos-delay="200">
+<div id="coverGate">
+  <div class="cover-content">
+    <p data-aos="fade-down" data-aos-delay="200" data-aos-duration="2000">
       The Wedding Of
     </p>
-
-    <h1 class="couple-name" data-aos="fade-up" data-aos-delay="400">
-      <span class="name" data-aos="fade-right">Jane</span>
-      <span class="amp" data-aos="zoom-in">&amp;</span>
-      <span class="name" data-aos="fade-left">Shane</span>
+    <h1 class="couple-name" data-aos="fade-up" data-aos-delay="400" data-aos-duration="2000">
+      <span class="name" data-aos="fade-right" data-aos-duration="2000">Jane</span>
+      <span class="amp" data-aos="zoom-in" data-aos-duration="2000">&amp;</span>
+      <span class="name" data-aos="fade-left" data-aos-duration="2000">Shane</span>
     </h1>
 
-    <p class="date" data-aos="fade-up" data-aos-delay="600">
+    <p class="date" data-aos="fade-up" data-aos-delay="600" data-aos-duration="2000">
       17 • 07 • 2026
     </p>
+    <p data-aos="fade-up" data-aos-delay="700" data-aos-duration="2000">Kepada Yth.</p>
+    <p id="guestName" data-aos="fade-up" data-aos-delay="800" data-aos-duration="2000">Tamu Undangan</p>
 
-  <p class="guest-name" id="guestName"
-      data-aos="fade-down"
-      data-aos-delay="100">
-      Kepada Yth. Bapak/Ibu/Saudara/i
-    </p>
+    <button id="openInvitation" data-aos="zoom-in" data-aos-delay="900" data-aos-duration="2000">
+      Buka Undangan
+    </button>
+  </div>
+</div>
 
-    <a href="flipbook.html"
-       class="btn"
-       data-aos="fade-up"
-       data-aos-delay="800">
-      Open Invitation
-    </a>
+<div id="flipbook-wrapper">
+  <div id="flipbook"></div>
+
+  <div class="nav-controls">
+    <button id="prevBtn">‹</button>
+    <span id="pageIndicator">1 / 10</span>
+    <button id="nextBtn">›</button>
+  </div>
+  
+</div>
+<div id="hintSwipe">Tap atau geser untuk lanjut →</div>
+
+<!-- ================= MODAL ================= -->
+<!-- wishes -->
+  <div class="modal fade cartoon-modal" id="wishes">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content wedding-modal">
+          <!-- HEADER -->
+          <div class="retro-header">
+            <span class="retro-title">WISHES</span>
+            <button class="retro-close" data-bs-dismiss="modal">✕</button>
+          </div>
+          <!-- BODY -->
+          <div class="retro-body">
+            <!-- FORM -->
+            <div class="retro-box">
+              <input id="name" class="retro-input mb-2" placeholder="Nama">
+              <textarea id="comment" class="retro-textarea" rows="3" placeholder="Tulis ucapan..."></textarea>
+              <a href="#" class="retro-btn mt-2" id="btnKirim">Kirim Ucapan</a>
+            </div>
+            <div class="text-danger d-none mt-2" id="wishPop"> Ucapan berhasil dikirim! </div>
+            <!-- LIST UCAPAN -->
+            <div class="wishes-list"></div>
+          </div>
+        </div>
+      </div>
   </div>
 
-  <!-- JS -->
-  <script src="../assets/js/aos.js"></script>
+<!-- WAJIB SEBELUM SCRIPT KITA -->
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script type="module" src="js/flipbook.js"></script>
+<script src="../assets/js/aos.js"></script>
   <script>
     AOS.init({
       once: true,      // animasi cuma sekali
       offset: 0        // langsung aktif
     });
   </script>
-
 </body>
 </html>
