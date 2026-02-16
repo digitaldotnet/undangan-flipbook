@@ -20,7 +20,8 @@ document.addEventListener("DOMContentLoaded", () => {
     "img/5.png",
     "img/6.png", // RSVP PAGE
     "img/7.png",
-    "img/8.png"
+    "img/8.png",
+    "img/9.png"
   ];
 
   const flipbookEl = document.getElementById("flipbook");

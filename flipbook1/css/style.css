@@ -379,7 +379,7 @@ body.locked {
 /* Perbaiki ukuran: 1% terlalu kecil, gunakan ukuran px atau % yang terlihat */
 .wishes-overlay { 
   top: 22.2% !important; 
-  left: 27% !important; /* Sesuaikan posisi agar masuk ke dalam halaman */
+  left: 25% !important; /* Sesuaikan posisi agar masuk ke dalam halaman */
   width: 200px !important; /* Gunakan ukuran yang pas untuk tombol */
 }
 
